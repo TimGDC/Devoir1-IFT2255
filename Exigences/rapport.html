@@ -22,6 +22,11 @@
         {
             border-right: double 2px black;
         }
+
+        ol>li{
+            padding: 10px
+        }
+        
     
     </style>
 </head>
@@ -125,7 +130,40 @@
         <h2>Tâche 2 : Diagramme de cas d'utilisation UML</h2>
         <h2>Tâche 3 : Cas d'utilisation</h2>
         <h2>Tâche 4 : Risques</h2>
+        <p>Nous identifions 5 risques, du plus sevère au moins sevère, qui pourraient donner lieu à une mauvaise éxperience du logiciel de la part de l'utilisateur.</p>
+        <ol>
+            <li>(Risque sévère) <span style="font-weight: bold;">Faille dans la sécurité des données</span> : Les utilisateurs se confient à nous avec des informations sensibles (nom, nom de compagnie, adresse courriel, téléphone, informations sur leur(s) robot(s)) lors de l'inscription à Robotix.
+                 Si nous ne gérons pas bien ces données, il pourrait y avoir fuite/perte des données. Une mauvaise gestion des données pourrait etre du au manque d'encryptage, de backups, ou si nous ne mettons pas assez de restrictions d'accès par exemple.                
+                 Cela mettrait les utilisateurs à risque, possiblement en danger, et aurait des implications légales importantes.
+            </li>
+            <li>
+                (Risque important) <span style="font-weight: bold;">Fiabilité des fournisseurs et qualité des composantes</span> : Nous nous fions aux fournisseurs pour qu'ils manufacturent des composantes de robots fonctionnels et de qualité (au niveau de la norme industrielle).
+                Cela est critique, car si nous obtenons des composantes médiocres ou meme défecteuses, les robots assemblés risqueront de ne pas fonctionner proprement, tomberont en panne plus souvent, et le cout de maintenance sera beaucoup plus élevé. 
+            </li>
+            <li>
+                (Risque important) <span style="font-weight: bold;">Efficacité des capteurs</span> : Les capteurs jouent un rôle crucial pour nos robots. Avec les données receuillies (périodiquement) par les capteurs, nous pouvons
+                déterminer toutes sortes d'informations importantes sur l'état du robot. Ceci permet notamment de controler les mouvements du robot, d'évaluer le robot pour des problemes potentiels, et de gérer les differentes activités du robot.
+                Des capteurs inefficaces receuilleront moins de données (par unité de temps), ce qui peut entraîner des erreurs de performance, des déplacements imprécis, et en general un mauvais fonctionnement du robot.
+            </li>
+            <li>
+                (Risque important) <span style="font-weight: bold;">Limitations techniques des robots concernant les Activités</span> : Avec le nombre limité de composantes disponibles, les robots risqueront d'avoir des capacités techniques limitées.
+                Ainsi, certaines activités (Jeux/Education/Creation) que les utilisateurs voudraient ne pourront pas etre effectuées par les robots.
+                Cela pourrait décevoir les utilisateurs, réduisant l'engagement et la satisfaction des utilisateurs.
+            </li>
+            <li>
+                (Risque éloigne) <span style="font-weight:bold;">Compatibilité</span> : Étant donné que differents fournisseurs produisent différents composants, il faut s'assurer qu'il y ait compatibilité entre composants, ou clairement indiquer les incompatibilités dans l'inventaire.
+                Une incompatibilité peut entrainer des dysfonctionnements dans les robots, des défaillances dans l'exécution des tâches, et compliquer la maintenance des robots.
+            </li>
+        </ol>
         <h2>Tâche 5 : Exigences non-fonctionnelles</h2>
+        <p>Nous identifions 5 besoins non-fonctionnels du système.</p>
+        <ol>
+            <li><span style="font-weight:bold;">Utilisabilité</span> : </li>
+            <li><span style="font-weight:bold;">Fiabilité</span> : </li>
+            <li><span style="font-weight:bold;">Maintenabilité</span> : </li>
+            <li><span style="font-weight:bold;">Extensibilité (Scalability)</span> : </li>
+            <li><span style="font-weight:bold;">Performance</span> : </li>
+        </ol>
         <h2>Tâche Bonus : Prototype en Java</h2>
     </section>
 </body>
