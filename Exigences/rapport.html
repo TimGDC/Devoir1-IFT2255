@@ -397,52 +397,60 @@
             <span style="font-weight: bold;">Postconditions :</span> L'utilisateur a consulté l'usage de ses robots. <br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation 11 :</span>Afficher métrique de la flotte des robots<br>
-            <span style="font-weight: bold;">But :</span><br>
-            <span style="font-weight: bold;">Préconditions :</span><br>
-            <span style="font-weight: bold;">Acteurs :</span> <br>
+            <span style="font-weight: bold;">Cas d'utilisation 11 :</span> Afficher métrique de la flotte des robots<br>
+            <span style="font-weight: bold;">But :</span> Permet a l'utilisateur d'afficher les métriques de un ou plusieurs de ses robots.<br>
+            <span style="font-weight: bold;">Préconditions :</span> Être connecté au système, avoir au moins un robot enregistré.<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (Principal)<br>
             <span style="font-weight: bold;">Scénario principal :</span><br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
+            1. L'utilisateur se connecte au système.<br>
+            2. L'utilisateur sélectionne l'option voir les métriques.<br>
+            3. Le système affiche la liste des robots de l'utilisateur.<br>
+            4. L'utilisateur choisit un ou plusieurs de ses robots parmi la liste.<br>
+            5. Le système récupère et affiche les métriques (Taille de la flotte, état général, utilisation globale...)<br>
+            6. L'utilisateur analyse les métriques pour évaluer la performance de sa flotte.<br>
             <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> <br>
+            3a.1. Le système n'affiche aucun robot car l'utilisateur n'en possède pas.<br>
+            <span style="font-weight: bold;">Postconditions :</span> L'utilisateur a réussi a consulter toutes les métriques pertinentes de sa flotte.<br>
         </div>
         <div>
             <span style="font-weight: bold;">Cas d'utilisation 12 :</span>Entrer en contact avec le fournisseur<br>
-            <span style="font-weight: bold;">But :</span><br>
-            <span style="font-weight: bold;">Préconditions :</span><br>
-            <span style="font-weight: bold;">Acteurs :</span> <br>
+            <span style="font-weight: bold;">But : Commander des composantes de robots chez des fournisseurs</span><br>
+            <span style="font-weight: bold;">Préconditions :</span> Être connecté au système<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (Principal)<br>
             <span style="font-weight: bold;">Scénario principal :</span><br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
+            1. L'utilisateur se connecte au système<br>
+            2. L'utilisateur se rend a la page des fournisseurs<br>
+            3. Le système affiche toute les composantes listées par les fournisseurs<br>
+            4. L'utilisateur sélectionne toutes les composantes qu'il souhaite acheter<br>
+            5. L'utilisateur se rend dans son panier d'achat pour ajuster les quantités au besoin<br>
+            6. L'utilisateur effectue un paiement en ligne pour sa commande de composantes<br>
+            7. Le système envoi un email de confirmation a l'utilisateur<br>
             <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> <br>
+            4a.1. L'utilisateur sélectionne une composante qui n'est pas en stock.<br>
+            4a.2. Le système affiche un message d'erreur disant que la composante n'est actuellement pas disponible.
+            6a.1. L'utilisateur rentre les mauvaises informations banquaires lors du paiement<br>
+            6a.2. Le système affiche un message d'erreur disant que le paiement a échoué<br>
+            6a.3. L'utilisateur est redirigé vers la page de paiement<br>
+            <span style="font-weight: bold;">Postconditions :</span> L'utilisateur a passé sa commande de composantes de robots. Le système met a jour les inventaires de composantes.<br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation 13 :</span>Faire le suivi des actions<br>
-            <span style="font-weight: bold;">But :</span><br>
-            <span style="font-weight: bold;">Préconditions :</span><br>
-            <span style="font-weight: bold;">Acteurs :</span> <br>
+            <span style="font-weight: bold;">Cas d'utilisation 13 :</span> Faire le suivi des actions<br>
+            <span style="font-weight: bold;">But :</span> L'utilisateur peut accéder a l'historique d'actions effectuées par ses robots<br>
+            <span style="font-weight: bold;">Préconditions :</span> Être connecté au système, avoir au moins un robot enregistré, avoir crée au moins une action.<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (Principal)<br>
             <span style="font-weight: bold;">Scénario principal :</span><br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
+            1. L'utilisateur se connecte au système.<br>
+            2. L'utilisateur se rend a la page de l'historique des actions.<br>
+            3. Le système affiche la liste des robots de l'utilisateur.<br>
+            4. L'utilisateur choisit un robot parmi la liste.<br>
+            5. Le système récupère et affiche tout l'historique d'actions de ce robot.<br>
+            6. L'utilisateur regarde la liste des actions.
+            7. L'utilisateur peut consulter l'historique d'un autre de ses robots.
             <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> <br>
+            3a.1. Le système n'affiche aucun robot car l'utilisateur n'en possède pas.<br>
+            5a.1. Le système n'affiche aucune action car l'utilisateur n'a pas créé d'actions pour ce robot.<br>
+
+            <span style="font-weight: bold;">Postconditions :</span> L'utilisateur a consulté l'historique d'actions de ses robots.<br>
         </div>
         </div>
         <h2>Tâche 4 : Risques</h2>
