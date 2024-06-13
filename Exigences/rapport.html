@@ -72,9 +72,9 @@
         <p>
             <span style="font-weight: bold;">Nom: </span>Mehdi Mekrouz
             <br />
-            <span style="font-weight: bold;">Matricule: </span>TBD
+            <span style="font-weight: bold;">Matricule: </span>20262312
             <br />
-            <span style="font-weight: bold;">Courriel: </span>TBD
+            <span style="font-weight: bold;">Courriel: </span>mehdi.mekrouz@umontreal.ca
             <br />
             <span style="font-weight: bold;">temps mis: </span>TBD
         </p>
@@ -101,7 +101,7 @@
                 <tr>
                     <td class="row">Diagramme de cas d'utilisation UML</td>
                     <td></td>
-                    <td></td>
+                    <td>100%</td>
                     <td></td>
                 </tr>
                 <tr>
@@ -222,64 +222,52 @@
             <span style="font-weight: bold;">Postconditions :</span> Inscription (compte cree) a Robotix<br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation 2 :</span> <br>
-            <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
-            nécessaires.<br>
-            <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
-            d'entammer le scéanrio principal.<br>
-            <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
-            (secondaire).<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
-            principal achève avec succès.<br>
+            <span style="font-weight: bold;">Cas d'utilisation 2 :</span> S'inscrire comme fournisseur.<br>
+            <span style="font-weight: bold;">But :</span> Permettre à un nouveau fournisseur de créer un compte sur le système Robotix.<br>
+            <span style="font-weight: bold;">Préconditions :</span> Le fournisseur doit avoir une compagnie enregistrée. Le fournisseur doit avoir accès à une connexion internet.<br>
+            <span style="font-weight: bold;">Acteurs :</span> Fournisseur (principal)<br>
+            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape, ordonnée numériquement<br>
+            1. Le fournisseur accède à la page d'inscription.<br>
+            2. Le fournisseur remplit les champs requis : nom (unique), adresse, email, téléphone.<br>
+            3. Le fournisseur soumet le formulaire.<br>
+            4. Le système vérifie l'unicité du nom du fournisseur et enregistre les informations.<br>
+            5. Le système envoie un courriel de confirmation au fournisseur.<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possibles à certaines étapes<br>
+            1a. Si le nom du fournisseur n'est pas unique, afficher un message d'erreur et demander un nouveau nom.<br>
+            <span style="font-weight: bold;">Postconditions :</span> Le fournisseur est enregistré et reçoit un courriel de confirmation.<br>
         </div>
+
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation 3 :</span> nom du CU en expression verbale.<br>
-            <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
-            nécessaires.<br>
-            <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
-            d'entammer le scéanrio principal.<br>
-            <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
-            (secondaire).<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
-            principal achève avec succès.<br>
+            <span style="font-weight: bold;">Cas d'utilisation 3 :</span> Enregistrer un robot.<br>
+            <span style="font-weight: bold;">But :</span> Permettre à un utilisateur d'ajouter un nouveau robot à sa flotte dans le système Robotix.<br>
+            <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit être authentifié dans le système. Le robot doit avoir un numéro de série unique fourni par le fournisseur.<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (principal)<br>
+            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape, ordonnée numériquement<br>
+            1. L'utilisateur accède à la section "Enregistrer un robot".<br>
+            2. L'utilisateur entre le numéro de série du robot.<br>
+            3. L'utilisateur attribue un nom et un type au robot.<br>
+            4. L'utilisateur soumet le formulaire.<br>
+            5. Le système vérifie l'unicité du numéro de série et enregistre les informations du robot.<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possibles à certaines étapes<br>
+            2a. Si le numéro de série n'est pas unique, afficher un message d'erreur et demander un nouveau numéro de série.<br>
+            <span style="font-weight: bold;">Postconditions :</span> Le robot est enregistré et peut être géré par l'utilisateur.<br>
         </div>
+
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation 4 :</span><br>
-            <span style="font-weight: bold;">But :</span><br>
-            <span style="font-weight: bold;">Préconditions :</span><br>
-            <span style="font-weight: bold;">Acteurs :</span> <br>
-            <span style="font-weight: bold;">Scénario principal :</span><br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> <br>
+            <span style="font-weight: bold;">Cas d'utilisation 4 :</span> Acheter une composante.<br>
+            <span style="font-weight: bold;">But :</span> Permettre à un utilisateur d'acheter des composantes pour construire ou améliorer un robot.<br>
+            <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit être authentifié dans le système.<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (principal)<br>
+            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape, ordonnée numériquement<br>
+            1. L'utilisateur accède à la section "Acheter des composantes".<br>
+            2. L'utilisateur sélectionne une composante parmi celles disponibles.<br>
+            3. L'utilisateur lit la description et le prix de la composante.<br>
+            4. L'utilisateur ajoute la composante à son panier.<br>
+            5. L'utilisateur vérifie le contenu de son panier et procède au paiement.<br>
+            6. Le système enregistre l'achat et met à jour l'inventaire de l'utilisateur.<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possibles à certaines étapes<br>
+            2a. Si la composante n'est pas disponible, afficher un message d'erreur.<br>
+            <span style="font-weight: bold;">Postconditions :</span> La composante est ajoutée à l'inventaire de l'utilisateur.<br>
         </div>
 
 
