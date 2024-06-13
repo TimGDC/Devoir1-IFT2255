@@ -205,21 +205,23 @@
         <!-- Mehdi part-->
         <div>
             <span style="font-weight: bold;">Cas d'utilisation 1 :</span> S'inscrire comme utilisateur.<br>
-            <span style="font-weight: bold;">But :</span> Inscription au logiciel Robotix comme utilisateur qui souhaite de gerer des robots/composants<br>
-            <span style="font-weight: bold;">Préconditions :</span> Avoir nom, prénom, pseudo, adresse courriel, téléphone et Nom de la compagnie a disposition.<br>
+            <span style="font-weight: bold;">But :</span> Inscription au logiciel Robotix comme utilisateur qui souhaite gérer des robots/composants.<br>
+            <span style="font-weight: bold;">Préconditions :</span> Avoir nom, prénom, pseudo, adresse courriel, téléphone et nom de la compagnie à disposition.<br>
             <span style="font-weight: bold;">Acteurs :</span> Utilisateur (principal)<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> Inscription (compte cree) a Robotix<br>
+            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape, ordonnée numériquement<br>
+            1. L'utilisateur accède à la page d'inscription.<br>
+            2. L'utilisateur remplit le formulaire d'inscription avec les informations requises (nom, prénom, pseudo, adresse courriel, téléphone, nom de la compagnie).<br>
+            3. L'utilisateur soumet le formulaire d'inscription.<br>
+            4. Le système vérifie les informations fournies.<br>
+            5. Le système enregistre les informations de l'utilisateur dans la base de données.<br>
+            6. Le système envoie un email de confirmation à l'utilisateur.<br>
+            7. L'utilisateur clique sur le lien de confirmation dans l'email pour activer son compte.<br>
+            8. Le système active le compte de l'utilisateur et confirme l'inscription.<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possibles à certaines étapes<br>
+            1a.1. Si l'utilisateur ne fournit pas toutes les informations requises, le système affiche un message d'erreur et demande à l'utilisateur de compléter les informations manquantes.<br>
+            2a.1. Si l'utilisateur fournit une adresse courriel déjà utilisée, le système affiche un message d'erreur et demande à l'utilisateur de fournir une autre adresse courriel.<br>
+            4a.1. Si le système détecte des informations invalides (ex. format d'email incorrect), il affiche un message d'erreur et demande à l'utilisateur de corriger les informations.<br>
+            <span style="font-weight: bold;">Postconditions :</span> Inscription (compte créé) à Robotix.<br>
         </div>
         <div>
             <span style="font-weight: bold;">Cas d'utilisation 2 :</span> S'inscrire comme fournisseur.<br>
