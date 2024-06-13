@@ -382,20 +382,28 @@
 
         <!--Tim part-->
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation 10 :</span>Afficher état du robot<br>
-            <span style="font-weight: bold;">But :</span><br>
-            <span style="font-weight: bold;">Préconditions :</span><br>
-            <span style="font-weight: bold;">Acteurs :</span> <br>
+            <span style="font-weight: bold;">Cas d'utilisation 10 :</span> Afficher état du robot<br>
+            <span style="font-weight: bold;">But :</span> L'utilisateur peut afficher un historique de l'évolution
+            périodique des données émises par les capteurs d'un robot, soit sa position, vitesse, niveau de batterie et consommation
+            CPU/Mémoire.<br>
+            <span style="font-weight: bold;">Préconditions :</span> Être connecté au système, avoir au moins un robot enregistré.<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (Principal)<br>
             <span style="font-weight: bold;">Scénario principal :</span><br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
+            1. L'utilisateur se connecte au système<br>
+            2. L'utilisateur se rend a "Afficher l'état de mes robots".<br>
+            3. L'utilisateur selectionne le robot dont il souhaite voir l'état.<br>
+            4. Le systeme affiche l'usage du robot sélectionné.<br>
+            5. Après avoir consulté l'usage, l'utilisateur fait un choix.<br>
+             5.1 L'utilisateur se déconnecte du système.<br>
+             5.2 L'utilisateur selectionne un autre robot pour voir son état (Retour étape 4).<br>
             <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> <br>
+            3a.1. Aucun robot n'apparait dans la fenêtre de sélection.<br>
+             3a.1.1 L'utilisateur est redirigé vers Enregistrer un robot.<br>
+             3a.1.2 S'il n'a pas de robots, il peut passer une commande chez un fournisseur.<br>
+             3a.1.3 L'utilisateur peut ne rien faire et se déconnecte du système.<br>
+            5a.1. L'utilisateur n'a pas d'autres robots donc il se déconnecte du système.<br>
+            
+            <span style="font-weight: bold;">Postconditions :</span> L'utilisateur a consulté l'usage de ses robots. <br>
         </div>
         <div>
             <span style="font-weight: bold;">Cas d'utilisation 11 :</span>Afficher métrique de la flotte des robots<br>
