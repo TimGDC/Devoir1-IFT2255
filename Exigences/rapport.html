@@ -29,7 +29,7 @@
         }
         .CU-grid{
             display: grid;
-            grid-template-columns: auto auto auto auto;
+            grid-template-columns: auto auto auto;
             gap: 20px;
         }
         .CU-grid>*{
@@ -58,7 +58,7 @@
             <br />
             <span style="font-weight: bold;">Courriel: </span>hakan.gillot@umontreal.ca
             <br />
-            <span style="font-weight: bold;">temps mis: </span> TBD
+            <span style="font-weight: bold;">temps mis: </span> 6h
         </p>
         <p>
             <span style="font-weight: bold;">Nom: </span>Tim Guyon de Chemilly
@@ -81,7 +81,7 @@
     </section>
     <section>
         <h2>Distribution des tâches</h2>
-        <p><span style="font-weight: bold;">Soumissionaire: </span>TBD</p>
+        <p><span style="font-weight: bold;">Soumissionaire: </span>Tim</p>
         <table cellpadding="7px">
             <thead>
                 <tr>
@@ -122,20 +122,15 @@
                     <td></td>
                     <td>100% (identification & descriptions)</td>
                 </tr>
-                <tr>
-                    <td class="row">Prototype en Java</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
             </tbody>
         </table>
     </section>
     <section>
         <h2>Hypothèses</h2>
         <ul>
-            <li>Les activités qu'un utilisateur peut participer a sont celles que lui a cree ou celles que d'autres utiliseurs ont crees. Cela permet la participation individuelle et collaborative.</li>
+            <li>Les activités qu'un utilisateur peut participer a sont celles que lui a créé ou celles que d'autres utiliseurs ont créés. Cela permet la participation individuelle et collaborative.</li>
             <li>Les actions d'une tache sont exécutées dans l'ordre qu'elles apparaissent parmi la liste d'actions</li>
+            <li>Une équipe de support pour ce logiciel existe.</li>
         </ul>
     </section>
     <section>
@@ -322,7 +317,7 @@
             2. L'utilisateur navigue vers la gestion des taches des robots<br>
             3. Le système affiche les taches disponibles<br>
             4. L'utilisateur sélectionne la tache et le robot ou l'activité pour allouer la tâche<br>
-             4.1. L'utilisateur selectionne l'option de planification pour cette tache (aucune, horaire specifique, ou action declencheur)<br>
+             4.1. L'utilisateur selectionne l'option de planification pour cette tache (aucune, horaire spécifique, ou action déclencheur)<br>
              4a.3. Le système confirme les details de la planification et valide. <br>
             5. Le système valide la selection et alloue la tache au robot <br>
             <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
@@ -335,7 +330,7 @@
             <span style="font-weight: bold;">Cas d'utilisation 8 :</span> Creer une Action<br>
             <span style="font-weight: bold;">But :</span> Créer une action qu'un robot peut exécuter, ceci peut etre un mouvement, son, affichage, etc... Les actions sont indepedantes 
             des robots et peuvent etre assignes aux taches.<br>
-            <span style="font-weight: bold;">Préconditions :</span> Aucune (a part que l'utilisateur soit connecté) car les actions sont indepedantes des robots<br>
+            <span style="font-weight: bold;">Préconditions :</span> Aucune (a part que l'utilisateur soit connecté) car les actions sont indépendantes des robots<br>
             <span style="font-weight: bold;">Acteurs :</span> Utilisateur (principal)<br>
             <span style="font-weight: bold;">Scénario principal :</span><br>
             1. L'utilisateur se connecte au système<br>
@@ -345,8 +340,8 @@
              3.2. Il specifie la nature de l'action. <br>
             4. Le système valide l'action et la rajoute a la liste d'action disponibles<br>
             <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
-            4a.1. Le système rejette une action qui n'est pas valide (n'a pas de sens, ou n'est pas correctement specifiee)<br>
-            <span style="font-weight: bold;">Postconditions :</span> L'action est creee, se trouve dans la liste d'actions, et un robot avec les composantes necessaires peut l'effectuée.<br>
+            4a.1. Le système rejette une action qui n'est pas valide (n'a pas de sens, ou n'est pas correctement specifiée)<br>
+            <span style="font-weight: bold;">Postconditions :</span> L'action est créée, se trouve dans la liste d'actions, et un robot avec les composantes necessaires peut l'effectuée.<br>
         </div>
         <div>
             <span style="font-weight: bold;">Cas d'utilisation 9 :</span> Intervenir pour régler un problème<br>
@@ -508,7 +503,6 @@
                 Ceci peut être assurer avec un bon choix d'algorithmes et structures de données.
             </li>
         </ol>
-        <h2>Tâche Bonus : Prototype en Java</h2>
     </section>
     <section>
         <h2>Insights : </h2>
