@@ -17,6 +17,7 @@
         td
         { 
             border-bottom: solid 1px black;
+            text-align: center;
         }
         .row
         {
@@ -28,8 +29,8 @@
         }
         .CU-grid{
             display: grid;
-            grid-template-columns: auto auto auto auto auto;
-            gap: 10px;
+            grid-template-columns: auto auto auto auto;
+            gap: 20px;
         }
         .CU-grid>*{
             border: 1px solid;
@@ -105,21 +106,21 @@
                 </tr>
                 <tr>
                     <td class="row">Cas d'utilisation</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>4/13 = 31% des CU</td>
+                    <td>4/13 = 31% des CU</td>
+                    <td>5/13 = 38% des CU</td>
                 </tr>
                 <tr>
                     <td class="row">Risques</td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>100% (identification & descriptions)</td>
                 </tr>
                 <tr>
                     <td class="row">Exigences non-fonctionnelles</td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>100% (identification & descriptions)</td>
                 </tr>
                 <tr>
                     <td class="row">Prototype en Java</td>
@@ -132,15 +133,20 @@
     </section>
     <section>
         <h2>Hypothèses</h2>
-        <p></p>
+        <ul>
+            <li>Les activités qu'un utilisateur peut participer a sont celles que lui a cree ou celles que d'autres utiliseurs ont crees. Cela permet la participation individuelle et collaborative.</li>
+            <li>Les actions d'une tache sont exécutées dans l'ordre qu'elles apparaissent parmi la liste d'actions</li>
+        </ul>
     </section>
     <section>
         <h2>Tâche 1 : Glossaire</h2>
         <h2>Tâche 2 : Diagramme de cas d'utilisation UML</h2>
         <h2>Tâche 3 : Cas d'utilisation</h2>
         <div class="CU-grid">
+
+        <!-- Mehdi part-->
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> S'inscrire comme utilisateur.<br>
+            <span style="font-weight: bold;">Cas d'utilisation 1 :</span> S'inscrire comme utilisateur.<br>
             <span style="font-weight: bold;">But :</span> Inscription au logiciel Robotix comme utilisateur qui souhaite de gerer des robots/composants<br>
             <span style="font-weight: bold;">Préconditions :</span> Avoir nom, prénom, pseudo, adresse courriel, téléphone et Nom de la compagnie a disposition.<br>
             <span style="font-weight: bold;">Acteurs :</span> Utilisateur (principal)<br>
@@ -158,7 +164,7 @@
             <span style="font-weight: bold;">Postconditions :</span> Inscription (compte cree) a Robotix<br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> S'inscrire comme fournisseur<br>
+            <span style="font-weight: bold;">Cas d'utilisation 2 :</span> <br>
             <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
             nécessaires.<br>
             <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
@@ -180,7 +186,7 @@
             principal achève avec succès.<br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.<br>
+            <span style="font-weight: bold;">Cas d'utilisation 3 :</span> nom du CU en expression verbale.<br>
             <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
             nécessaires.<br>
             <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
@@ -202,158 +208,184 @@
             principal achève avec succès.<br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.<br>
-            <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
-            nécessaires.<br>
-            <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
-            d'entammer le scéanrio principal.<br>
-            <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
-            (secondaire).<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
+            <span style="font-weight: bold;">Cas d'utilisation 4 :</span><br>
+            <span style="font-weight: bold;">But :</span><br>
+            <span style="font-weight: bold;">Préconditions :</span><br>
+            <span style="font-weight: bold;">Acteurs :</span> <br>
+            <span style="font-weight: bold;">Scénario principal :</span><br>
             1. Étape 1<br>
              1.1. Étape 1.1<br>
             2. Étape 2<br>
             3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
             1a.1. remplace étape 1 du scenario principal<br>
             1b.1. autre remplacement de la même étape<br>
             1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
-            principal achève avec succès.<br>
+            <span style="font-weight: bold;">Postconditions :</span> <br>
+        </div>
+
+
+        <!-- Hokan part-->
+        <div>
+            <span style="font-weight: bold;">Cas d'utilisation 5 :</span> Gérer les activités maintenues<br>
+            <span style="font-weight: bold;">But :</span> Voir et gérer l'ensemble des activités de ces robots. Il peut voir les details des activités, les annuler, ou les modifier. Permet une gestion facile des activités pour l'utilsateur.<br>
+            <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit etre inscrit dans Robotix et avoir des activités déja enregistrées<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (principal)<br>
+            <span style="font-weight: bold;">Scénario principal :</span> <br>
+            1. L'utilisateur se connecte a Robotix<br>
+            2. L'utilisateur navigue vers la section des activités<br>
+            3. Le systeme affiche sa liste d'activités et les robots associés a chacune<br>
+            4. L'utilisateur sélectionne une activité a visualiser les détails<br>
+            5. Le système affiche les details de l'activité <br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
+            3a.1. Si l'utilisateur n'a pas d'activités liées au robots, le système affiche qu'aucune activité a été trouvée.<br>
+            4a.1. Il choisit d'annuler une activité<br>
+            4b.1. Il choisit de modifier une activité<br>
+             4b.1.1. Il change les dates de début/fin d'une activité.<br>
+            <span style="font-weight: bold;">Postconditions :</span> L'utilisateur a consulté et eventuellement changé les activités qu'il maintient pour ses robots.<br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.<br>
-            <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
-            nécessaires.<br>
-            <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
-            d'entammer le scéanrio principal.<br>
-            <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
-            (secondaire).<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
-            principal achève avec succès.<br>
+            <span style="font-weight: bold;">Cas d'utilisation 6 :</span> Participer a une activité<br>
+            <span style="font-weight: bold;">But :</span> S'inscrire et participer à une activité. Permet a l'utilisateur de configurer l'activité a son gout. 
+            Notamment choisir une partcipation individuelle ou collaborative (en communauté). <br>
+            <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit etre connecté au système et avoir une activité créée. <br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilsateur (principal)<br>
+            <span style="font-weight: bold;">Scénario principal :</span><br>
+            1. L'utilisateur se connecte au système.<br>
+            2. L'utilisateur navigue vers les activités.<br>
+            3. L'utilisateur recherche une activité à laquelle il souhaite participer. <br>
+            4. Le système affiche les activités disponibles.<br>
+            5. L'utilisateur sélectionne l'activité et choisit d'y participer. <br>
+            6. Le système valide la participation de l'utilisateur. <br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
+            5a.1. Si l'activité est collaborative et que l'activité est pleine (nombre de collaborateurs maximum atteint), système affiche message d'erreur de participation.<br>
+            5a.2. Le systeme affiche que la participation a l'activité a echouée. <br>
+            <span style="font-weight: bold;">Postconditions :</span>L'utilisateur participe a une activité avec son/ses robots et éventuellement d'autres utilisateurs.<br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.<br>
-            <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
-            nécessaires.<br>
-            <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
-            d'entammer le scéanrio principal.<br>
-            <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
-            (secondaire).<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
-            principal achève avec succès.<br>
+            <span style="font-weight: bold;">Cas d'utilisation 7 :</span> Allouer une tâche<br>
+            <span style="font-weight: bold;">But :</span> Créer et allouer une tâche à un robot directement ou a travers une activité. Cela depend des capacités du robot.
+            Une association de plusieurs taches specifiques en serie definit une activité.<br>
+            <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit etre connecté et avoir des robots avec actions ou activités disponibles.<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (principal)<br>
+            <span style="font-weight: bold;">Scénario principal :</span><br>
+            1. L'utilisateur se connecte au système<br>
+            2. L'utilisateur navigue vers la gestion des taches des robots<br>
+            3. Le système affiche les taches disponibles<br>
+            4. L'utilisateur sélectionne la tache et le robot ou l'activité pour allouer la tâche<br>
+             4.1. L'utilisateur selectionne l'option de planification pour cette tache (aucune, horaire specifique, ou action declencheur)<br>
+             4a.3. Le système confirme les details de la planification et valide. <br>
+            5. Le système valide la selection et alloue la tache au robot <br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
+            4a.1. L'utilisateur creer une nouvelle tache (n'en selectionne pas une existente) avec une sequence d'actions.<br>
+            4a.2. Le système confirme la tache et l'ajoute a la liste des taches disponibles. <br>
+            4b.1. Si aucun robot ou activité est disponible, le système affiche que l'allouage n'est pas possible, seule la creation de taches est possible.<br>
+            <span style="font-weight: bold;">Postconditions :</span> Le robot de l'utilisateur est en mesure de performer une tache qui lui a ete allouee<br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.<br>
-            <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
-            nécessaires.<br>
-            <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
-            d'entammer le scéanrio principal.<br>
-            <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
-            (secondaire).<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
-            1. Étape 1<br>
-             1.1. Étape 1.1<br>
-            2. Étape 2<br>
-            3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
-            1a.1. remplace étape 1 du scenario principal<br>
-            1b.1. autre remplacement de la même étape<br>
-            1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
-            principal achève avec succès.<br>
+            <span style="font-weight: bold;">Cas d'utilisation 8 :</span> Creer une Action<br>
+            <span style="font-weight: bold;">But :</span> Créer une action qu'un robot peut exécuter, ceci peut etre un mouvement, son, affichage, etc... Les actions sont indepedantes 
+            des robots et peuvent etre assignes aux taches.<br>
+            <span style="font-weight: bold;">Préconditions :</span> Aucune (a part que l'utilisateur soit connecté) car les actions sont indepedantes des robots<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (principal)<br>
+            <span style="font-weight: bold;">Scénario principal :</span><br>
+            1. L'utilisateur se connecte au système<br>
+            2. L'utilisateur se rend a la creation d'actions<br>
+            3. L'utilisateur choisit de creer une nouvelle action<br>
+             3.1. Il choisit le type d'action (mouvement, son, voix, ecoute, affichage)<br>
+             3.2. Il specifie la nature de l'action. <br>
+            4. Le système valide l'action et la rajoute a la liste d'action disponibles<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
+            4a.1. Le système rejette une action qui n'est pas valide (n'a pas de sens, ou n'est pas correctement specifiee)<br>
+            <span style="font-weight: bold;">Postconditions :</span> L'action est creee, se trouve dans la liste d'actions, et un robot avec les composantes necessaires peut l'effectuée.<br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.<br>
-            <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
-            nécessaires.<br>
-            <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
-            d'entammer le scéanrio principal.<br>
-            <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
-            (secondaire).<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
+            <span style="font-weight: bold;">Cas d'utilisation 9 :</span> Intervenir pour régler un problème<br>
+            <span style="font-weight: bold;">But :</span> L'utilisateur recevoit des alertes de problèmes avec un robot et peut prendre les mesures nécessaires pour résoudre l'anomalie. 
+            Le système doit détecter les erreurs et fournir des recommandations d'actions à prendre à l'utilisateur.<br>
+            <span style="font-weight: bold;">Préconditions :</span> Etre connecté au systeme, avoir au moins un robot enregistré.<br>
+            <span style="font-weight: bold;">Acteurs :</span> Utilisateur (principal)<br>
+            <span style="font-weight: bold;">Scénario principal :</span><br>
+            1. Le système détecte une erreur avec un robot et envoie une alerte à l'utilisateur.<br>
+            2. L'utilisateur reçoit la notification via Robotix.<br>
+            3. L'utilisateur se connecte au système et lit l'alerte d'erreur.<br>
+            4. Le système affiche les détails de l'anomalie et propose des actions recommandées.<br>
+            5. L'utilisateur sélectionne une action recommandée pour intervenir.<br>
+            6. Le système exécute l'action sélectionnée pour tenter de résoudre le problème <br>
+            7. Le système vérifie si le problème est résolu et notifie l'utilisateur du résultat.<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
+            4a.1. L'utilisateur choisit de ne rien faire. <br>
+            4a.2. L'erreur persiste et le système halte toute activité du robot associé. <br>
+            7a.1. L'erreur n'est pas resolue, le système transmet le probleme automatiquement a l'equipe de support. <br>
+            <span style="font-weight: bold;">Postconditions :</span> Le problème est résolu ou est en cours de résolution par 
+            l'équipe de support. L'utilisateur est informé de l'état final de l'intervention<br>
+        </div>
+
+
+        <!--Tim part-->
+        <div>
+            <span style="font-weight: bold;">Cas d'utilisation 10 :</span><br>
+            <span style="font-weight: bold;">But :</span><br>
+            <span style="font-weight: bold;">Préconditions :</span><br>
+            <span style="font-weight: bold;">Acteurs :</span> <br>
+            <span style="font-weight: bold;">Scénario principal :</span><br>
             1. Étape 1<br>
              1.1. Étape 1.1<br>
             2. Étape 2<br>
             3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
             1a.1. remplace étape 1 du scenario principal<br>
             1b.1. autre remplacement de la même étape<br>
             1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
-            principal achève avec succès.<br>
+            <span style="font-weight: bold;">Postconditions :</span> <br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.<br>
-            <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
-            nécessaires.<br>
-            <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
-            d'entammer le scéanrio principal.<br>
-            <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
-            (secondaire).<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
+            <span style="font-weight: bold;">Cas d'utilisation 11 :</span><br>
+            <span style="font-weight: bold;">But :</span><br>
+            <span style="font-weight: bold;">Préconditions :</span><br>
+            <span style="font-weight: bold;">Acteurs :</span> <br>
+            <span style="font-weight: bold;">Scénario principal :</span><br>
             1. Étape 1<br>
              1.1. Étape 1.1<br>
             2. Étape 2<br>
             3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
             1a.1. remplace étape 1 du scenario principal<br>
             1b.1. autre remplacement de la même étape<br>
             1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
-            principal achève avec succès.<br>
+            <span style="font-weight: bold;">Postconditions :</span> <br>
         </div>
         <div>
-            <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.<br>
-            <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
-            nécessaires.<br>
-            <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
-            d'entammer le scéanrio principal.<br>
-            <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
-            (secondaire).<br>
-            <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-            ordonnée numériquement<br>
+            <span style="font-weight: bold;">Cas d'utilisation 12 :</span><br>
+            <span style="font-weight: bold;">But :</span><br>
+            <span style="font-weight: bold;">Préconditions :</span><br>
+            <span style="font-weight: bold;">Acteurs :</span> <br>
+            <span style="font-weight: bold;">Scénario principal :</span><br>
             1. Étape 1<br>
              1.1. Étape 1.1<br>
             2. Étape 2<br>
             3. Étape 3<br>
-            <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-            principal, alternatives possibles à certaines étapes<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
             1a.1. remplace étape 1 du scenario principal<br>
             1b.1. autre remplacement de la même étape<br>
             1b.2. suit 1b.1 indépendamment du scénario principal<br>
-            <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
-            principal achève avec succès.<br>
+            <span style="font-weight: bold;">Postconditions :</span> <br>
+        </div>
+        <div>
+            <span style="font-weight: bold;">Cas d'utilisation 13 :</span><br>
+            <span style="font-weight: bold;">But :</span><br>
+            <span style="font-weight: bold;">Préconditions :</span><br>
+            <span style="font-weight: bold;">Acteurs :</span> <br>
+            <span style="font-weight: bold;">Scénario principal :</span><br>
+            1. Étape 1<br>
+             1.1. Étape 1.1<br>
+            2. Étape 2<br>
+            3. Étape 3<br>
+            <span style="font-weight: bold;">Scénarios alternatifs :</span> <br>
+            1a.1. remplace étape 1 du scenario principal<br>
+            1b.1. autre remplacement de la même étape<br>
+            1b.2. suit 1b.1 indépendamment du scénario principal<br>
+            <span style="font-weight: bold;">Postconditions :</span> <br>
         </div>
         </div>
         <h2>Tâche 4 : Risques</h2>
@@ -412,6 +444,10 @@
             </li>
         </ol>
         <h2>Tâche Bonus : Prototype en Java</h2>
+    </section>
+    <section>
+        <h2>Insights : </h2>
+        <!-- Mettre image des insights ici-->
     </section>
 </body>
 </html>
