@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFT2255 E24 DM1</title>
+    <style>
+        table
+        {
+            border: outset 2px black;
+            border-collapse: collapse;
+        }
+        th
+        {
+            border-bottom: double 2px black;
+        }
+        td
+        { 
+            border-bottom: solid 1px black;
+            text-align: center;
+        }
+        .row
+        {
+            border-right: double 2px black;
+        }
+
+        ol>li{
+            padding: 10px
+        }
+        .CU-grid{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 20px;
+        }
+        .CU-grid>*{
+            border: 1px solid;
+            padding: 10px;
+        }
+        
+    
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">IFT2255 - Devoir 2</h1> 
+    <section>
+        <h2>Information générale</h2>
+        <p>
+            <span style="font-weight: bold;">Nom de l'équipe: </span>ABCD
+        </p>
+        <p>
+            <a href="https://github.com/TimGDC/Devoir1-IFT2255">Lien vers dépôt GitHub</a><br>
+            <a href="diagramme.vpp">Lien vers fichiers Visual Paradigm</a>
+        </p>
+        <p>
+            <span style="font-weight: bold;">Nom: </span>Hokan Gillot
+            <br />
+            <span style="font-weight: bold;">Matricule: </span>20242295
+            <br />
+            <span style="font-weight: bold;">Courriel: </span>hakan.gillot@umontreal.ca
+            <br />
+            <span style="font-weight: bold;">temps mis: </span> 6h
+        </p>
+        <p>
+            <span style="font-weight: bold;">Nom: </span>Tim Guyon de Chemilly
+            <br />
+            <span style="font-weight: bold;">Matricule: </span>20158233
+            <br />
+            <span style="font-weight: bold;">Courriel: </span>tim.guyon.de.chemilly@umontreal.ca
+            <br />
+            <span style="font-weight: bold;">temps mis: </span>6 heures
+        </p>
+        <p>
+            <span style="font-weight: bold;">Nom: </span>Mehdi Mekrouz
+            <br />
+            <span style="font-weight: bold;">Matricule: </span>20262312
+            <br />
+            <span style="font-weight: bold;">Courriel: </span>mehdi.mekrouz@umontreal.ca
+            <br />
+            <span style="font-weight: bold;">temps mis: </span>6 heures
+        </p>
+        <p>
+            <span style="font-weight: bold;">Nom: </span>Wayne Timmons
+            <br />
+            <span style="font-weight: bold;">Matricule: </span>
+            <br />
+            <span style="font-weight: bold;">Courriel: </span>
+            <br />
+            <span style="font-weight: bold;">temps mis: </span>
+        </p>
+    </section>
+    <section>
+        <h2>Distribution des tâches</h2>
+        <p><span style="font-weight: bold;">Soumissionaire: </span>Tim</p>
+        <table cellpadding="7px">
+            <thead>
+                <tr>
+                    <th class="row">Tâche</th>
+                    <th>Tim</th>
+                    <th>Mehdi</th>
+                    <th>Hokan</th>
+                    <th>Wayne</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="row">Analyse & Diagrammes d'Activités</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td class="row">Diagrammes de Classes</td>
+                    <td></td>
+                    <td>100%</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="row">Diagrammes de Sequence</td>
+                    <td>100%</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="row">Prototype</td>
+                    <td></td>
+                    <td>100%</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Hypothèses</h2>
+        <ul>
+            <li>On suppose l'existence d'un Panier (Basket) lors de l'achat de composantes</li>
+            <li>On suppose que pour chaque attribut d'une classe, un getter et setter pour celui-ci existe implicitement. Si nous avons comme attribut "String : nom", alors getNom() et setNom(nom) existe</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Tâche 1 : Analyse</h2>
+        <p>
+            Pour mettre en opération le système Robotix, les parties informatisées incluront l'inscription des utilisateurs, la gestion des robots, des composants, des activités, et des tâches via une interface web robuste. Les données seront stockées dans une base de données centralisée, hébergée probablement sur un serveur cloud pour assurer l'accessibilité et la sécurité des données. Le matériel nécessaire comprendra des serveurs pour l'hébergement du système et de la base de données, ainsi que des équipements réseau pour assurer une connectivité stable. Le système Robotix interagira avec d'autres systèmes par le biais d'API, facilitant l'intégration avec des fournisseurs externes et des systèmes de gestion complémentaires. Les utilisateurs interagiront principalement via une interface web conviviale, leur permettant de gérer leurs robots, leurs composants, et leurs activités de manière intuitive et efficace.
+        </p>
+        <h2>Tâche 2 : Diagrammes d'Activites</h2>
+        <img src="/Analyse/1 - Diagramme principal.png" width="75%" height="75%">
+        <img src="/Analyse/2 - Gérer action.png" width="75%" height="75%">
+        <img src="/Analyse/3 - Gérer tâche.png" width="75%" height="75%">
+        <img src="/Analyse/4 - Inscription activité.png" width="75%" height="75%">
+        <img src="/Analyse/5 - Enregistrer robot.png" width="75%" height="75%">
+        <img src="/Analyse/6 - Acheter composante.png" width="75%" height="75%">
+        <h2>Tâche 3 : Diagrammes de Classes</h2>
+        <h2>Tâche 4 : Diagrammes de Sequence</h2>
+        <h2>Tâche 5 : Prototype</h2>
+    </section>
+    <section>
+        <h2>Insights : </h2>
+        <!-- Mettre image des insights ici-->
+        <img src="insights.png" width="75%" height="75%">
+    </section>
+</body>
+</html>
