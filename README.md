@@ -1,5 +1,7 @@
 # README
 
+"java -jar Proto.jar" dans la ligne de commande pour executer l'application
+
 ## Description
 
 Ce projet Robotix est conçu pour répondre à la demande de gestion de robots utilisés dans divers secteurs. Avec de plus en plus de robots, une bonne gestion de ceux-cis est clé.
