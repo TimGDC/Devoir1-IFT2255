@@ -3,7 +3,7 @@
 ## Description
 
 Ce projet Robotix est conçu pour répondre à la demande de gestion de robots utilisés dans divers secteurs. Avec de plus en plus de robots, une bonne gestion de ceux-cis est clé.
-On vise à developper une application complète permettant notamment une la construction de robots, l'achat de composantes robotiques, le contrôle des mouvements, la création d'actions et la gestion des tâches. 
+On vise à developper une application permettant notamment la construction/enregistrement de robots, l'achat de composantes robotiques, le contrôle des mouvements, la création d'actions et la gestion des tâches. 
 Le logiciel favorise l'echange et la communication avec l'implementation d'un systeme de suiveurs, ainsi que la possibilité de participer en groupe a des activités avec ses robots.
 Finalement, avec de nombreux outils pour évaluer/monitorer les états et performances des robots, Robotix permet aux utilisateurs de mieux gérer leurs robots.
 
@@ -25,6 +25,7 @@ Finalement, avec de nombreux outils pour évaluer/monitorer les états et perfor
     - voir si composante disponible
     - voir son prix et description
     - voir le fournisseur associé
+
 // Fonctionnalités pour utilisateurs
   - Modifier son profil
   - Gérer sa flotte (robots et composantes)
@@ -41,6 +42,7 @@ Finalement, avec de nombreux outils pour évaluer/monitorer les états et perfor
   - Voir les métriques
     - voir la consommation globale de sa flotte
   - Voir ses notifications
+
 // Fonctionnalités pour fournisseurs
   - Modifier son profil
   - Gérer ses composantes
