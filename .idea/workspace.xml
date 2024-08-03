@@ -5,9 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ff36842-c00b-414c-981f-347c14870025" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Prototype/BaseDonnee.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/Activite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/BaseDonnee.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/Composante.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/Fournisseur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/FournisseurController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/Robot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Robotix/src/main/java/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
