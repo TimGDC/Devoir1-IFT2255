@@ -1,8 +1,9 @@
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -39,7 +40,7 @@ public class Main {
         //User user10 = new User("Rose", "pqr", "rose@gmail.com" );
         ArrayList<User> listeUsers = new ArrayList<>();
         listeUsers.add(user1);
-        listeUsers.add(user1);
+        listeUsers.add(user2);
         //listeUsers.add(user2);
         //listeUsers.add(user3);
         //listeUsers.add(user4);
@@ -54,14 +55,14 @@ public class Main {
         //user1.enregistrerRobot(12345, "ROBOTIX", 0);
         //user1.ajouterActivite(activite5);
 
-        //Fournisseur fournisseur1 = new Fournisseur("Amazon", "123", "amazon@gmail.com", "123 rue Sainte-Catherine", "CPU", 1000);
-        //Fournisseur fournisseur2 = new Fournisseur("Cabling123", "secret", "cabling123@gmail.com", "456 rue Saint-Laurent", "Cables", 25000);
+        Fournisseur fournisseur1 = new Fournisseur("Amazon", "123", "amazon@gmail.com", "123 rue Sainte-Catherine", "CPU", 1000);
+        Fournisseur fournisseur2 = new Fournisseur("Cabling123", "secret", "cabling123@gmail.com", "456 rue Saint-Laurent", "Cables", 25000);
         //Fournisseur fournisseur3 = new Fournisseur("Nvidia", "qwerty", "nvidia@gmail.com", "789 rue University", "Cartes Graphiques", 500);
         //Fournisseur fournisseur4 = new Fournisseur("DigiScreen", "screen", "digiscren@gmail.com", "282 rue Jean-Brillant", "Ecrans", 2500);
         //Fournisseur fournisseur5 = new Fournisseur("Logitech", "abcdef", "logitech@gmail.com", "491 rue Jean-Louis", "Cameras", 3750);
-        //ArrayList<Fournisseur> listeFournisseurs = new ArrayList<>();
-        //listeFournisseurs.add(fournisseur1);
-        //listeFournisseurs.add(fournisseur2);
+        ArrayList<Fournisseur> listeFournisseurs = new ArrayList<>();
+        listeFournisseurs.add(fournisseur1);
+        listeFournisseurs.add(fournisseur2);
         //listeFournisseurs.add(fournisseur3);
         //listeFournisseurs.add(fournisseur4);
         //listeFournisseurs.add(fournisseur5);
@@ -74,13 +75,17 @@ public class Main {
         ArrayList<Composante> listeComposantes = new ArrayList<>();
 
 
-        ArrayList<Fournisseur> listeFournisseurs = new ArrayList<>();
+
         for(Fournisseur fourn : listeFournisseurs){
             listeComposantes.addAll(fourn.getListeComposante());
         }
 
-        new Menu(listeUsers, listeFournisseurs, listeComposantes, listeActivites, listeInterets);
 
+        Object obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        JSONObject baseDonneeObjet = (JSONObject) obj;
+        View view = new View();
+        Controller controller = new Controller(view, listeUsers, listeFournisseurs, listeComposantes, listeActivites, baseDonneeObjet);
+        controller.start();
     }
 
 }

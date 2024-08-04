@@ -126,7 +126,7 @@ public class User {
 
         listeRobotsUser.removeIf(rob -> Objects.equals(rob.getNom(), nom));
 
-        JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
+        /*JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) listeUser.get(jsonIndex);
         JSONArray listeRobots = (JSONArray) userActuel.get("robots");
         for(int i = 0; i < listeRobots.size(); i++){
@@ -142,7 +142,7 @@ public class User {
             throw new RuntimeException(e);
         }
 
-
+*/
     }
 
     public void modifierProfil(String user, String pw, String email, int jsonIndex) throws IOException {
@@ -151,6 +151,7 @@ public class User {
         this.password = pw;
         this.email = email;
 
+        /*
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) listeUser.get(jsonIndex);
         userActuel.put("username", user);
@@ -163,7 +164,7 @@ public class User {
         }
 
 
-
+*/
     }
 
     public void afficherActivites(){
@@ -176,6 +177,7 @@ public class User {
 
         listeActivitesUser.add(activite.getNom());
 
+        /*
         JSONArray userList = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject currentUser = (JSONObject) userList.get(jsonIndex);
         JSONArray activiteUser = new JSONArray();
@@ -194,14 +196,14 @@ public class User {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+*/
     }
 
     public void supprimerActivite(Activite activite, int jsonIndex){
 
         listeActivitesUser.remove(activite.getNom());
 
-
+/*
         JSONArray userList = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) userList.get(jsonIndex);
         JSONArray userActivite = (JSONArray) userActuel.get("activites");
@@ -218,7 +220,7 @@ public class User {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+*/
     }
     public void afficherEtats(int vue){
         if(listeRobotsUser.isEmpty()){

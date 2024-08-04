@@ -5,7 +5,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Fournisseur extends User {
+public class Fournisseur {
 
     private String username;
     private String password;
@@ -18,16 +18,20 @@ public class Fournisseur extends User {
 
     public Fournisseur(String user, String pw, String email, String adresse, String type, int production) throws IOException, ParseException {
 
-        super(user, pw, email);
+        this.username = user;
+        this.password = pw;
+        this.email = email;
         this.adresse = adresse;
         this.type = type;
         this.capaciteFabrication = production;
 
     }
-    public String getAdresse(){
+
+    public String getAdresse() {
         return this.adresse;
     }
-    public String getType(){
+
+    public String getType() {
         return this.type;
     }
 
@@ -35,7 +39,7 @@ public class Fournisseur extends User {
         return capaciteFabrication;
     }
 
-    public void modifierProfilFournisseur(String user, String pw, String email, String adresse, String type, int capacite){
+    public void modifierProfilFournisseur(String user, String pw, String email, String adresse, String type, int capacite) {
         this.username = user;
         this.password = pw;
         this.email = email;
@@ -45,19 +49,21 @@ public class Fournisseur extends User {
 
     }
 
-    public void enregistrerComposante(String nom, String type, String description, int prix, String fournisseur){
+    public void enregistrerComposante(String nom, String type, String description, int prix, String fournisseur) {
 
         Composante nouvelleComposante = new Composante(nom, type, description, prix, fournisseur);
         listeComposante.add(nouvelleComposante);
 
     }
-    public ArrayList<Composante> getListeComposante(){
+
+    public ArrayList<Composante> getListeComposante() {
         return this.listeComposante;
     }
-    public void afficherComposante(){
+
+    public void afficherComposante() {
         int index = 1;
         System.out.println("Liste des composantes de ce fournisseur : ");
-        for(Composante comp : listeComposante){
+        for (Composante comp : listeComposante) {
 
             System.out.println("Composante " + index);
             System.out.printf("Nom : %s \nType : %s \nDescription : %s \nPrix : %d \nFournisseur : %s\n", comp.getNom(),
@@ -67,17 +73,44 @@ public class Fournisseur extends User {
         }
     }
 
-    public void supprimerComposante(int index){
+    public void supprimerComposante(int index) {
 
-        listeComposante.remove(index-1);
+        listeComposante.remove(index - 1);
     }
 
-    public void modifierComposante(int index, String nom, String type, String description, int prix){
-        Composante comp = listeComposante.get(index-1);
+    public void modifierComposante(int index, String nom, String type, String description, int prix) {
+        Composante comp = listeComposante.get(index - 1);
         comp.setNom(nom);
         comp.setType(type);
         comp.setDesc(description);
         comp.setPrix(prix);
     }
 
+    public String getUsername() {
+
+        return this.username;
+    }
+
+    public void setUsername(String user) {
+
+        this.username = user;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String pass) {
+
+        this.password = pass;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+
+    public void setEmail(String mail) {
+        this.email = mail;
+    }
 }

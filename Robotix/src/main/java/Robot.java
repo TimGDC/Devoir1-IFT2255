@@ -25,6 +25,7 @@ public class Robot {
         this.nom = nom;
         this.numeroSerie = numeroSerie;
         initializationRobot();
+        /*
         this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
         this.baseDonneeObjet = (JSONObject) obj;
 
@@ -52,7 +53,7 @@ public class Robot {
             file.write(baseDonneeObjet.toJSONString());
         }
 
-
+*/
     }
 
     private void initializationRobot() {
