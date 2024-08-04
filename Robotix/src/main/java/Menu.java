@@ -25,6 +25,10 @@ public class Menu {
     private JSONObject baseDonneeObjet;
     private int jsonIndex;
 
+
+    private Scanner scanner;
+
+
     public Menu(ArrayList<User> listeUsers, ArrayList<Fournisseur> listeFournisseurs, ArrayList<Composante> listeComposantes, Activite[] listeActivites, String[] listeInterets) throws IOException, ParseException {
 
         this.listeUsers = listeUsers;
@@ -34,11 +38,13 @@ public class Menu {
         this.listeInterets = listeInterets;
         this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
         this.baseDonneeObjet = (JSONObject) obj;
+
+        this.scanner = new Scanner(System.in);
         startScanner();
     }
 
     private void startScanner() throws IOException, ParseException {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         int choix = 0;
 
         System.out.println("Veuillez choisir une option : ");
@@ -50,7 +56,7 @@ public class Menu {
             scanner.next();
         }
         choix = scanner.nextInt();
-
+        scanner.nextLine();
         switch (choix) {
             case 1:
 
@@ -71,11 +77,11 @@ public class Menu {
     }
 
     private void login() throws IOException, ParseException {
-        Scanner scanner1 = new Scanner(System.in);
+        //Scanner scanner1 = new Scanner(System.in);
         System.out.print("Entrez votre nom d'utilisateur : ");
-        String utilisateur = scanner1.nextLine();
+        String utilisateur = scanner.nextLine();
         System.out.print("Entrez votre mot de passe : ");
-        String password = scanner1.nextLine();
+        String password = scanner.nextLine();
         Boolean trouver = false;
         for(User user : listeUsers){
 
@@ -84,7 +90,7 @@ public class Menu {
 
                 appMenu(index, "user");
                 trouver = true;
-                scanner1.close();
+                //scanner1.close();
                 break;
             }
         }
@@ -94,7 +100,7 @@ public class Menu {
                     int index = listeFournisseurs.indexOf(fourn);
                     appMenu(index, "fournisseur");
                     trouver = true;
-                    scanner1.close();
+                    //scanner1.close();
                 }
             }
         }
@@ -102,27 +108,28 @@ public class Menu {
             System.out.println("Utilisateur ou mot de pass incorrect.");
 
             login();
-            scanner1.close();
+            //scanner1.close();
         }
     }
     private  void signup() throws IOException, ParseException {
-        Scanner scanner2 = new Scanner(System.in);
+        //Scanner scanner2 = new Scanner(System.in);
         System.out.println("Creation d'un nouveau compte:");
         System.out.println("1 - Utilisateur");
         System.out.println("2 - Fournisseur");
 
         int choix;
-        while (!scanner2.hasNextInt()) {
+        while (!scanner.hasNextInt()) {
             System.out.println("Veuillez entrer 1 ou 2");
-            scanner2.next();
+            scanner.next();
         }
-        choix = scanner2.nextInt();
+        choix = scanner.nextInt();
+        scanner.nextLine();
 
         switch(choix){
             case 1:
-                Scanner scan22 = new Scanner(System.in);
+                //Scanner scan22 = new Scanner(System.in);
                 System.out.print("Nom d'utilisateur : ");
-                String nom = scan22.nextLine();
+                String nom = scanner.nextLine();
 
                 for(User utilisateurs : listeUsers){
                     if(Objects.equals(utilisateurs.getUsername(), nom)){
@@ -133,13 +140,13 @@ public class Menu {
                 }
 
                 System.out.print("Mot de passe : ");
-                String pass = scan22.nextLine();
+                String pass = scanner.nextLine();
 
                 System.out.print("Adresse email : ");
-                String email = scan22.nextLine();
+                String email = scanner.nextLine();
 
                 System.out.print("Voulez vous recevoir les notifications par email? (true/false)");
-                Boolean notificationsEmail = scan22.nextBoolean();
+                Boolean notificationsEmail = scanner.nextBoolean();
 
 
 
@@ -163,13 +170,13 @@ public class Menu {
                 System.out.println("Creation de compte reussi!");
                 //System.out.println(listeUsers.size());
                 login();
-                scan22.close();
-                scanner2.close();
+                //scan22.close();
+                //scanner2.close();
                 break;
             case 2:
-                Scanner scan23 = new Scanner(System.in);
+                //Scanner scan23 = new Scanner(System.in);
                 System.out.print("Nom d'utilisateur : ");
-                String util = scan23.nextLine();
+                String util = scanner.nextLine();
 
                 for(Fournisseur fourn : listeFournisseurs){
                     if(Objects.equals(fourn.getUsername(), util)){
@@ -180,23 +187,24 @@ public class Menu {
                 }
 
                 System.out.print("Mot de passe : ");
-                String password = scan23.nextLine();
+                String password = scanner.nextLine();
 
                 System.out.print("Adresse email : ");
-                String emailadress = scan23.nextLine();
+                String emailadress = scanner.nextLine();
 
                 System.out.print("Adresse de la companie : ");
-                String adresse = scan23.nextLine();
+                String adresse = scanner.nextLine();
 
                 System.out.print("Type de composantes : ");
-                String type = scan23.nextLine();
+                String type = scanner.nextLine();
 
                 System.out.print("Quantite de production : ");
-                while (!scan23.hasNextInt()) {
+                while (!scanner.hasNextInt()) {
                     System.out.println("Veuillez entrer soit 1 ou 2");
-                    scan23.next();
+                    scanner.next();
                 }
-                int quantite = scan23.nextInt();
+                int quantite = scanner.nextInt();
+                scanner.nextLine();
                 Fournisseur nouveauFournisseur = new Fournisseur(util, password, emailadress, adresse, type, quantite);
                 listeFournisseurs.add(nouveauFournisseur);
                 JSONObject nouveauFournisseurObjet = new JSONObject();
@@ -215,8 +223,8 @@ public class Menu {
 
                 System.out.println("Creation de compte reussi!");
                 login();
-                scan23.close();
-                scanner2.close();
+                //scan23.close();
+                //scanner2.close();
                 break;
 
 
@@ -233,7 +241,7 @@ public class Menu {
                 this.jsonIndex = i;
             }
         }
-        Scanner scanner3 = new Scanner(System.in);
+        //Scanner scanner3 = new Scanner(System.in);
         if(Objects.equals(privileges, "user")){
             System.out.println("Bienvenue " + listeUsers.get(index).getUsername() + "!");
         }
@@ -251,11 +259,12 @@ public class Menu {
 
 
         int choix;
-        while (!scanner3.hasNextInt()) {
+        while (!scanner.hasNextInt()) {
             System.out.println("Veuillez entrer un nombre valide");
-            scanner3.next();
+            scanner.next();
         }
-        choix = scanner3.nextInt();
+        choix = scanner.nextInt();
+        scanner.nextLine();
         switch (choix) {
             case 1:
                 requetesPubliques(index, privileges);
@@ -275,7 +284,7 @@ public class Menu {
     }
     private  void requetesPubliques(int index, String privileges) throws IOException, ParseException {
 
-        Scanner scanner4 = new Scanner(System.in);
+        //Scanner scanner4 = new Scanner(System.in);
         System.out.println("Veuillez choisir une option");
         System.out.println("1 - Recuperer la liste des utilisateurs");
         System.out.println("2 - Rechercher un utilisateur");
@@ -287,71 +296,72 @@ public class Menu {
         System.out.println("8 - Rechercher une composante");
 
         int choix;
-        while (!scanner4.hasNextInt()) {
+        while (!scanner.hasNextInt()) {
             System.out.println("Veuillez entrer un nombre valide");
-            scanner4.next();
+            scanner.next();
         }
-        choix = scanner4.nextInt();
+        choix = scanner.nextInt();
+        scanner.nextLine();
         switch (choix) {
             case 1:
                 afficherListeUtilisateur();
                 endingMenu(index, privileges);
-                scanner4.close();
+                //scanner4.close();
                 break;
             case 2:
-                Scanner scanTest = new Scanner(System.in);
+                //Scanner scanTest = new Scanner(System.in);
                 System.out.println("Veuillez entrer un nom d'utilisateur a rechercher");
-                String util = scanTest.nextLine();
+                String util = scanner.nextLine();
                 rechercherUtilisateur(util);
                 endingMenu(index, privileges);
-                scanner4.close();
-                scanTest.close();
+                //scanner4.close();
+                //scanTest.close();
                 break;
             case 3:
-                Scanner scanTest1 = new Scanner(System.in);
+                //Scanner scanTest1 = new Scanner(System.in);
                 System.out.println("Veuillez entrer un nom d'utilisateur a afficher le profil");
-                String prof = scanTest1.nextLine();
+                String prof = scanner.nextLine();
                 afficherProfilUtilisateur(prof);
                 endingMenu(index, privileges);
-                scanner4.close();
-                scanTest1.close();
+                //scanner4.close();
+                //scanTest1.close();
                 break;
             case 4:
                 afficherListeActivites();
                 endingMenu(index, privileges);
-                scanner4.close();
+                //scanner4.close();
                 break;
             case 5:
                 afficherListeFournisseurs();
                 endingMenu(index, privileges);
-                scanner4.close();
+                //scanner4.close();
                 break;
             case 6:
-                Scanner scanTest2 = new Scanner(System.in);
+                //Scanner scanTest2 = new Scanner(System.in);
                 System.out.println("Veuillez entrer un nom de fournisseur a rechercher");
-                String fourn = scanTest2.nextLine();
+                String fourn = scanner.nextLine();
                 chercherFournisseur(fourn);
                 endingMenu(index, privileges);
-                scanner4.close();
-                scanTest2.close();
+                //scanner4.close();
+                //scanTest2.close();
                 break;
             case 7:
-                Scanner scanTest3 = new Scanner(System.in);
+                //Scanner scanTest3 = new Scanner(System.in);
                 System.out.println("Veuillez entrer un nom de fournisseur a afficher le profil");
-                String profil = scanTest3.nextLine();
+                String profil = scanner.nextLine();
                 afficherProfileFournisseur(profil);
                 endingMenu(index, privileges);
-                scanner4.close();
-                scanTest3.close();
+                //scanner4.close();
+                //scanTest3.close();
                 break;
             case 8:
-                Scanner scanTest4 = new Scanner(System.in);
+                //Scanner scanTest4 = new Scanner(System.in);
                 System.out.println("Veuillez entrer un nom, type ou nom de fournisseur d'une composante");
-                String comp = scanTest4.nextLine();
+                String comp = scanner.nextLine();
                 chercherComposante(comp);
                 endingMenu(index, privileges);
-                scanner4.close();
-                scanTest4.close();
+                //scanner4.close();
+                //scanTest4.close();
                 break;
             default:
                 System.out.println("Veuillez entrer un nombre entre 1 et 9.");
@@ -360,22 +370,23 @@ public class Menu {
 
     }
     private void endingMenu(int index, String privileges) throws IOException, ParseException {
-        Scanner scanner6 = new Scanner(System.in);
+        //Scanner scanner6 = new Scanner(System.in);
         System.out.println("Que voulez vous faire a present?");
         System.out.println("1 - Revenir au menu precedent");
         System.out.println("2 - Quitter l'application");
 
         int choix;
-        if (scanner6.hasNextInt()) {
-            choix = scanner6.nextInt();
+        if (scanner.hasNextInt()) {
+            choix = scanner.nextInt();
+            scanner.nextLine();
             switch (choix) {
                 case 1:
                     appMenu(index, privileges);
-                    scanner6.close();
+                    //scanner6.close();
                     break;
-                default:
+                case 2:
                     System.out.println("A la prochaine!");
-                    scanner6.close();
+                    //scanner6.close();
                     break;
 
             }
@@ -386,7 +397,7 @@ public class Menu {
 
     }
     private void fonctionsUtilisateur(int index, String privileges) throws IOException, ParseException {
-        Scanner scanner5 = new Scanner(System.in);
+        //Scanner scanner5 = new Scanner(System.in);
         System.out.println("Veuillez choisir une option");
         System.out.println("1 - Modifier son profil");
         System.out.println("2 - Gerer sa flotte");
@@ -395,106 +406,108 @@ public class Menu {
         System.out.println("5 - Voir ses notifications");
         System.out.println("6 - Acheter une composante");
 
-        char choix;
-
-        choix = (char) scanner5.nextInt();
+        int choix;
+        choix = scanner.nextInt();
+        scanner.nextLine();
         switch (choix) {
             case 1:
-                Scanner funcScan1 = new Scanner(System.in);
+                //Scanner funcScan1 = new Scanner(System.in);
                 System.out.println("Nouveau nom d'utilisateur");
-                String nom = funcScan1.nextLine();
+                String nom = scanner.nextLine();
                 System.out.println("Nouveau password");
-                String passwd = funcScan1.nextLine();
+                String passwd = scanner.nextLine();
                 System.out.println("Nouveau email");
-                String mail = funcScan1.nextLine();
+                String mail = scanner.nextLine();
                 listeUsers.get(index).modifierProfil(nom, passwd, mail, jsonIndex);
                 endingMenu(index,privileges);
-                scanner5.close();
-                funcScan1.close();
+                //scanner5.close();
+                //funcScan1.close();
                 break;
             case 2:
-                Scanner funcScan2 = new Scanner(System.in);
+                //Scanner funcScan2 = new Scanner(System.in);
                 System.out.println("Veuillez choisir une option : ");
                 System.out.println("1 - Afficher ses robots");
                 System.out.println("2 - Enregistrer un robots");
                 System.out.println("3 - Supprimer un robots");
-                while (!funcScan2.hasNextInt()) {
+                while (!scanner.hasNextInt()) {
                     System.out.println("Veuillez entrer un nombre valide");
-                    funcScan2.next();
+                    scanner.next();
                 }
-                int choice = funcScan2.nextInt();
+                int choice = scanner.nextInt();
+                scanner.nextLine();
                 switch(choice){
                     case 1: listeUsers.get(index).afficherListeRobots();
                         endingMenu(index, privileges);
-                        funcScan2.close();
-                        scanner5.close();
+                        //funcScan2.close();
+                        //scanner5.close();
                         break;
                     case 2:
-                        Scanner funcScan21 = new Scanner(System.in);
+                        //Scanner funcScan21 = new Scanner(System.in);
                         System.out.println("Numero de serie");
-                        int numSerie = funcScan21.nextInt();
-                        Scanner funcScan211 = new Scanner(System.in);
+                        int numSerie = scanner.nextInt();
+                        //Scanner funcScan211 = new Scanner(System.in);
                         System.out.println("Nom");
-                        String nomRobot = funcScan211.nextLine();
+                        String nomRobot = scanner.nextLine();
                         listeUsers.get(index).enregistrerRobot(numSerie, nomRobot, jsonIndex);
 
                         endingMenu(index, privileges);
-                        funcScan21.close();
-                        funcScan211.close();
-                        funcScan2.close();
-                        scanner5.close();
+                        //funcScan21.close();
+                        //funcScan211.close();
+                        //funcScan2.close();
+                        //scanner5.close();
                         break;
                     case 3:
-                        Scanner funcScan22 = new Scanner(System.in);
+                        //Scanner funcScan22 = new Scanner(System.in);
                         System.out.println("Nom du robot a supprimer");
-                        String nomRob = funcScan22.nextLine();
+                        String nomRob = scanner.nextLine();
                         listeUsers.get(index).supprimerRobot(nomRob, jsonIndex);
                         endingMenu(index, privileges);
-                        funcScan22.close();
-                        funcScan2.close();
-                        scanner5.close();
+                        //funcScan22.close();
+                        //funcScan2.close();
+                        //scanner5.close();
                         break;
                     default:
                         System.out.println("Veuillez entrer un nombre entre 1 et 3.");
                         break;
                 }
-
+                break;
 
 
             case 3:
 
-                Scanner funcScan4 = new Scanner(System.in);
+                //Scanner funcScan4 = new Scanner(System.in);
                 System.out.println("Veuillez choisir une option : ");
                 System.out.println("1 - Afficher activites");
                 System.out.println("2 - Supprimer activites");
                 System.out.println("3 - Ajouter activites");
 
-                while (!funcScan4.hasNextInt()) {
+                while (!scanner.hasNextInt()) {
                     System.out.println("Veuillez entrer un nombre valide");
-                    funcScan4.next();
+                    scanner.next();
                 }
-                int choice2 = funcScan4.nextInt();
+                int choice2 = scanner.nextInt();
+                scanner.nextLine();
                 switch(choice2) {
                     case 1:
                         listeUsers.get(index).afficherActivites();
                         endingMenu(index,privileges);
-                        funcScan4.close();
-                        scanner5.close();
+                        //funcScan4.close();
+                        //scanner5.close();
                         break;
                     case 2:
-                        Scanner funcScan41 = new Scanner(System.in);
+                        //Scanner funcScan41 = new Scanner(System.in);
                         System.out.println("Nom de l'activite a supprimer");
-                        String nomActivite = funcScan41.nextLine();
+                        String nomActivite = scanner.nextLine();
                         listeUsers.get(index).getActivites().remove(nomActivite);
                         endingMenu(index, privileges);
-                        funcScan41.close();
-                        funcScan4.close();
-                        scanner5.close();
+                        //funcScan41.close();
+                        //funcScan4.close();
+                        //scanner5.close();
                         break;
                     case 3:
-                        Scanner funcScan42 = new Scanner(System.in);
+                        //Scanner funcScan42 = new Scanner(System.in);
                         System.out.println("Nom de l'activite a ajouter");
-                        String nomA = funcScan42.nextLine();
+                        String nomA = scanner.nextLine();
                         listeUsers.get(index).getActivites().add(nomA);
 
                         for(int i = 0 ; i< listeActivites.length ; i++){
@@ -506,9 +519,9 @@ public class Menu {
 
                         }
                         endingMenu(index, privileges);
-                        funcScan42.close();
-                        funcScan4.close();
-                        scanner5.close();
+                        //funcScan42.close();
+                        //funcScan4.close();
+                        //scanner5.close();
                         break;
                     default:
                         System.out.println("Veuillez entrer un nombre entre 1 et 3.");
@@ -516,27 +529,28 @@ public class Menu {
                 }
 
             case 4:
-                Scanner funcScann = new Scanner(System.in);
+                //Scanner funcScann = new Scanner(System.in);
                 System.out.println("Veuillez choisir une option : ");
                 System.out.println("1 - Afficher vue generale");
                 System.out.println("2 - Afficher vue complete");
 
 
-                while (!funcScann.hasNextInt()) {
+                while (!scanner.hasNextInt()) {
                     System.out.println("Veuillez entrer un nombre valide");
-                    funcScann.next();
+                    scanner.next();
                 }
-                int choixVue = funcScann.nextInt();
+                int choixVue = scanner.nextInt();
+                scanner.nextLine();
                 switch(choixVue) {
                     case 1:
                         listeUsers.get(index).afficherEtats(0);
-                        funcScann.close();
-                        scanner5.close();
+                        //funcScann.close();
+                        //scanner5.close();
                         break;
                     case 2:
                         listeUsers.get(index).afficherEtats(1);
-                        funcScann.close();
-                        scanner5.close();
+                        //funcScann.close();
+                        //scanner5.close();
                         break;
 
                     default:
@@ -545,14 +559,14 @@ public class Menu {
                 }
 
                 endingMenu(index, privileges);
-                scanner5.close();
+                //scanner5.close();
                 break;
 
             case 5:
 
                 listeUsers.get(index).afficherNotifications();
                 endingMenu(index, privileges);
-                scanner5.close();
+                //scanner5.close();
                 break;
             default:
                 System.out.println("Veuillez entrer un nombre entre 1 et 9.");
@@ -561,67 +575,69 @@ public class Menu {
     }
     private  void fonctionsFournisseur(int index, String privileges) throws IOException, ParseException {
 
-        Scanner scanner7 = new Scanner(System.in);
+        //Scanner scanner7 = new Scanner(System.in);
         System.out.println("Veuillez choisir une option : ");
         System.out.println("1 - Modifier son profil");
         System.out.println("2 - Gerer ses composantes");
         System.out.println("3 - Enregistrer une composante");
 
         int choix;
-        while (!scanner7.hasNextInt()) {
+        while (!scanner.hasNextInt()) {
             System.out.println("Veuillez entrer un nombre valide");
-            scanner7.next();
+            scanner.next();
         }
-        choix = scanner7.nextInt();
+        choix = scanner.nextInt();
+        scanner.nextLine();
         switch (choix) {
             case 1:
-                Scanner fourScan = new Scanner(System.in);
+                //Scanner fourScan = new Scanner(System.in);
                 System.out.print("Nouveau nom d'utilisateur : ");
-                String util = fourScan.nextLine();
+                String util = scanner.nextLine();
 
                 System.out.print("Nouveau mot de passe : ");
-                String password = fourScan.nextLine();
+                String password = scanner.nextLine();
 
                 System.out.print("Nouvelle adresse email");
-                String emailadress = fourScan.nextLine();
+                String emailadress = scanner.nextLine();
 
                 System.out.print("Nouvelle Adresse de la companie");
-                String adresse = fourScan.nextLine();
+                String adresse = scanner.nextLine();
 
                 System.out.print("Nouveau type de composantes");
-                String type = fourScan.nextLine();
+                String type = scanner.nextLine();
 
                 System.out.print("Nouvelle quantite de production");
-                while (!fourScan.hasNextInt()) {
+                while (!scanner.hasNextInt()) {
                     System.out.println("Veuillez entrer soit 1 ou 2");
-                    fourScan.next();
+                    scanner.next();
                 }
-                int quantite = fourScan.nextInt();
+                int quantite = scanner.nextInt();
                 listeFournisseurs.get(index).modifierProfilFournisseur(util,password,emailadress,adresse,type,quantite);
                 System.out.println("Mise a jour du compte reussi!");
                 endingMenu(index,privileges);
-                fourScan.close();
+                //fourScan.close();
                 break;
             case 2:
 
                 gererComposantes(index, privileges);
                 endingMenu(index,privileges);
-                scanner7.close();
+                //scanner7.close();
                 break;
             case 3:
-                Scanner fourScan1 = new Scanner(System.in);
+                //Scanner fourScan1 = new Scanner(System.in);
                 System.out.print("Nom de la composante");
-                String nomComp = fourScan1.nextLine();
+                String nomComp = scanner.nextLine();
                 System.out.print("Type de la composante");
-                String typeComp = fourScan1.nextLine();
+                String typeComp = scanner.nextLine();
                 System.out.print("Description de la composante");
-                String descComp = fourScan1.nextLine();
+                String descComp = scanner.nextLine();
                 System.out.print("Prix de la composante");
-                int prixComp = fourScan1.nextInt();
+                int prixComp = scanner.nextInt();
+                scanner.nextLine();
                 listeFournisseurs.get(index).enregistrerComposante(nomComp, typeComp, descComp, prixComp, listeFournisseurs.get(index).getUsername());
                 endingMenu(index, privileges);
-                fourScan1.close();
-                scanner7.close();
+                //fourScan1.close();
+                //scanner7.close();
                 break;
 
             default:
@@ -631,45 +647,49 @@ public class Menu {
     }
     public void gererComposantes(int index, String privileges) throws IOException, ParseException {
 
-        Scanner scanner8 = new Scanner(System.in);
+        //Scanner scanner8 = new Scanner(System.in);
         System.out.println("Que souhaitez vous faire?");
         System.out.println("1 - Afficher mes composantes");
         System.out.println("2 - Supprimer une composante");
         System.out.println("3 - Modifier une composante");
         int choixFournisseur;
-        while (!scanner8.hasNextInt()) {
+        while (!scanner.hasNextInt()) {
             System.out.println("Veuillez entrer un nombre valide");
-            scanner8.next();
+            scanner.next();
         }
-        choixFournisseur= scanner8.nextInt();
+        choixFournisseur= scanner.nextInt();
+        scanner.nextLine();
         switch (choixFournisseur){
             case 1: listeFournisseurs.get(index).afficherComposante();
                 endingMenu(index, privileges);
-                scanner8.close();
+                scanner.close();
                 break;
             case 2:
                 System.out.print("Index de la composante a supprimer?");
-                int i = scanner8.nextInt();
+                int i = scanner.nextInt();
+                scanner.nextLine();
                 listeFournisseurs.get(index).supprimerComposante(i);
                 endingMenu(index, privileges);
-                scanner8.close();
+                //scanner.close();
                 break;
             case 3:
-                Scanner fourn4 = new Scanner(System.in);
+                //Scanner fourn4 = new Scanner(System.in);
                 System.out.print("Index de la composante a modifier?");
-                int j = fourn4.nextInt();
+                int j = scanner.nextInt();
+                scanner.nextLine();
                 System.out.print("Nom de la composante");
-                String nomComp = fourn4.nextLine();
+                String nomComp = scanner.nextLine();
                 System.out.print("Type de la composante");
-                String typeComp = fourn4.nextLine();
+                String typeComp = scanner.nextLine();
                 System.out.print("Description de la composante");
-                String descComp = fourn4.nextLine();
+                String descComp = scanner.nextLine();
                 System.out.print("Prix de la composante");
-                int prixComp = fourn4.nextInt();
+                int prixComp = scanner.nextInt();
+                scanner.nextLine();
                 listeFournisseurs.get(index).modifierComposante(j,nomComp,typeComp, descComp, prixComp);
                 endingMenu(index, privileges);
-                fourn4.close();
-                scanner8.close();
+                //fourn4.close();
+                //scanner8.close();
                 break;
 
         }
