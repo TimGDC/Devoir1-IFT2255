@@ -16,15 +16,7 @@ public class View {
         System.out.println("Veuillez choisir une option : ");
         System.out.println("1 - Se connecter");
         System.out.println("2 - Creer un compte");
-
-        while (!scanner.hasNextInt()) {
-            System.out.println("Veuillez entrer soit 1 ou 2");
-            scanner.next();
-        }
-
-        int choix = scanner.nextInt();
-        scanner.nextLine(); // consume newline character
-        return choix;
+        return getInt();
     }
 
     public List<String> displayLoginPage() {
@@ -41,14 +33,8 @@ public class View {
         System.out.println("Creation d'un nouveau compte:");
         System.out.println("1 - Utilisateur");
         System.out.println("2 - Fournisseur");
+        return getInt();
 
-        while (!scanner.hasNextInt()) {
-            System.out.println("Veuillez entrer 1 ou 2");
-            scanner.next();
-        }
-        int choix = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-        return choix;
     }
 
     public List<String> getUserSignupDetails() {
@@ -104,15 +90,8 @@ public class View {
         System.out.println("Que voulez vous faire a present?");
         System.out.println("1 - Revenir au menu precedent");
         System.out.println("2 - Quitter l'application");
+        return getInt();
 
-        while (!scanner.hasNextInt()) {
-            System.out.println("Veuillez entrer soit 1 ou 2");
-            scanner.next();
-        }
-
-        int choix = scanner.nextInt();
-        scanner.nextLine(); // consume newline character
-        return choix;
 
     }
 
@@ -127,15 +106,8 @@ public class View {
         System.out.println("6 - Rechercher un fournisseur");
         System.out.println("7 - Voir le profil d'un fournisseur");
         System.out.println("8 - Rechercher une composante");
+        return getInt();
 
-        int choix;
-        while (!scanner.hasNextInt()) {
-            System.out.println("Veuillez entrer un nombre valide");
-            scanner.next();
-        }
-        choix = scanner.nextInt();
-        scanner.nextLine();
-        return choix;
 
     }
 
@@ -148,7 +120,7 @@ public class View {
     public int getInt(){
 
         while (!scanner.hasNextInt()) {
-            System.out.println("Veuillez entrer soit 1 ou 2");
+            System.out.println("Veuillez entrer un nombre valide");
             scanner.next();
         }
 
