@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ff36842-c00b-414c-981f-347c14870025" name="Changes" comment="Ajout de tests unitaires">
-      <change afterPath="$PROJECT_DIR$/Robotix/test/UserControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Robotix/test/UserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9ff36842-c00b-414c-981f-347c14870025" name="Changes" comment="Update des tests unitaires" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,7 +78,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720363404664</updated>
-      <workItem from="1722925619179" duration="2029000" />
+      <workItem from="1722925619179" duration="2570000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout robotix">
       <option name="closed" value="true" />
@@ -108,7 +104,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722968450445</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update des tests unitaires">
+      <option name="closed" value="true" />
+      <created>1722969358192</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722969358192</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +136,7 @@
     <MESSAGE value="Ajout robotix" />
     <MESSAGE value="Configuration Maven (ajout de dependance jUnit et plug in)" />
     <MESSAGE value="Ajout de tests unitaires" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de tests unitaires" />
+    <MESSAGE value="Update des tests unitaires" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update des tests unitaires" />
   </component>
 </project>
