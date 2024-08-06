@@ -13,16 +13,15 @@ public class FournisseurView extends View{
 
         System.out.println("Veuillez choisir une option : ");
         System.out.println("1 - Modifier son profil");
-        System.out.println("2 - Gerer ses composantes");
-        System.out.println("3 - Enregistrer une composante");
+        System.out.println("2 - Afficher mes composantes");
+        System.out.println("3 - Supprimer une composante");
+        System.out.println("4 - Modifier une composante");
+        System.out.println("5 - Enregistrer une composante");
         return getInt();
 
     }
     public int displayComposanteOptions(){
         System.out.println("Que souhaitez vous faire?");
-        System.out.println("1 - Afficher mes composantes");
-        System.out.println("2 - Supprimer une composante");
-        System.out.println("3 - Modifier une composante");
         return getInt();
 
     }

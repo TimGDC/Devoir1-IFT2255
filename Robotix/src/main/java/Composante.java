@@ -2,10 +2,10 @@ public class Composante {
     private String nom;
     private String type;
     private String description;
-    private int prix;
+    private float prix;
     private String fournisseur;
 
-    public Composante(String nom, String type, String description, int prix, String fournisseur) {
+    public Composante(String nom, String type, String description, float prix, String fournisseur) {
 
         this.nom = nom;
         this.type = type;
@@ -29,7 +29,7 @@ public class Composante {
         return this.description;
     }
 
-    public int getPrix() {
+    public float getPrix() {
 
         return this.prix;
     }
@@ -54,7 +54,7 @@ public class Composante {
         this.description = nouvelleDescription;
     }
 
-    public void setPrix(int nouveauPrix) {
+    public void setPrix(float nouveauPrix) {
 
         this.prix = nouveauPrix;
     }

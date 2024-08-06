@@ -141,7 +141,7 @@ public class UserController extends Controller{
                     default:
                         userView.displayMessage("Veuillez entrer un nombre entre 1 et 3.");
 
-                }
+                }break;
 
             case 4:
 

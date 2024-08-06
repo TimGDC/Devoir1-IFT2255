@@ -37,8 +37,8 @@ public class FournisseurController extends Controller{
                break;
 
            case 3:
-               fournisseurView.closeScanner();
                fournisseurView.displayMessage("A la prochaine!");
+               fournisseurView.closeScanner();
                break;
 
            default:
@@ -68,42 +68,73 @@ public class FournisseurController extends Controller{
                 fournisseurView.displayMessage("Nouveau type de composantes : ");
                 String type = fournisseurView.getString();
 
+                fournisseurView.displayMessage("Recevoir notifications par email? (true/false) : ");
+                Boolean notifs = Boolean.parseBoolean(fournisseurView.getString());
+
                 fournisseurView.displayMessage("Nouvelle quantite de production : ");
                 int quantite = fournisseurView.getInt();
 
-                fournisseurView.displayMessage("Recevoir notifications par email? (true/false) : ");
-                boolean notifs = Boolean.parseBoolean(fournisseurView.getString());
-
                 listeFournisseurs.get(index).modifierProfilFournisseur(util,password,emailadress,adresse,type,notifs,quantite, index);
                 fournisseurView.displayMessage("Mise a jour du compte reussie!");
-                endingMenuFournisseur(index);
                 break;
             case 2:
-
-                gererComposantes(index);
-                endingMenuFournisseur(index);
+                // Afficher composante
+                listeFournisseurs.get(index).afficherComposante();
                 break;
-
             case 3:
-                fournisseurView.displayMessage("Nom de la composante");
-                String nomComp = fournisseurView.getString();
-                fournisseurView.displayMessage("Type de la composante");
-                String typeComp = fournisseurView.getString();
-                fournisseurView.displayMessage("Description de la composante");
-                String descComp = fournisseurView.getString();
-                fournisseurView.displayMessage("Prix de la composante");
-                int prixComp = fournisseurView.getInt();
+                // Supprimer composante
+                //A VERIFIER TESTER
+                fournisseurView.displayMessage("Nom de la composante a supprimer?");
+                String n = fournisseurView.getString();
+                listeFournisseurs.get(index).supprimerComposante(n , index);
+                break;
+            case 4:
+                // Modifier composante
+                fournisseurView.displayMessage("Nom de la composante a modifier?");
+                String m = fournisseurView.getString();
 
-                listeFournisseurs.get(index).enregistrerComposante(nomComp, typeComp, descComp, prixComp, listeFournisseurs.get(index).getUsername(), index);
-                endingMenuFournisseur(index);
+                for(int i = 0 ; i< listeFournisseurs.get(index).getListeComposante().size() ; i++){
+
+                    if(Objects.equals(listeFournisseurs.get(index).getListeComposante().get(i).getNom(), m)){
+                        this.indexComposante = i;
+                    }
+                }
+
+                fournisseurView.displayMessage("Nouveau nom de la composante");
+                String nomComp = fournisseurView.getString();
+
+                fournisseurView.displayMessage("Nouveau type de la composante");
+                String typeComp = fournisseurView.getString();
+
+                fournisseurView.displayMessage("Nouvelle description de la composante");
+                String descComp = fournisseurView.getString();
+
+                fournisseurView.displayMessage("Nouveau prix de la composante");
+                float prixComp = fournisseurView.getFloat();
+
+                listeFournisseurs.get(index).modifierComposante(nomComp,typeComp, descComp, prixComp, index, indexComposante);
+                break;
+            case 5:
+                //Enregistrer composante
+                fournisseurView.displayMessage("Nom de la composante");
+                String nomCompE = fournisseurView.getString();
+                fournisseurView.displayMessage("Type de la composante");
+                String typeCompE = fournisseurView.getString();
+                fournisseurView.displayMessage("Description de la composante");
+                String descCompE = fournisseurView.getString();
+                fournisseurView.displayMessage("Prix de la composante");
+                float prixCompE = fournisseurView.getFloat();
+                listeFournisseurs.get(index).enregistrerComposante(nomCompE, typeCompE, descCompE, prixCompE, listeFournisseurs.get(index).getUsername(), index);
                 break;
 
             default:
-                fournisseurView.displayMessage("Veuillez entrer un nombre entre 1 et 9.");
-        }
+                fournisseurView.displayMessage("Veuillez entrer un nombre valide");
+        }endingMenuFournisseur(index);
 
-    }
-    public void gererComposantes(int index) throws IOException, ParseException {
+
+   }
+
+   /* public void gererComposantes(int index) throws IOException, ParseException {
 
 
         int choixComposante = fournisseurView.displayComposanteOptions();
@@ -148,10 +179,13 @@ public class FournisseurController extends Controller{
                 endingMenuFournisseur(index);
                 break;
 
+            default:
+                fournisseurView.displayMessage("Veuillez entrer un nombre valide.");
+
         }
 
 
-    }
+    }*/
     protected void requetesPubliques(int index) throws IOException, ParseException {
 
 
@@ -225,9 +259,8 @@ public class FournisseurController extends Controller{
 
             case 2:
 
-
-                System.out.println("A la prochaine!");
                 fournisseurView.closeScanner();
+                System.out.println("A la prochaine!");
                 break;
 
 

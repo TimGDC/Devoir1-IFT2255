@@ -19,8 +19,10 @@ public class View {
         return getInt();
     }
 
-    public List<String> displayLoginPage() {
-
+    public List<String> displayLoginPage(boolean b) {
+        if (b){
+            clearInputBuffer();
+        }
         System.out.print("Entrez votre nom d'utilisateur : ");
         String utilisateur = scanner.nextLine();
         System.out.print("Entrez votre mot de passe : ");
@@ -48,9 +50,9 @@ public class View {
         String email = scanner.nextLine();
 
         System.out.print("Recevoir notifications par email? (true/false) : ");
-        String notif = scanner.nextLine();
+        boolean notif = getBool();
 
-        return Arrays.asList(nom, pass, email, notif);
+        return Arrays.asList(nom, pass, email, String.valueOf(notif));
     }
 
     public List<String> getSupplierSignupDetails() {
@@ -69,15 +71,13 @@ public class View {
         System.out.print("Type de composantes : ");
         String type = scanner.nextLine();
 
-        System.out.print("Quantite de production : ");
-        while (!scanner.hasNextInt()) {
-            System.out.println("Veuillez entrer un nombre valide");
-            scanner.next();
-        }
-        int quantite = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+        System.out.print("Recevoir notifications par email? (true/false) : ");
+        boolean notif = getBool();
 
-        return Arrays.asList(util, password, emailadress, adresse, type, String.valueOf(quantite));
+        System.out.print("Quantite de production : ");
+        int quantite = getInt();
+
+        return Arrays.asList(util, password, emailadress, adresse, type, String.valueOf(notif), String.valueOf(quantite));
     }
 
     public void displayMessage(String message) {
@@ -120,10 +120,21 @@ public class View {
 
     }
 
+    public boolean getBool(){
+
+        while (!scanner.hasNextBoolean()) {
+            System.out.println("Veuillez entrer True ou False");
+            scanner.next();
+        }
+
+        return scanner.nextBoolean();
+
+    }
+
     public int getInt(){
 
         while (!scanner.hasNextInt()) {
-            System.out.println("Veuillez entrer un nombre valide");
+            System.out.println("Veuillez entrer un nombre entier valide");
             scanner.next();
         }
 
@@ -131,6 +142,25 @@ public class View {
         scanner.nextLine();
         return i;
 
+    }
+
+    public float getFloat(){
+
+        while (!scanner.hasNextFloat()) {
+            System.out.println("Veuillez entrer un nombre valide");
+            scanner.next();
+        }
+
+        float i = scanner.nextFloat();
+        scanner.nextLine();
+        return i;
+
+    }
+
+    public void clearInputBuffer() {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine(); // Consume the remaining newline
+        }
     }
 
 
