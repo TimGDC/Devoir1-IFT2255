@@ -3,8 +3,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
 public class UserController extends Controller{
 
@@ -141,7 +140,7 @@ public class UserController extends Controller{
                     default:
                         userView.displayMessage("Veuillez entrer un nombre entre 1 et 3.");
 
-                }
+                }break;
 
             case 4:
 
@@ -165,23 +164,163 @@ public class UserController extends Controller{
                 endingMenuUser(index);
                 break;
 
-            case 5:
+            case 5: //TODO TIM
 
                 listeUsers.get(index).afficherNotifications();
                 endingMenuUser(index);
                 break;
-            case 6:
-
+            case 6: //TODO TIM
                 //Acheter composante
+                userView.displayMessage("Entrez le nom de la composante a acheter : ");
+                String nomComposante = userView.getString();
+                String fournisseurComposante = "";
+                boolean compExiste = false;
+                int fournisseurIndex = 0;
+                int composanteIndex = 0;
+
+                //Trouve le fournisseur de la composante
+                for(Composante comp : listeComposantes){
+                    if(Objects.equals(comp.getNom(), nomComposante)){
+                        fournisseurComposante = comp.getFournisseur();
+                        compExiste = true;
+
+                    }
+                }
+                for(int i = 0 ; i < listeFournisseurs.size() ; i++){
+                    if(Objects.equals(fournisseurComposante, listeFournisseurs.get(i).getUsername())){
+                        fournisseurIndex = i;
+                    }
+                }
+
+                //Cherche index de la composante dans la liste de composante de X fournisseur
+                Fournisseur fournisseurActuel = listeFournisseurs.get(fournisseurIndex);
+                for(int j = 0 ; j< fournisseurActuel.getListeComposante().size() ; j++){
+
+                    if(Objects.equals(nomComposante, fournisseurActuel.getListeComposante().get(j).getNom())){
+                        composanteIndex = j;
+                    }
+                }
+
+                if(compExiste){
+
+                    userView.displayMessage("Entrez la quantitee a acheter de cette composante : ");
+                    int qttComp = userView.getInt();
+
+                    if(qttComp <= listeFournisseurs.get(fournisseurIndex).getListeComposante().get(composanteIndex).getQuantite()){
+                        //MODIFIER INVENTAIRE + NOTIF FOURNISSEUR
+                        listeUsers.get(index).acheterComposante(listeFournisseurs, fournisseurIndex, qttComp, composanteIndex);
+                        userView.displayMessage("Achat de composante effectue!");
+                        endingMenuUser(index);
+
+                    }else{
+                        userView.displayMessage("Le fournisseur n'a pas assez de stock!");
+                        endingMenuUser(index);
+
+                    }
+
+                }else{
+                    userView.displayMessage("Cette composante n'existe pas!");
+                    endingMenuUser(index);
+
+                }
+
                 break;
+
+            case 7:
+                // Trouver composante
+                System.out.println("Veuillez entrer le nom, le type, ou le fournisseur de la composante.");
+                ArrayList<Composante> composantes = chercherComposante(userView.getString());
+                if (composantes.isEmpty()) {
+                    System.out.println("La composante recherchee n'existe pas");
+                    endingMenuUser(index);}
+                else{
+                    System.out.println("Resultats recherche");
+                    for (Composante composante : composantes) {
+                        System.out.println("Nom: " + composante.getNom() + "    " + "Type: " + composante.getType());
+                    }
+                    int choix3 = userView.displaySearchingOptions();
+                    switch(choix3){
+                        case 1:
+                            for (Composante composante : composantes) {
+                                System.out.println("Nom: "+composante.getNom());
+                                System.out.println("Type: "+composante.getType());
+                                System.out.println("Description: "+composante.getDesc());
+                                System.out.println("Fournisseur: "+composante.getFournisseur());
+                                System.out.println("Prix: "+composante.getPrix());
+                                System.out.println("--------------------------------------------------------------");
+                            }
+                            endingMenuUser(index);
+                            break;
+                        case 2:
+                            userMenu(index);
+                            break;
+                        case 3:
+                            userView.closeScanner();
+                            System.out.println("A la prochaine!");
+                            break;
+                    }}break;
+            case 8:
+                // Trouver fournisseur
+                System.out.println("Veuillez entrer le nom, type ou adresse du fournisseur.");
+                ArrayList<Fournisseur> fournisseurs = chercherFournisseur(userView.getString());
+                if (fournisseurs.isEmpty()) {
+                    System.out.println("Le fournisseur recherche n'existe pas");
+                    endingMenuUser(index);}
+                else{
+                    System.out.println("Resultats recherche");
+                    for (Fournisseur fournisseur : fournisseurs) {
+                        System.out.println("Nom: " + fournisseur.getUsername() + "    " + "Type: " + fournisseur.getType());
+                    }
+                    int choix2 = userView.displaySearchingOptions();
+                    switch(choix2){
+                        case 1:
+                            for (Fournisseur fournisseur : fournisseurs) {
+                                System.out.println("Nom: "+fournisseur.getUsername());
+                                System.out.println("Type: "+fournisseur.getType());
+                                System.out.println("Adresse: "+fournisseur.getAdresse());
+                                System.out.println("Email: "+fournisseur.getEmail());
+                                System.out.println("Capacite Fabrication: "+fournisseur.getCapaciteFabrication());
+                                System.out.println("Composantes: ");System.out.println(fournisseur.getListeComposanteDeepString());
+                                System.out.println("--------------------------------------------------------------");
+                            }
+                            endingMenuUser(index);
+                            break;
+                        case 2:
+                            userMenu(index);
+                            break;
+                        case 3:
+                            userView.closeScanner();
+                            System.out.println("A la prochaine!");
+                            break;
+                    }}break;
             default:
-                userView.displayMessage("Veuillez entrer un nombre entre 1 et 6.");
+                userView.displayMessage("Veuillez entrer un nombre entre 1 et 8.");
         }
+    }
+
+    protected ArrayList<Composante> chercherComposante(String recherche) {
+        ArrayList<Composante> composantes = new ArrayList<>();
+        for(Composante comp : listeComposantes){
+            if(Objects.equals(recherche, comp.getNom()) || Objects.equals(recherche, comp.getType()) || Objects.equals(recherche, comp.getFournisseur())) {
+                composantes.add(comp);
+            }
+        }
+        return composantes;
+    }
+
+    protected ArrayList<Fournisseur> chercherFournisseur(String recherche) {
+        ArrayList<Fournisseur> fourns = new ArrayList<>();
+        for(Fournisseur fourn : listeFournisseurs) {
+            if (Objects.equals(recherche, fourn.getAdresse()) || Objects.equals(recherche, fourn.getType()) || Objects.equals(recherche, fourn.getUsername())) {
+                fourns.add(fourn);
+            }
+        }
+        return fourns;
 
     }
+
+
     protected void requetesPubliques(int index) throws IOException, ParseException {
-
-
 
         int choix = userView.showPublicRequestMenu();
         switch (choix) {
@@ -214,28 +353,8 @@ public class UserController extends Controller{
                 break;
             case 6:
 
-                System.out.println("Veuillez entrer un nom de fournisseur a rechercher");
-                chercherFournisseur(userView.getString());
-
-
-                break;
-            case 7:
-
                 System.out.println("Veuillez entrer un nom de fournisseur a afficher le profil");
                 afficherProfileFournisseur(userView.getString());
-
-
-                break;
-            case 8:
-
-                //TODO
-                int opt = userView.displayComposanteSearchOptions();
-                System.out.println("Veuillez entrer un nom, type ou nom de fournisseur d'une composante");
-                switch(opt){
-                    case 0:
-
-                }
-
 
                 break;
             default:
@@ -245,6 +364,7 @@ public class UserController extends Controller{
 
 
     }
+
     protected void endingMenuUser(int index) throws IOException, ParseException {
 
         int choix = userView.showEndingScreen();

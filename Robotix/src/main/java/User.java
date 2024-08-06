@@ -27,6 +27,8 @@ public class User {
     private Object obj;
     private JSONObject baseDonneeObjet;
 
+    private static final String FILE_PATH = "src/main/java/BaseDonnee.json";
+
 
     public User(String username, String password, String email, boolean notificationsEmail) throws IOException, ParseException {
 
@@ -34,8 +36,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.notificationsEmail = notificationsEmail;
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONObject nouvelUtilisateurObjet = new JSONObject();
         nouvelUtilisateurObjet.put("password", password);
         nouvelUtilisateurObjet.put("email", email);
@@ -53,7 +54,7 @@ public class User {
         listeUtilisateurs.add(nouvelUtilisateurObjet);
 
 
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
         generationNotification();
@@ -86,7 +87,7 @@ public class User {
         JSONObject currentUser = (JSONObject) userList.get(jsonI);
         currentUser.put("notifications", notifJson);
 
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -137,8 +138,7 @@ public class User {
 
         listeRobotsUser.removeIf(rob -> Objects.equals(rob.getNom(), nom));
 
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) listeUser.get(index);
         JSONArray listeRobotsJson = (JSONArray) userActuel.get("robots");
@@ -149,7 +149,7 @@ public class User {
                 break;
             }
         }
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -163,8 +163,8 @@ public class User {
         this.password = pw;
         this.email = email;
         this.notificationsEmail = notifs;
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
 
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) listeUser.get(index);
@@ -174,7 +174,7 @@ public class User {
         userActuel.put("notificationsEmail", notifs);
 
 
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
 
@@ -193,8 +193,8 @@ public class User {
 
         listeActivitesUser.add(activite.getNom());
 
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
+
 
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) listeUser.get(index);
@@ -211,7 +211,7 @@ public class User {
 
 
 
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
         System.out.println(baseDonneeObjet);
@@ -222,8 +222,7 @@ public class User {
 
         listeActivitesUser.remove(activite.getNom());
 
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONArray userList = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) userList.get(index);
         JSONArray userActivite = (JSONArray) userActuel.get("activites");
@@ -235,7 +234,7 @@ public class User {
             }
         }
 
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -270,9 +269,28 @@ public class User {
         }
     }
 
+    public void acheterComposante(ArrayList<Fournisseur> listeFournisseur, int indexFournisseur, int quantite, int indexComposante) throws IOException, ParseException{
 
-    public ArrayList<String> getInterets() {
-        return listeInteretsUser;
+        Fournisseur fournisseurActuel = listeFournisseur.get(indexFournisseur);
+        int nouvelleQuantite = fournisseurActuel.getListeComposante().get(indexComposante).getQuantite() - quantite;
+        fournisseurActuel.getListeComposante().get(indexComposante).setQuantite(nouvelleQuantite);
+
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
+
+        JSONArray listeFournisseurJson = (JSONArray) baseDonneeObjet.get("Fournisseurs");
+        JSONObject fournisseurActuelJson = (JSONObject) listeFournisseurJson.get(indexFournisseur);
+        JSONArray listeComposanteJson = (JSONArray) fournisseurActuelJson.get("composantes");
+        JSONObject composanteActuelle = (JSONObject) listeComposanteJson.get(indexComposante);
+
+        composanteActuelle.put("quantite" , nouvelleQuantite);
+
+
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
+            file.write(baseDonneeObjet.toJSONString());
+        }
+
+
+
     }
 
     public ArrayList<String> getActivites() {

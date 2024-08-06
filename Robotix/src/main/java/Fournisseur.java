@@ -19,11 +19,11 @@ public class Fournisseur {
     private String adresse;
     private String type;
     private int capaciteFabrication;
-    private boolean notificationsEmail;
+    boolean notificationsEmail;
     private String[] notifications = {"", ""};
     private Object obj;
     private JSONObject baseDonneeObjet;
-
+    private final String FILE_PATH = "src/main/java/BaseDonnee.json";
     private ArrayList<Composante> listeComposante = new ArrayList<>();
 
     public Fournisseur(String user, String pw, String email, String adresse, String type, boolean notifs, int production) throws IOException, ParseException {
@@ -36,8 +36,8 @@ public class Fournisseur {
         this.capaciteFabrication = production;
         this.notificationsEmail = notifs;
 
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONObject nouveauFournisseurObjet = new JSONObject();
         nouveauFournisseurObjet.put("password", password);
         nouveauFournisseurObjet.put("email", email);
@@ -55,7 +55,7 @@ public class Fournisseur {
         listeFournisseurs.add(nouveauFournisseurObjet);
 
 
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
 
@@ -82,8 +82,7 @@ public class Fournisseur {
         this.capaciteFabrication = capacite;
         this.notificationsEmail = notifs;
 
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONArray listeFournisseurs = (JSONArray) baseDonneeObjet.get("Fournisseurs");
         JSONObject fournisseurActuel = (JSONObject) listeFournisseurs.get(index);
 
@@ -95,7 +94,7 @@ public class Fournisseur {
         fournisseurActuel.put("production", capacite);
         fournisseurActuel.put("adresse", adresse);
 
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
 
@@ -103,12 +102,11 @@ public class Fournisseur {
 
     }
 
-    public void enregistrerComposante(String nom, String type, String description, int prix, String fournisseur, int index) throws IOException, ParseException{
+    public void enregistrerComposante(String nom, String type, String description, float prix, String fournisseur, int quantite,int index) throws IOException, ParseException{
 
-        Composante nouvelleComposante = new Composante(nom, type, description, prix, fournisseur);
+        Composante nouvelleComposante = new Composante(nom, type, description, prix, fournisseur, quantite);
         listeComposante.add(nouvelleComposante);
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONArray listeFournisseurJson = (JSONArray) baseDonneeObjet.get("Fournisseurs");
         JSONObject fournisseurActuel = (JSONObject) listeFournisseurJson.get(index);
         JSONArray listeComposanteJson = (JSONArray) fournisseurActuel.get("composantes");
@@ -119,26 +117,33 @@ public class Fournisseur {
         nouvelleComposanteJson.put("description" , nouvelleComposante.getDesc());
         nouvelleComposanteJson.put("prix" , nouvelleComposante.getPrix());
         nouvelleComposanteJson.put("fournisseur" , nouvelleComposante.getFournisseur());
+        nouvelleComposanteJson.put("quantite" , nouvelleComposante.getQuantite());
 
         listeComposanteJson.add(nouvelleComposanteJson);
 
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
-        //System.out.println(fournisseurActuel);
+
     }
 
     public ArrayList<Composante> getListeComposante() {
         return this.listeComposante;
     }
-
+    public String getListeComposanteDeepString() {
+        StringBuilder sb = new StringBuilder();
+        for (Composante composante : listeComposante) {
+            sb.append(composante.toString()).append("\n");
+        }
+        return sb.toString();
+    }
     public void afficherComposante() {
         int index = 1;
         System.out.println("Liste des composantes de ce fournisseur : ");
         for (Composante comp : listeComposante) {
 
             System.out.println("Composante " + index);
-            System.out.printf("Nom : %s \nType : %s \nDescription : %s \nPrix : %d \nFournisseur : %s\n", comp.getNom(),
+            System.out.printf("Nom : %s \nType : %s \nDescription : %s \nPrix : %f \nFournisseur : %s\n", comp.getNom(),
                     comp.getType(), comp.getDesc(), comp.getPrix(), comp.getFournisseur());
             index += 1;
 
@@ -149,8 +154,7 @@ public class Fournisseur {
 
 
         listeComposante.removeIf(comp -> Objects.equals(comp.getNom(), nom));
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONArray listeFournisseurJson = (JSONArray) baseDonneeObjet.get("Fournisseurs");
         JSONObject fournisseurActuel = (JSONObject) listeFournisseurJson.get(index);
         JSONArray listeComposantesJson = (JSONArray) fournisseurActuel.get("composantes");
@@ -161,7 +165,7 @@ public class Fournisseur {
                 break;
             }
         }
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -169,7 +173,7 @@ public class Fournisseur {
 
     }
 
-    public void modifierComposante(String nom, String type, String description, int prix, int index, int indexComposante) throws IOException, ParseException{
+    public void modifierComposante(String nom, String type, String description, float prix, int index, int indexComposante) throws IOException, ParseException{
 
 
         Composante composante = listeComposante.get(indexComposante);
@@ -178,8 +182,7 @@ public class Fournisseur {
         composante.setDesc(description);
         composante.setPrix(prix);
 
-        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        this.baseDonneeObjet = (JSONObject) obj;
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONArray listeFournisseurJson = (JSONArray) baseDonneeObjet.get("Fournisseurs");
         JSONObject fournisseurActuel = (JSONObject) listeFournisseurJson.get(index);
         JSONArray listeComposanteJson = (JSONArray) fournisseurActuel.get("composantes");
@@ -191,11 +194,9 @@ public class Fournisseur {
         composanteActuelle.put("prix" , prix);
 
 
-        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
-        System.out.println(fournisseurActuel);
-
 
     }
 
@@ -225,5 +226,9 @@ public class Fournisseur {
 
     public void setEmail(String mail) {
         this.email = mail;
+    }
+
+    public void setCapaciteFabrication(int capaciteFabrication) {
+        this.capaciteFabrication = capaciteFabrication;
     }
 }

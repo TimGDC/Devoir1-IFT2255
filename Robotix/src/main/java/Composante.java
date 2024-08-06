@@ -2,16 +2,18 @@ public class Composante {
     private String nom;
     private String type;
     private String description;
-    private int prix;
+    private float prix;
     private String fournisseur;
+    private int quantite;
 
-    public Composante(String nom, String type, String description, int prix, String fournisseur) {
+    public Composante(String nom, String type, String description, float prix, String fournisseur, int quantite) {
 
         this.nom = nom;
         this.type = type;
         this.description = description;
         this.prix = prix;
         this.fournisseur = fournisseur;
+        this.quantite = quantite;
     }
 
     public String getNom() {
@@ -29,7 +31,7 @@ public class Composante {
         return this.description;
     }
 
-    public int getPrix() {
+    public float getPrix() {
 
         return this.prix;
     }
@@ -54,8 +56,21 @@ public class Composante {
         this.description = nouvelleDescription;
     }
 
-    public void setPrix(int nouveauPrix) {
+    public void setPrix(float nouveauPrix) {
 
         this.prix = nouveauPrix;
+    }
+    @Override
+    public String toString() {
+        return String.format("Nom: %s, Type: %s, Description: %s, Prix: %.2f, Fournisseur: %s",
+                nom, type, description, prix, fournisseur);
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
     }
 }

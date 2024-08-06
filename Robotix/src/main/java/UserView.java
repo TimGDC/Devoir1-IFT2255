@@ -19,11 +19,13 @@ public class UserView extends View{
     public int displayUserOptions(){
         System.out.println("Veuillez choisir une option");
         System.out.println("1 - Modifier son profil");
-        System.out.println("2 - Gerer sa flotte");
+        System.out.println("2 - Gerer ses robots");
         System.out.println("3 - Gerer ses activites");
         System.out.println("4 - Voir l'etat de mes robots");
         System.out.println("5 - Voir ses notifications");
         System.out.println("6 - Acheter une composante");
+        System.out.println("7 - Trouver une composante");
+        System.out.println("8 - Trouver un fournisseur");
         return getInt();
 
     }
@@ -55,11 +57,10 @@ public class UserView extends View{
 
     }
 
-    public int displayComposanteSearchOptions(){
-        System.out.println("Veuillez choisir une option : ");
-        System.out.println("1 - Informations de base");
-        System.out.println("2 - Informations completes");
+    public int displaySearchingOptions(){
+        System.out.println("1 - Afficher la fiche presentant toutes les informations");
+        System.out.println("2 - Revenir au menu precedent");
+        System.out.println("3 - Quitter l'application");
         return getInt();
-
     }
 }
