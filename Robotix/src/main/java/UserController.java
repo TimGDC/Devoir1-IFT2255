@@ -124,17 +124,16 @@ public class UserController extends Controller{
                     case 3:
                         userView.displayMessage("Nom de l'activite a ajouter");
                         String nomA = userView.getString();
-                        listeUsers.get(index).getActivites().add(nomA);
 
                         for(int i = 0 ; i< listeActivites.length ; i++){
                             if(Objects.equals(listeActivites[i].getNom(), nomA)){
+                                listeUsers.get(index).getActivites().add(listeActivites[i]);
                                 listeUsers.get(index).ajouterActivite(listeActivites[i], index);
                                 userView.displayMessage("Activite ajoutee!");
                                 break;
                             }
 
                         }
-                        System.out.println(baseDonneeObjet);
                         endingMenuUser(index);
                         break;
                     default:
@@ -164,12 +163,12 @@ public class UserController extends Controller{
                 endingMenuUser(index);
                 break;
 
-            case 5: //TODO TIM
+            case 5:
 
                 listeUsers.get(index).afficherNotifications();
                 endingMenuUser(index);
                 break;
-            case 6: //TODO TIM
+            case 6:
                 //Acheter composante
                 userView.displayMessage("Entrez le nom de la composante a acheter : ");
                 String nomComposante = userView.getString();

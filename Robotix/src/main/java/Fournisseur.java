@@ -20,7 +20,7 @@ public class Fournisseur {
     private String type;
     private int capaciteFabrication;
     boolean notificationsEmail;
-    private String[] notifications = {"", ""};
+    private ArrayList<String> notifications = new ArrayList<>();
     private Object obj;
     private JSONObject baseDonneeObjet;
     private final String FILE_PATH = "src/main/java/BaseDonnee.json";
@@ -60,6 +60,7 @@ public class Fournisseur {
         }
 
     }
+    public Fournisseur(){}
 
     public String getAdresse() {
         return this.adresse;
@@ -230,5 +231,28 @@ public class Fournisseur {
 
     public void setCapaciteFabrication(int capaciteFabrication) {
         this.capaciteFabrication = capaciteFabrication;
+    }
+    public void ajouterComposanteListe(Composante composante){
+
+        this.listeComposante.add(composante);
+
+    }
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setNotificationsEmail(boolean notificationsEmail) {
+        this.notificationsEmail = notificationsEmail;
+    }
+    public ArrayList<String> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(ArrayList<String> notifications) {
+        this.notifications = notifications;
     }
 }

@@ -3,7 +3,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -52,9 +51,11 @@ public class Robot {
         try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
             file.write(baseDonneeObjet.toJSONString());
         }
-        System.out.println(baseDonneeObjet);
 
     }
+
+    public Robot(){}
+
 
     private void initializationRobot() {
 
@@ -63,6 +64,7 @@ public class Robot {
         this.consommationCPU = random.nextInt(100) + 1;
         this.consommationMemoire = random.nextInt(100) + 1;
         this.batterie = random.nextInt(10) + 1;
+        this.vitesse = this.batterie = random.nextInt(20) + 1;
         position[0] = random.nextInt(1000) + 1;
         position[1] = random.nextInt(1000) + 1;
         position[2] = random.nextInt(1000) + 1;

@@ -14,6 +14,10 @@ public class Activite {
         this.status = status;
     }
 
+    public Activite(){
+
+    }
+
     public int getDuree() {
         return duree;
     }

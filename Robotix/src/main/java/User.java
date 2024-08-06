@@ -20,9 +20,7 @@ public class User {
     private String email;
     private boolean notificationsEmail;
     private ArrayList<Robot> listeRobotsUser = new ArrayList<>();
-    private ArrayList<String> listeSuiveursUser = new ArrayList<>();;
-    private ArrayList<String> listeInteretsUser = new ArrayList<>();;
-    private ArrayList<String> listeActivitesUser = new ArrayList<>();;
+    private ArrayList<Activite> listeActivitesUser = new ArrayList<>();;
     private String[] notifications = {"", ""};
     private Object obj;
     private JSONObject baseDonneeObjet;
@@ -58,6 +56,9 @@ public class User {
             file.write(baseDonneeObjet.toJSONString());
         }
         generationNotification();
+
+    }
+    public User(){
 
     }
 
@@ -110,10 +111,6 @@ public class User {
     }
     public String getEmail(){
         return this.email;
-    }
-
-    public ArrayList<String> getSuiveurs(){
-        return this.listeSuiveursUser;
     }
 
     public ArrayList<Robot> getListeRobots(){
@@ -183,15 +180,15 @@ public class User {
 
     public void afficherActivites(){
         System.out.println("Liste d'activites : ");
-        for(String act : listeActivitesUser){
-            System.out.println(act);
+        for(Activite act : listeActivitesUser){
+            System.out.println(act.getNom());
         }
     }
     public void ajouterActivite(Activite activite, int index) throws IOException , ParseException{
 
 
 
-        listeActivitesUser.add(activite.getNom());
+        listeActivitesUser.add(activite);
 
         this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
 
@@ -214,7 +211,7 @@ public class User {
         try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
-        System.out.println(baseDonneeObjet);
+        //System.out.println(baseDonneeObjet);
 
     }
 
@@ -274,6 +271,7 @@ public class User {
         Fournisseur fournisseurActuel = listeFournisseur.get(indexFournisseur);
         int nouvelleQuantite = fournisseurActuel.getListeComposante().get(indexComposante).getQuantite() - quantite;
         fournisseurActuel.getListeComposante().get(indexComposante).setQuantite(nouvelleQuantite);
+        fournisseurActuel.getNotifications().add("Vous avez vendu une composante!");
 
         this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
 
@@ -285,15 +283,35 @@ public class User {
         composanteActuelle.put("quantite" , nouvelleQuantite);
 
 
+
         try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
 
-
-
     }
 
-    public ArrayList<String> getActivites() {
+    public ArrayList<Activite> getActivites() {
         return listeActivitesUser;
+    }
+
+    public void ajouterRobotListe(Robot robot){
+
+        this.listeRobotsUser.add(robot);
+    }
+
+    public void ajouterActiviteListe(Activite activite){
+
+        this.listeActivitesUser.add(activite);
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setNotificationsEmail(boolean notificationsEmail) {
+        this.notificationsEmail = notificationsEmail;
     }
 }

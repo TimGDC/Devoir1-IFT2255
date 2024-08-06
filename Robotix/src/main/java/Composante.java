@@ -3,6 +3,9 @@ public class Composante {
     private String type;
     private String description;
     private float prix;
+
+
+
     private String fournisseur;
     private int quantite;
 
@@ -15,6 +18,8 @@ public class Composante {
         this.fournisseur = fournisseur;
         this.quantite = quantite;
     }
+
+    public Composante(){}
 
     public String getNom() {
 
@@ -72,5 +77,12 @@ public class Composante {
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setFournisseur(String fournisseur) {
+        this.fournisseur = fournisseur;
     }
 }
