@@ -124,7 +124,9 @@ public class FournisseurController extends Controller{
                 String descCompE = fournisseurView.getString();
                 fournisseurView.displayMessage("Prix de la composante");
                 float prixCompE = fournisseurView.getFloat();
-                listeFournisseurs.get(index).enregistrerComposante(nomCompE, typeCompE, descCompE, prixCompE, listeFournisseurs.get(index).getUsername(), index);
+                fournisseurView.displayMessage("Quantite a vendre de la composante");
+                int quantiteCompE = fournisseurView.getInt();
+                listeFournisseurs.get(index).enregistrerComposante(nomCompE, typeCompE, descCompE, prixCompE, listeFournisseurs.get(index).getUsername(),quantiteCompE, index );
                 break;
 
             default:

@@ -171,6 +171,59 @@ public class UserController extends Controller{
                 break;
             case 6: //TODO TIM
                 //Acheter composante
+                userView.displayMessage("Entrez le nom de la composante a acheter : ");
+                String nomComposante = userView.getString();
+                String fournisseurComposante = "";
+                boolean compExiste = false;
+                int fournisseurIndex = 0;
+                int composanteIndex = 0;
+
+                //Trouve le fournisseur de la composante
+                for(Composante comp : listeComposantes){
+                    if(Objects.equals(comp.getNom(), nomComposante)){
+                        fournisseurComposante = comp.getFournisseur();
+                        compExiste = true;
+
+                    }
+                }
+                for(int i = 0 ; i < listeFournisseurs.size() ; i++){
+                    if(Objects.equals(fournisseurComposante, listeFournisseurs.get(i).getUsername())){
+                        fournisseurIndex = i;
+                    }
+                }
+
+                //Cherche index de la composante dans la liste de composante de X fournisseur
+                Fournisseur fournisseurActuel = listeFournisseurs.get(fournisseurIndex);
+                for(int j = 0 ; j< fournisseurActuel.getListeComposante().size() ; j++){
+
+                    if(Objects.equals(nomComposante, fournisseurActuel.getListeComposante().get(j).getNom())){
+                        composanteIndex = j;
+                    }
+                }
+
+                if(compExiste){
+
+                    userView.displayMessage("Entrez la quantitee a acheter de cette composante : ");
+                    int qttComp = userView.getInt();
+
+                    if(qttComp <= listeFournisseurs.get(fournisseurIndex).getListeComposante().get(composanteIndex).getQuantite()){
+                        //MODIFIER INVENTAIRE + NOTIF FOURNISSEUR
+                        listeUsers.get(index).acheterComposante(listeFournisseurs, fournisseurIndex, qttComp, composanteIndex);
+                        userView.displayMessage("Achat de composante effectue!");
+                        endingMenuUser(index);
+
+                    }else{
+                        userView.displayMessage("Le fournisseur n'a pas assez de stock!");
+                        endingMenuUser(index);
+
+                    }
+
+                }else{
+                    userView.displayMessage("Cette composante n'existe pas!");
+                    endingMenuUser(index);
+
+                }
+
                 break;
 
             case 7:

@@ -165,8 +165,6 @@ public class User {
         this.notificationsEmail = notifs;
 
         this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
-        //this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        //this.baseDonneeObjet = (JSONObject) obj;
 
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) listeUser.get(index);
@@ -196,8 +194,7 @@ public class User {
         listeActivitesUser.add(activite.getNom());
 
         this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
-        //this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
-        //this.baseDonneeObjet = (JSONObject) obj;
+
 
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) listeUser.get(index);
@@ -272,9 +269,28 @@ public class User {
         }
     }
 
+    public void acheterComposante(ArrayList<Fournisseur> listeFournisseur, int indexFournisseur, int quantite, int indexComposante) throws IOException, ParseException{
 
-    public ArrayList<String> getInterets() {
-        return listeInteretsUser;
+        Fournisseur fournisseurActuel = listeFournisseur.get(indexFournisseur);
+        int nouvelleQuantite = fournisseurActuel.getListeComposante().get(indexComposante).getQuantite() - quantite;
+        fournisseurActuel.getListeComposante().get(indexComposante).setQuantite(nouvelleQuantite);
+
+        this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
+
+        JSONArray listeFournisseurJson = (JSONArray) baseDonneeObjet.get("Fournisseurs");
+        JSONObject fournisseurActuelJson = (JSONObject) listeFournisseurJson.get(indexFournisseur);
+        JSONArray listeComposanteJson = (JSONArray) fournisseurActuelJson.get("composantes");
+        JSONObject composanteActuelle = (JSONObject) listeComposanteJson.get(indexComposante);
+
+        composanteActuelle.put("quantite" , nouvelleQuantite);
+
+
+        try (FileWriter file = new FileWriter(FILE_PATH)) {
+            file.write(baseDonneeObjet.toJSONString());
+        }
+
+
+
     }
 
     public ArrayList<String> getActivites() {
