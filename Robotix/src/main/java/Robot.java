@@ -20,17 +20,17 @@ public class Robot {
     private Object obj;
     private JSONObject baseDonneeObjet;
 
-    public Robot(String nom, int numeroSerie, int jsonIndex) throws IOException, ParseException {
+    public Robot(String nom, int numeroSerie, int index) throws IOException, ParseException {
 
         this.nom = nom;
         this.numeroSerie = numeroSerie;
         initializationRobot();
-        /*
+
         this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
         this.baseDonneeObjet = (JSONObject) obj;
 
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
-        JSONObject userActuel = (JSONObject) listeUser.get(jsonIndex);
+        JSONObject userActuel = (JSONObject) listeUser.get(index);
         JSONArray listeRobotsUser = (JSONArray) userActuel.get("robots");
 
         JSONObject nouveauRobotJson = new JSONObject();
@@ -52,8 +52,8 @@ public class Robot {
         try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
             file.write(baseDonneeObjet.toJSONString());
         }
+        System.out.println(baseDonneeObjet);
 
-*/
     }
 
     private void initializationRobot() {

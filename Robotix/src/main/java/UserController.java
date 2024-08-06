@@ -22,15 +22,9 @@ public class UserController extends Controller{
 
     public void userMenu(int index) throws IOException, ParseException {
 
-        //JSONArray listeUtilisateursJson = (JSONArray) baseDonneeObjet.get("Users");
-        //System.out.println(listeUtilisateursJson.get(0));
-        //for(int i=0 ; i<listeUtilisateursJson.size(); i++){
-            //JSONObject userActuel = (JSONObject) listeUtilisateursJson.get(i);
-            //if(userActuel.get("username") == listeUsers.get(index).getUsername()){
-                //this.jsonIndex = i;
-            //}
-        //}
+        JSONArray listeUtilisateursJson = (JSONArray) baseDonneeObjet.get("Users");
 
+        //System.out.println(listeUtilisateursJson.get(index));
         userView.displayMessage("Bienvenue " + listeUsers.get(index).getUsername() + "!");
 
         int choix = userView.displayUserMenu();
@@ -47,7 +41,7 @@ public class UserController extends Controller{
                 break;
 
             default:
-                System.out.println("Veuillez entrer un nombre entre 1 et 2.");
+                System.out.println("Veuillez entrer un nombre entre 1 et 3.");
         }
 
 
@@ -59,14 +53,16 @@ public class UserController extends Controller{
         switch (choix) {
             case 1:
 
-                userView.displayMessage("Nouveau nom d'utilisateur");
+                userView.displayMessage("Nouveau nom d'utilisateur : ");
                 String nom = userView.getString();
-                userView.displayMessage("Nouveau password");
+                userView.displayMessage("Nouveau password : ");
                 String passwd = userView.getString();
-                userView.displayMessage("Nouveau email");
+                userView.displayMessage("Nouveau email : ");
                 String mail = userView.getString();
+                userView.displayMessage("Recevoir notifications par email? (true/false) : ");
+                Boolean notifs = Boolean.parseBoolean(userView.getString());
 
-                listeUsers.get(index).modifierProfil(nom, passwd, mail, jsonIndex);
+                listeUsers.get(index).modifierProfil(nom, passwd, mail, notifs, index);
                 endingMenuUser(index);
 
                 break;
@@ -83,14 +79,14 @@ public class UserController extends Controller{
                         int numSerie = userView.getInt();
                         userView.displayMessage("Nom");
                         String nomRobot = userView.getString();
-                        listeUsers.get(index).enregistrerRobot(numSerie, nomRobot, jsonIndex);
+                        listeUsers.get(index).enregistrerRobot(numSerie, nomRobot, index);
                         endingMenuUser(index);
                         break;
                     case 3:
 
                         userView.displayMessage("Nom du robot a supprimer");
                         String nomRob = userView.getString();
-                        listeUsers.get(index).supprimerRobot(nomRob, jsonIndex);
+                        listeUsers.get(index).supprimerRobot(nomRob, index);
                         endingMenuUser(index);
                         break;
                     default:
@@ -114,6 +110,15 @@ public class UserController extends Controller{
                         userView.displayMessage("Nom de l'activite a supprimer");
                         String nomActivite = userView.getString();
                         listeUsers.get(index).getActivites().remove(nomActivite);
+                        for(int i = 0 ; i< listeActivites.length ; i++){
+                            if(Objects.equals(listeActivites[i].getNom(), nomActivite)){
+                                listeUsers.get(index).supprimerActivite(listeActivites[i], index);
+                                userView.displayMessage("Activite Supprimee!");
+                                break;
+                            }
+
+                        }
+                        System.out.println(baseDonneeObjet);
                         endingMenuUser(index);
 
                         break;
@@ -124,17 +129,18 @@ public class UserController extends Controller{
 
                         for(int i = 0 ; i< listeActivites.length ; i++){
                             if(Objects.equals(listeActivites[i].getNom(), nomA)){
-                                listeUsers.get(index).ajouterActivite(listeActivites[i], jsonIndex);
+                                listeUsers.get(index).ajouterActivite(listeActivites[i], index);
                                 userView.displayMessage("Activite ajoutee!");
                                 break;
                             }
 
                         }
+                        System.out.println(baseDonneeObjet);
                         endingMenuUser(index);
                         break;
                     default:
                         userView.displayMessage("Veuillez entrer un nombre entre 1 et 3.");
-                        break;
+
                 }
 
             case 4:
@@ -153,7 +159,7 @@ public class UserController extends Controller{
 
                     default:
                         userView.displayMessage("Veuillez entrer un nombre entre 1 et 2.");
-                        break;
+
                 }
 
                 endingMenuUser(index);
@@ -222,8 +228,13 @@ public class UserController extends Controller{
                 break;
             case 8:
 
+                //TODO
+                int opt = userView.displayComposanteSearchOptions();
                 System.out.println("Veuillez entrer un nom, type ou nom de fournisseur d'une composante");
-                chercherComposante(userView.getString());
+                switch(opt){
+                    case 0:
+
+                }
 
 
                 break;

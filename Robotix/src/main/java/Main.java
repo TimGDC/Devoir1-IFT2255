@@ -28,10 +28,10 @@ public class Main {
                 "Le robot s'occupe d'un animal de companie'", listeInterets[9], "en cours");
         final Activite[] listeActivites = {activite1, activite2, activite3, activite4, activite5, activite6, activite7};
 
-        User user1 = new User("Tim", "123", "tim@gmail.com");
-        User user2 = new User("Hokann", "test", "hokann@gmail.com" );
-        User user3 = new User("9thgenius", "discord", "9thgenius@gmail.com" );
-        User user4 = new User("Wudm12", "github", "wudm12@gmail.com" );
+        User user1 = new User("Tim", "123", "tim@gmail.com", true);
+        //User user2 = new User("Hokann", "test", "hokann@gmail.com", true );
+        //User user3 = new User("9thgenius", "discord", "9thgenius@gmail.com" , true);
+        //User user4 = new User("Wudm12", "github", "wudm12@gmail.com", false );
         //User user5 = new User("Travolta", "abc", "travolta@gmail.com" );
         //User user6 = new User("Wayne", "def", "wayne@gmail.com" );
         //User user7 = new User("Bob", "ghi", "bob@gmail.com" );
@@ -40,7 +40,6 @@ public class Main {
         //User user10 = new User("Rose", "pqr", "rose@gmail.com" );
         ArrayList<User> listeUsers = new ArrayList<>();
         listeUsers.add(user1);
-        listeUsers.add(user2);
         //listeUsers.add(user2);
         //listeUsers.add(user3);
         //listeUsers.add(user4);
@@ -55,21 +54,21 @@ public class Main {
         //user1.enregistrerRobot(12345, "ROBOTIX", 0);
         //user1.ajouterActivite(activite5);
 
-        Fournisseur fournisseur1 = new Fournisseur("Amazon", "123", "amazon@gmail.com", "123 rue Sainte-Catherine", "CPU", 1000);
-        Fournisseur fournisseur2 = new Fournisseur("Cabling123", "secret", "cabling123@gmail.com", "456 rue Saint-Laurent", "Cables", 25000);
+        Fournisseur fournisseur1 = new Fournisseur("Amazon", "123", "amazon@gmail.com", "123 rue Sainte-Catherine", "CPU", true, 1000);
+        //Fournisseur fournisseur2 = new Fournisseur("Cabling123", "secret", "cabling123@gmail.com", "456 rue Saint-Laurent", "Cables", 25000);
         //Fournisseur fournisseur3 = new Fournisseur("Nvidia", "qwerty", "nvidia@gmail.com", "789 rue University", "Cartes Graphiques", 500);
         //Fournisseur fournisseur4 = new Fournisseur("DigiScreen", "screen", "digiscren@gmail.com", "282 rue Jean-Brillant", "Ecrans", 2500);
         //Fournisseur fournisseur5 = new Fournisseur("Logitech", "abcdef", "logitech@gmail.com", "491 rue Jean-Louis", "Cameras", 3750);
         ArrayList<Fournisseur> listeFournisseurs = new ArrayList<>();
         listeFournisseurs.add(fournisseur1);
-        listeFournisseurs.add(fournisseur2);
+        //listeFournisseurs.add(fournisseur2);
         //listeFournisseurs.add(fournisseur3);
         //listeFournisseurs.add(fournisseur4);
         //listeFournisseurs.add(fournisseur5);
 
-        //fournisseur1.enregistrerComposante("AMD Ryzen 7", "CPU", "CPU le plus performant sur le marche", 1599, fournisseur1.getUsername());
-        //fournisseur2.enregistrerComposante("Cable HDMI", "Cables", "Cables HDMI", 10, fournisseur2.getUsername());
-        //fournisseur3.enregistrerComposante("RTX 4090", "Cartes Graphiques", "Meilleure carte graphique", 2000, fournisseur3.getUsername());
+        fournisseur1.enregistrerComposante("AMD Ryzen 7", "CPU", "CPU le plus performant sur le marche", 1599, fournisseur1.getUsername(), 0);
+        fournisseur1.enregistrerComposante("Cable HDMI", "Cables", "Cables HDMI", 10, fournisseur1.getUsername(), 0);
+        fournisseur1.enregistrerComposante("RTX 4090", "Cartes Graphiques", "Meilleure carte graphique", 2000, fournisseur1.getUsername(), 0);
         //fournisseur4.enregistrerComposante("Ecran Tactile", "Ecrans", "Ecran tactiles a tout usage", 5999, fournisseur4.getUsername());
         //fournisseur5.enregistrerComposante("4k Pro Webcam", "Cameras", "Camera a haute qualite", 200, fournisseur5.getUsername());
         ArrayList<Composante> listeComposantes = new ArrayList<>();

@@ -47,7 +47,10 @@ public class View {
         System.out.print("Adresse email : ");
         String email = scanner.nextLine();
 
-        return Arrays.asList(nom, pass, email);
+        System.out.print("Recevoir notifications par email? (true/false) : ");
+        String notif = scanner.nextLine();
+
+        return Arrays.asList(nom, pass, email, notif);
     }
 
     public List<String> getSupplierSignupDetails() {

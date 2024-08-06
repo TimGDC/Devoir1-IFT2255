@@ -1,9 +1,15 @@
 
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Fournisseur {
 
@@ -13,10 +19,14 @@ public class Fournisseur {
     private String adresse;
     private String type;
     private int capaciteFabrication;
+    private boolean notificationsEmail;
+    private String[] notifications = {"", ""};
+    private Object obj;
+    private JSONObject baseDonneeObjet;
 
     private ArrayList<Composante> listeComposante = new ArrayList<>();
 
-    public Fournisseur(String user, String pw, String email, String adresse, String type, int production) throws IOException, ParseException {
+    public Fournisseur(String user, String pw, String email, String adresse, String type, boolean notifs, int production) throws IOException, ParseException {
 
         this.username = user;
         this.password = pw;
@@ -24,6 +34,30 @@ public class Fournisseur {
         this.adresse = adresse;
         this.type = type;
         this.capaciteFabrication = production;
+        this.notificationsEmail = notifs;
+
+        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        this.baseDonneeObjet = (JSONObject) obj;
+        JSONObject nouveauFournisseurObjet = new JSONObject();
+        nouveauFournisseurObjet.put("password", password);
+        nouveauFournisseurObjet.put("email", email);
+        nouveauFournisseurObjet.put("username", username);
+        nouveauFournisseurObjet.put("notificationsEmail", notificationsEmail);
+        nouveauFournisseurObjet.put("type", type);
+        nouveauFournisseurObjet.put("production", production);
+        nouveauFournisseurObjet.put("adresse", adresse);
+        JSONArray fournisseurComposantes = new JSONArray();
+
+        nouveauFournisseurObjet.put("composantes",fournisseurComposantes);
+
+
+        JSONArray listeFournisseurs = (JSONArray) baseDonneeObjet.get("Fournisseurs");
+        listeFournisseurs.add(nouveauFournisseurObjet);
+
+
+        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+            file.write(baseDonneeObjet.toJSONString());
+        }
 
     }
 
@@ -39,21 +73,59 @@ public class Fournisseur {
         return capaciteFabrication;
     }
 
-    public void modifierProfilFournisseur(String user, String pw, String email, String adresse, String type, int capacite) {
+    public void modifierProfilFournisseur(String user, String pw, String email, String adresse, String type, boolean notifs, int capacite, int index) throws IOException, ParseException{
         this.username = user;
         this.password = pw;
         this.email = email;
         this.adresse = adresse;
         this.type = type;
         this.capaciteFabrication = capacite;
+        this.notificationsEmail = notifs;
+
+        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        this.baseDonneeObjet = (JSONObject) obj;
+        JSONArray listeFournisseurs = (JSONArray) baseDonneeObjet.get("Fournisseurs");
+        JSONObject fournisseurActuel = (JSONObject) listeFournisseurs.get(index);
+
+        fournisseurActuel.put("password", pw);
+        fournisseurActuel.put("email", email);
+        fournisseurActuel.put("username", user);
+        fournisseurActuel.put("notificationsEmail", notifs);
+        fournisseurActuel.put("type", type);
+        fournisseurActuel.put("production", capacite);
+        fournisseurActuel.put("adresse", adresse);
+
+        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+            file.write(baseDonneeObjet.toJSONString());
+        }
+
+
 
     }
 
-    public void enregistrerComposante(String nom, String type, String description, int prix, String fournisseur) {
+    public void enregistrerComposante(String nom, String type, String description, int prix, String fournisseur, int index) throws IOException, ParseException{
 
         Composante nouvelleComposante = new Composante(nom, type, description, prix, fournisseur);
         listeComposante.add(nouvelleComposante);
+        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        this.baseDonneeObjet = (JSONObject) obj;
+        JSONArray listeFournisseurJson = (JSONArray) baseDonneeObjet.get("Fournisseurs");
+        JSONObject fournisseurActuel = (JSONObject) listeFournisseurJson.get(index);
+        JSONArray listeComposanteJson = (JSONArray) fournisseurActuel.get("composantes");
 
+        JSONObject nouvelleComposanteJson = new JSONObject();
+        nouvelleComposanteJson.put("nom" , nouvelleComposante.getNom());
+        nouvelleComposanteJson.put("type" , nouvelleComposante.getType());
+        nouvelleComposanteJson.put("description" , nouvelleComposante.getDesc());
+        nouvelleComposanteJson.put("prix" , nouvelleComposante.getPrix());
+        nouvelleComposanteJson.put("fournisseur" , nouvelleComposante.getFournisseur());
+
+        listeComposanteJson.add(nouvelleComposanteJson);
+
+        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+            file.write(baseDonneeObjet.toJSONString());
+        }
+        //System.out.println(fournisseurActuel);
     }
 
     public ArrayList<Composante> getListeComposante() {
@@ -73,17 +145,58 @@ public class Fournisseur {
         }
     }
 
-    public void supprimerComposante(int index) {
+    public void supprimerComposante(String nom, int index) throws IOException, ParseException{
 
-        listeComposante.remove(index - 1);
+
+        listeComposante.removeIf(comp -> Objects.equals(comp.getNom(), nom));
+        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        this.baseDonneeObjet = (JSONObject) obj;
+        JSONArray listeFournisseurJson = (JSONArray) baseDonneeObjet.get("Fournisseurs");
+        JSONObject fournisseurActuel = (JSONObject) listeFournisseurJson.get(index);
+        JSONArray listeComposantesJson = (JSONArray) fournisseurActuel.get("composantes");
+        for(int i = 0; i < listeComposantesJson.size(); i++){
+            JSONObject comp = (JSONObject) listeComposantesJson.get(i);
+            if(Objects.equals(comp.get("nom"), nom)){
+                listeComposantesJson.remove(i);
+                break;
+            }
+        }
+        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+            file.write(baseDonneeObjet.toJSONString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    public void modifierComposante(int index, String nom, String type, String description, int prix) {
-        Composante comp = listeComposante.get(index - 1);
-        comp.setNom(nom);
-        comp.setType(type);
-        comp.setDesc(description);
-        comp.setPrix(prix);
+    public void modifierComposante(String nom, String type, String description, int prix, int index, int indexComposante) throws IOException, ParseException{
+
+
+        Composante composante = listeComposante.get(indexComposante);
+        composante.setNom(nom);
+        composante.setType(type);
+        composante.setDesc(description);
+        composante.setPrix(prix);
+
+        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        this.baseDonneeObjet = (JSONObject) obj;
+        JSONArray listeFournisseurJson = (JSONArray) baseDonneeObjet.get("Fournisseurs");
+        JSONObject fournisseurActuel = (JSONObject) listeFournisseurJson.get(index);
+        JSONArray listeComposanteJson = (JSONArray) fournisseurActuel.get("composantes");
+        JSONObject composanteActuelle = (JSONObject) listeComposanteJson.get(indexComposante);
+
+        composanteActuelle.put("nom" , nom);
+        composanteActuelle.put("type" , type);
+        composanteActuelle.put("description" , description);
+        composanteActuelle.put("prix" , prix);
+
+
+        try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
+            file.write(baseDonneeObjet.toJSONString());
+        }
+        System.out.println(fournisseurActuel);
+
+
     }
 
     public String getUsername() {

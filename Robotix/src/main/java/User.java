@@ -18,6 +18,7 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private boolean notificationsEmail;
     private ArrayList<Robot> listeRobotsUser = new ArrayList<>();
     private ArrayList<String> listeSuiveursUser = new ArrayList<>();;
     private ArrayList<String> listeInteretsUser = new ArrayList<>();;
@@ -27,11 +28,12 @@ public class User {
     private JSONObject baseDonneeObjet;
 
 
-    public User(String username, String password, String email) throws IOException, ParseException {
+    public User(String username, String password, String email, boolean notificationsEmail) throws IOException, ParseException {
 
         this.username = username;
         this.password = password;
         this.email = email;
+        this.notificationsEmail = notificationsEmail;
         this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
         this.baseDonneeObjet = (JSONObject) obj;
         JSONObject nouvelUtilisateurObjet = new JSONObject();
@@ -40,8 +42,17 @@ public class User {
         nouvelUtilisateurObjet.put("username", username);
         nouvelUtilisateurObjet.put("notificationsEmail", true);
 
+        JSONArray utilisateurActivite = new JSONArray();
+        JSONArray utilisateurRobots = new JSONArray();
+        nouvelUtilisateurObjet.put("robots",utilisateurRobots);
+        nouvelUtilisateurObjet.put("activites",utilisateurActivite);
+
+
+
         JSONArray listeUtilisateurs = (JSONArray) baseDonneeObjet.get("Users");
         listeUtilisateurs.add(nouvelUtilisateurObjet);
+
+
         try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
             file.write(baseDonneeObjet.toJSONString());
         }
@@ -122,17 +133,19 @@ public class User {
 
     }
 
-    public void supprimerRobot(String nom, int jsonIndex){
+    public void supprimerRobot(String nom, int index) throws IOException , ParseException{
 
         listeRobotsUser.removeIf(rob -> Objects.equals(rob.getNom(), nom));
 
-        /*JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
-        JSONObject userActuel = (JSONObject) listeUser.get(jsonIndex);
-        JSONArray listeRobots = (JSONArray) userActuel.get("robots");
-        for(int i = 0; i < listeRobots.size(); i++){
-            JSONObject robots = (JSONObject) listeRobots.get(i);
+        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        this.baseDonneeObjet = (JSONObject) obj;
+        JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
+        JSONObject userActuel = (JSONObject) listeUser.get(index);
+        JSONArray listeRobotsJson = (JSONArray) userActuel.get("robots");
+        for(int j = 0; j < listeRobotsJson.size(); j++){
+            JSONObject robots = (JSONObject) listeRobotsJson.get(j);
             if(Objects.equals(robots.get("nom"), nom)){
-                listeRobots.remove(i);
+                listeRobotsJson.remove(j);
                 break;
             }
         }
@@ -142,21 +155,23 @@ public class User {
             throw new RuntimeException(e);
         }
 
-*/
     }
 
-    public void modifierProfil(String user, String pw, String email, int jsonIndex) throws IOException {
+    public void modifierProfil(String user, String pw, String email, boolean notifs, int index) throws IOException , ParseException{
 
         this.username = user;
         this.password = pw;
         this.email = email;
+        this.notificationsEmail = notifs;
+        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        this.baseDonneeObjet = (JSONObject) obj;
 
-        /*
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
-        JSONObject userActuel = (JSONObject) listeUser.get(jsonIndex);
+        JSONObject userActuel = (JSONObject) listeUser.get(index);
         userActuel.put("username", user);
         userActuel.put("password", pw);
         userActuel.put("email", email);
+        userActuel.put("notificationsEmail", notifs);
 
 
         try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
@@ -164,7 +179,6 @@ public class User {
         }
 
 
-*/
     }
 
     public void afficherActivites(){
@@ -173,39 +187,45 @@ public class User {
             System.out.println(act);
         }
     }
-    public void ajouterActivite(Activite activite, int jsonIndex){
+    public void ajouterActivite(Activite activite, int index) throws IOException , ParseException{
+
+
 
         listeActivitesUser.add(activite.getNom());
 
-        /*
-        JSONArray userList = (JSONArray) baseDonneeObjet.get("Users");
-        JSONObject currentUser = (JSONObject) userList.get(jsonIndex);
-        JSONArray activiteUser = new JSONArray();
+        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        this.baseDonneeObjet = (JSONObject) obj;
 
-        JSONObject activiteJson = new JSONObject();
-        activiteJson.put("nom", activite.getNom());
-        activiteJson.put("duree", activite.getDuree());
-        activiteJson.put("description", activite.getDescription());
-        activiteJson.put("interet", activite.getInteret());
-        activiteJson.put("status", activite.getStatus());
+        JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
+        JSONObject userActuel = (JSONObject) listeUser.get(index);
+        JSONArray listeActiviteJson = (JSONArray) userActuel.get("activites");
 
-        currentUser.put("activites", activiteJson);
+        JSONObject nouvelleActiviteJson = new JSONObject();
+        nouvelleActiviteJson.put("nom" , activite.getNom());
+        nouvelleActiviteJson.put("duree" , activite.getDuree());
+        nouvelleActiviteJson.put("description" , activite.getDescription());
+        nouvelleActiviteJson.put("status" , activite.getStatus());
+        nouvelleActiviteJson.put("interet" , activite.getInteret());
+
+        listeActiviteJson.add(nouvelleActiviteJson);
+
+
 
         try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
             file.write(baseDonneeObjet.toJSONString());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-*/
+        System.out.println(baseDonneeObjet);
+
     }
 
-    public void supprimerActivite(Activite activite, int jsonIndex){
+    public void supprimerActivite(Activite activite, int index)throws IOException , ParseException{
 
         listeActivitesUser.remove(activite.getNom());
 
-/*
+        this.obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));
+        this.baseDonneeObjet = (JSONObject) obj;
         JSONArray userList = (JSONArray) baseDonneeObjet.get("Users");
-        JSONObject userActuel = (JSONObject) userList.get(jsonIndex);
+        JSONObject userActuel = (JSONObject) userList.get(index);
         JSONArray userActivite = (JSONArray) userActuel.get("activites");
         for(int i = 0 ; i < userActivite.size() ; i++){
             JSONObject activiteActuelle = (JSONObject) userActivite.get(i);
@@ -220,7 +240,7 @@ public class User {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-*/
+
     }
     public void afficherEtats(int vue){
         if(listeRobotsUser.isEmpty()){

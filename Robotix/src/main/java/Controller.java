@@ -20,7 +20,6 @@ public class Controller {
     protected final String baseDonneePath = "src/main/java/BaseDonnee.json";
     protected Object obj;
     protected JSONObject baseDonneeObjet;
-    protected int jsonIndex;
 
     public Controller(View view, ArrayList<User> listeUsers, ArrayList<Fournisseur> listeFournisseurs, ArrayList<Composante> listeComposantes, Activite[] listeActivites, JSONObject baseDonneeObjet)  {
         this.view = view;
@@ -77,6 +76,7 @@ public class Controller {
                     fournisseurController.fournisseurMenu(index);
                     trouver = true;
                     view.closeScanner();
+                    break;
                 }
             }
         }
@@ -84,6 +84,7 @@ public class Controller {
             System.out.println("Utilisateur ou mot de pass incorrect.");
             login();
             view.closeScanner();
+
         }
     }
 
@@ -91,11 +92,12 @@ public class Controller {
         int choix = view.displaySignupPage();
         switch (choix) {
             case 1:
+                //AJOUTER CONDITION UTILISATEUR ET EMAIL UNIQUES
                 List<String> userDetails = view.getUserSignupDetails();
-                User nouvelUtilisateur = new User(userDetails.get(0), userDetails.get(1), userDetails.get(2));
+                User nouvelUtilisateur = new User(userDetails.get(0), userDetails.get(1), userDetails.get(2), Boolean.parseBoolean(userDetails.get(3)));
                 listeUsers.add(nouvelUtilisateur);
                 view.displayMessage("Creation de compte reussi!");
-                login(); // Redirect to login after successful signup
+                login();
                 break;
 
             case 2:
@@ -106,11 +108,12 @@ public class Controller {
                         supplierDetails.get(2),
                         supplierDetails.get(3),
                         supplierDetails.get(4),
-                        Integer.parseInt(supplierDetails.get(5))
+                        Boolean.parseBoolean(supplierDetails.get(5)),
+                        Integer.parseInt(supplierDetails.get(6))
                 );
                 listeFournisseurs.add(nouveauFournisseur);
                 view.displayMessage("Creation de compte reussi!");
-                login(); // Redirect to login after successful signup
+                login();
                 break;
 
             default:
@@ -191,16 +194,19 @@ public class Controller {
 
     }
 
-    protected boolean chercherComposante(String recherche){
-        String mot = recherche;
+    protected void chercherComposante(String recherche, int i){
+
         boolean bool = false;
         for(Composante comp : listeComposantes){
-            if(Objects.equals(mot, comp.getNom()) || Objects.equals(mot, comp.getType()) || Objects.equals(mot, comp.getFournisseur())){
-                System.out.println("La composante " + comp.getNom() + " est disponible sur cette platforme, vendue par " + comp.getFournisseur() +
-                        " pour un prix de " + comp.getPrix() + "$");
-                bool=true;
+            if(Objects.equals(recherche, comp.getNom()) || Objects.equals(recherche, comp.getType()) || Objects.equals(recherche, comp.getFournisseur())){
+                if(i == 0){
+                    System.out.println("Nom : " + comp.getNom() + " Type : " + comp.getType());
+                }else{
+                    System.out.println("TOUTE DEscription");
+                }
+
             }
         }
-        return bool;
+
     }
 }

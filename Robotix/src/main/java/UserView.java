@@ -54,4 +54,12 @@ public class UserView extends View{
         return getInt();
 
     }
+
+    public int displayComposanteSearchOptions(){
+        System.out.println("Veuillez choisir une option : ");
+        System.out.println("1 - Informations de base");
+        System.out.println("2 - Informations completes");
+        return getInt();
+
+    }
 }
