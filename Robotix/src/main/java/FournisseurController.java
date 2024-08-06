@@ -134,61 +134,7 @@ public class FournisseurController extends Controller{
 
    }
 
-   /* public void gererComposantes(int index) throws IOException, ParseException {
-
-
-        int choixComposante = fournisseurView.displayComposanteOptions();
-        switch (choixComposante){
-            case 1:
-                listeFournisseurs.get(index).afficherComposante();
-                endingMenuFournisseur(index);
-                break;
-            case 2:
-                //A VERIFIER TESTER
-                fournisseurView.displayMessage("Nom de la composante a supprimer?");
-                String n = fournisseurView.getString();
-                listeFournisseurs.get(index).supprimerComposante(n , index);
-                endingMenuFournisseur(index);
-                break;
-            case 3:
-                //Mettre a jour nom a supprimer
-
-                fournisseurView.displayMessage("Nom de la composante a modifier?");
-                String m = fournisseurView.getString();
-
-                for(int i = 0 ; i< listeFournisseurs.get(index).getListeComposante().size() ; i++){
-
-                    if(Objects.equals(listeFournisseurs.get(index).getListeComposante().get(i).getNom(), m)){
-                        this.indexComposante = i;
-                    }
-                }
-
-                fournisseurView.displayMessage("Nouveau nom de la composante");
-                String nomComp = fournisseurView.getString();
-
-                fournisseurView.displayMessage("Nouveau type de la composante");
-                String typeComp = fournisseurView.getString();
-
-                fournisseurView.displayMessage("Nouvelle description de la composante");
-                String descComp = fournisseurView.getString();
-
-                fournisseurView.displayMessage("Nouveau prix de la composante");
-                int prixComp = fournisseurView.getInt();
-
-                listeFournisseurs.get(index).modifierComposante(nomComp,typeComp, descComp, prixComp, index, indexComposante);
-                endingMenuFournisseur(index);
-                break;
-
-            default:
-                fournisseurView.displayMessage("Veuillez entrer un nombre valide.");
-
-        }
-
-
-    }*/
     protected void requetesPubliques(int index) throws IOException, ParseException {
-
-
 
         int choix = fournisseurView.showPublicRequestMenu();
         switch (choix) {
@@ -221,24 +167,8 @@ public class FournisseurController extends Controller{
                 break;
             case 6:
 
-                System.out.println("Veuillez entrer un nom de fournisseur a rechercher");
-                chercherFournisseur(fournisseurView.getString());
-
-
-                break;
-            case 7:
-
                 System.out.println("Veuillez entrer un nom de fournisseur a afficher le profil");
                 afficherProfileFournisseur(fournisseurView.getString());
-
-
-                break;
-            case 8:
-
-                System.out.println("Veuillez entrer un nom, type ou nom de fournisseur d'une composante");
-                chercherComposante(fournisseurView.getString(), 0);
-
-
                 break;
             default:
                 System.out.println("Veuillez entrer un nombre entre 1 et 9.");
@@ -262,8 +192,6 @@ public class FournisseurController extends Controller{
                 fournisseurView.closeScanner();
                 System.out.println("A la prochaine!");
                 break;
-
-
         }
 
     }

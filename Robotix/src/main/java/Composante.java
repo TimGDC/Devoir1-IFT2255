@@ -58,4 +58,9 @@ public class Composante {
 
         this.prix = nouveauPrix;
     }
+    @Override
+    public String toString() {
+        return String.format("Nom: %s, Type: %s, Description: %s, Prix: %.2f, Fournisseur: %s",
+                nom, type, description, prix, fournisseur);
+    }
 }

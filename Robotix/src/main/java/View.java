@@ -106,9 +106,7 @@ public class View {
         System.out.println("3 - Voir le profil d'un utilisateur");
         System.out.println("4 - Recuperer la liste des activites");
         System.out.println("5 - Recuperer la liste des fournisseurs");
-        System.out.println("6 - Rechercher un fournisseur");
-        System.out.println("7 - Voir le profil d'un fournisseur");
-        System.out.println("8 - Rechercher une composante");
+        System.out.println("6 - Voir le profil d'un fournisseur");
         return getInt();
 
 

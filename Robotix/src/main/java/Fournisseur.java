@@ -129,7 +129,13 @@ public class Fournisseur {
     public ArrayList<Composante> getListeComposante() {
         return this.listeComposante;
     }
-
+    public String getListeComposanteDeepString() {
+        StringBuilder sb = new StringBuilder();
+        for (Composante composante : listeComposante) {
+            sb.append(composante.toString()).append("\n");
+        }
+        return sb.toString();
+    }
     public void afficherComposante() {
         int index = 1;
         System.out.println("Liste des composantes de ce fournisseur : ");

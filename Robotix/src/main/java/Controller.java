@@ -168,17 +168,6 @@ public class Controller {
         }
     }
 
-    protected boolean chercherFournisseur(String recherche){
-        String mot = recherche;
-        boolean bool = false;
-        for(Fournisseur fourn : listeFournisseurs){
-            if(Objects.equals(mot, fourn.getAdresse()) || Objects.equals(mot, fourn.getType()) || Objects.equals(mot, fourn.getUsername())){
-                System.out.println("Le fournisseur " + fourn.getUsername() + " existe sur cette platforme!");
-                bool=true;
-            }
-        }
-        return bool;
-    }
     protected void afficherProfileFournisseur(String nom){
 
         for(Fournisseur fourn : listeFournisseurs){
@@ -193,21 +182,4 @@ public class Controller {
 
     }
 
-    protected void chercherComposante(String recherche, int i){
-
-        boolean bool = false;
-        for(Composante comp : listeComposantes){
-            if(Objects.equals(recherche, comp.getNom()) || Objects.equals(recherche, comp.getType()) || Objects.equals(recherche, comp.getFournisseur())){
-                if(i == 0){
-                    System.out.println("Nom : " + comp.getNom() + " Type : " + comp.getType());
-                }else{
-                    System.out.println("TOUTE DEscription");
-                }
-
-            }
-        }
-
-
-
-    }
 }

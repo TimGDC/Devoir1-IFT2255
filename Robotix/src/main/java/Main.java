@@ -55,18 +55,22 @@ public class Main {
         //user1.ajouterActivite(activite5);
 
         Fournisseur fournisseur1 = new Fournisseur("Amazon", "123", "amazon@gmail.com", "123 rue Sainte-Catherine", "CPU", true, 1000);
+        Fournisseur fournisseur2 = new Fournisseur("Google", "321", "google@gmail.com", "321 rue Sainte-Catherine", "CPU", true, 2000);
+
         //Fournisseur fournisseur2 = new Fournisseur("Cabling123", "secret", "cabling123@gmail.com", "456 rue Saint-Laurent", "Cables", 25000);
         //Fournisseur fournisseur3 = new Fournisseur("Nvidia", "qwerty", "nvidia@gmail.com", "789 rue University", "Cartes Graphiques", 500);
         //Fournisseur fournisseur4 = new Fournisseur("DigiScreen", "screen", "digiscren@gmail.com", "282 rue Jean-Brillant", "Ecrans", 2500);
         //Fournisseur fournisseur5 = new Fournisseur("Logitech", "abcdef", "logitech@gmail.com", "491 rue Jean-Louis", "Cameras", 3750);
         ArrayList<Fournisseur> listeFournisseurs = new ArrayList<>();
         listeFournisseurs.add(fournisseur1);
-        //listeFournisseurs.add(fournisseur2);
+        listeFournisseurs.add(fournisseur2);
         //listeFournisseurs.add(fournisseur3);
         //listeFournisseurs.add(fournisseur4);
         //listeFournisseurs.add(fournisseur5);
 
         fournisseur1.enregistrerComposante("AMD Ryzen 7", "CPU", "CPU le plus performant sur le marche", 1599, fournisseur1.getUsername(), 0);
+        fournisseur2.enregistrerComposante("Nvidia", "CPU", "CPU le moins performant sur le marche", 10.99F, fournisseur2.getUsername(), 0);
+
         fournisseur1.enregistrerComposante("Cable HDMI", "Cables", "Cables HDMI", 10, fournisseur1.getUsername(), 0);
         fournisseur1.enregistrerComposante("RTX 4090", "Cartes Graphiques", "Meilleure carte graphique", 2000, fournisseur1.getUsername(), 0);
         //fournisseur4.enregistrerComposante("Ecran Tactile", "Ecrans", "Ecran tactiles a tout usage", 5999, fournisseur4.getUsername());
