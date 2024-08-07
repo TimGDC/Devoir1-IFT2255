@@ -81,4 +81,5 @@ Le projet est origanisé selon la structure suivante
 Download as zip, utiliser maven
 ## Instructions pour exécuter l'application
 -java -jar robotix.jar
-
+Il y a eu des probblemes avec certaines de nos machines pour executer le .jar
+Si le jar ne marche pas pour vous, executer la class Main du programme Robotix (dans le code)
