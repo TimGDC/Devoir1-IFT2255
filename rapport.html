@@ -53,8 +53,10 @@
         </p>
         <p>
             <a href="https://github.com/TimGDC/Devoir1-IFT2255">Lien vers dépôt GitHub</a><br>
-            <a href="Conception/DiagrammeClasses/classdiagram.vpp">Lien vers fichier Visual Paradigm Diagramme de classe</a>
-            <a href="Conception/DiagrammesSequence/fichiers-vpp/">Lien vers fichier Visual Paradigm Diagramme de sequence</a>
+            <a href="Conception/DiagrammeClasses/classdiagram.vpp">Lien vers fichier Visual Paradigm Diagramme de classe</a><br>
+            <a href="Conception/DiagrammesSequence/fichiers-vpp/">Lien vers fichier Visual Paradigm Diagramme de sequence</a><br>
+            <a href="Robotix/doc/package-summary.html">Lien vers JavaDoc</a><br>
+            <a href="Robotix/src/main/java/">Lien vers le code</a><br>
         </p>
         <p>
             <span style="font-weight: bold;">Nom: </span>Hokan Gillot
@@ -63,7 +65,7 @@
             <br />
             <span style="font-weight: bold;">Courriel: </span>hakan.gillot@umontreal.ca
             <br />
-            <span style="font-weight: bold;">temps mis: </span>15 heures
+            <span style="font-weight: bold;">temps mis: </span>35 heures
         </p>
         <p>
             <span style="font-weight: bold;">Nom: </span>Tim Guyon de Chemilly
@@ -72,7 +74,7 @@
             <br />
             <span style="font-weight: bold;">Courriel: </span>tim.guyon.de.chemilly@umontreal.ca
             <br />
-            <span style="font-weight: bold;">temps mis: </span>15 heures
+            <span style="font-weight: bold;">temps mis: </span>45 heures
         </p>
         <p>
             <span style="font-weight: bold;">Nom: </span>Mehdi Mekrouz
@@ -81,7 +83,7 @@
             <br />
             <span style="font-weight: bold;">Courriel: </span>mehdi.mekrouz@umontreal.ca
             <br />
-            <span style="font-weight: bold;">temps mis: </span>15 heures
+            <span style="font-weight: bold;">temps mis: </span>30 heures
         </p>
         <p>
             <span style="font-weight: bold;">Nom: </span>Wayne Timmons
@@ -90,7 +92,7 @@
             <br />
             <span style="font-weight: bold;">Courriel: </span>wayne.timmons@umontreal.ca
             <br />
-            <span style="font-weight: bold;">temps mis: </span>15 heures
+            <span style="font-weight: bold;">temps mis: </span>30 heures
         </p>
     </section>
     <section>
@@ -108,45 +110,72 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="row">Analyse & Diagrammes d'Activités</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>100%</td>
-                </tr>
-                <tr>
-                    <td class="row">Diagrammes de Classes</td>
-                    <td></td>
-                    <td>100%</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="row">Diagrammes de Séquence</td>
+                    <td class="row">Conception revisee</td>
                     <td></td>
                     <td></td>
                     <td>100%</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="row">Prototype</td>
+                    <td class="row">Application</td>
                     <td>100%</td>
                     <td></td>
                     <td></td>
                     <td></td>
+                </tr>
+                <tr>
+                    <td class="row">Code</td>
+                    <td>70%</td>
+                    <td></td>
+                    <td>30%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="row">Test unitaires</td>
+                    <td></td>
+                    <td>100%</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="row">Maven</td>
+                    <td></td>
+                    <td>50%</td>
+                    <td></td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td class="row">Readme</td>
+                    <td>50%</td>
+                    <td></td>
+                    <td>50%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="row">Javadoc</td>
+                    <td></td>
+                    <td></td>
+                    <td>100%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="row">Interface</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>100%</td>
                 </tr>
             </tbody>
         </table>
-        <p>Commentaire sur la distribution des taches des diagrammes :</p><p> Pour chaque diagramme (Activité, Séquence, Classe) ainsi que le Prototype, chaque membre de l'équipe a participé équitablement à sa conception. Nous avons validé ensemble chaque diagramme, ainsi que la conception du prototype avant de passer à la rédaction. 
+        <p>Commentaire sur la distribution des taches :</p><p> Pour chaque tache, chaque membre de l'équipe a participé équitablement à sa conception. Nous avons validé ensemble chaque tache, ainsi que leur implementation avant de passer à la rédaction. 
             Cela nous a donné une vision commune du projet, permettant a chaque membre de comprendre chaque partie.
-        <br/>Puis, pour des raisons d'efficacité, Wayne s'est occupé de la rédaction des diagrammes d'activités, Mehdi la rédaction des diagrammes de classes, Hokan la rédaction des diagrammes de séquence, et Tim le prototype.</p>
+        <br/>Puis, pour des raisons d'efficacité, nous avons fait la redaction de notre cote.</p>
     </section>
     <section>
         <h2>Hypothèses</h2>
         <ul>
-            <li>On suppose l'existence d'un Panier (Basket) lors de l'achat de composantes</li>
-            <li>On suppose que pour chaque attribut d'une classe, un getter et setter pour celui-ci existe implicitement. Si nous avons comme attribut "String : nom", alors getNom() et setNom(nom) existe.</li>
-            <li>On suppose aussi que chaque classe a son propre constructeur.</li>
+            <li>Le diagramme de classe et sequence n'est pas completement conforme au code car nous devons garder les 5 CU mais les fonctionnalites demandees ne demandent pas certaines classes (Action, Tache, Interet, suiveurs, etc...)</li>
+            <li>Pour la conception revisee, nous nous sommes surtout base sur le feedback du devoir 2</li>
         </ul>
     </section>
     <section>
@@ -207,6 +236,19 @@
             <figcaption>Acheter une composante</figcaption>
         </figure>
 
+    </section>
+    <section>
+        <h2>Tests unitaires</h2>
+        <img src="insights1.png" width="45%" height="45%">
+        <img src="insights1.png" width="45%" height="45%">
+        <img src="insights1.png" width="45%" height="45%">
+        <img src="insights1.png" width="45%" height="45%">
+        <img src="insights1.png" width="45%" height="45%">
+        <img src="insights1.png" width="45%" height="45%">
+        <img src="insights1.png" width="45%" height="45%">
+        <img src="insights1.png" width="45%" height="45%">
+        <img src="insights1.png" width="45%" height="45%">
+        <img src="insights1.png" width="45%" height="45%">
     </section>
     <section>
         <h2>Insights : </h2>
