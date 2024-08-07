@@ -12,7 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
-
+/**
+ * Represente un utilisateur du logiciel
+ */
 public class User {
 
     private String username;
@@ -20,16 +22,22 @@ public class User {
     private String email;
     private boolean notificationsEmail;
     private ArrayList<Robot> listeRobotsUser = new ArrayList<>();
-    private ArrayList<String> listeSuiveursUser = new ArrayList<>();;
-    private ArrayList<String> listeInteretsUser = new ArrayList<>();;
-    private ArrayList<String> listeActivitesUser = new ArrayList<>();;
-    private String[] notifications = {"", ""};
+    private ArrayList<Activite> listeActivitesUser = new ArrayList<>();;
+    private ArrayList<String> notifications = new ArrayList<>();
     private Object obj;
     private JSONObject baseDonneeObjet;
 
     private static final String FILE_PATH = "src/main/java/BaseDonnee.json";
 
-
+    /**
+     * Constructeur pour initialiser un utilisateur avec ces informations
+     * @param username nom de l'utilisateur
+     * @param password le mot de passe
+     * @param email l'email unique
+     * @param notificationsEmail si l'utilisateur veut recevoir des notifs par email ou non
+     * @throws IOException
+     * @throws ParseException
+     */
     public User(String username, String password, String email, boolean notificationsEmail) throws IOException, ParseException {
 
         this.username = username;
@@ -60,7 +68,15 @@ public class User {
         generationNotification();
 
     }
+    /**
+     * Constructeur de base
+     */
+    public User(){
 
+    }
+    /**
+     * Methode pour generer des notifications a l'utilisateur, utilise lors de l'initialisation dans Main
+     */
     private void generationNotification() {
 
         String notif1 = "Un de vos robots n'a plus de batterie!";
@@ -70,11 +86,11 @@ public class User {
         String[] listeNotifications = {notif1, notif2, notif3, notif4};
 
         Random random = new Random();
-        notifications[0] = listeNotifications[random.nextInt(4)];
-        notifications[1] = listeNotifications[random.nextInt(4)];
+        notifications.add(listeNotifications[random.nextInt(4)]);
+        notifications.add(listeNotifications[random.nextInt(4)]);
         JSONArray notifJson = new JSONArray();
-        notifJson.add(notifications[0]);
-        notifJson.add(notifications[1]);
+        notifJson.add(notifications.get(0));
+        notifJson.add(notifications.get(1));
 
         JSONArray userList = (JSONArray) baseDonneeObjet.get("Users");
         int jsonI = 0;
@@ -112,13 +128,12 @@ public class User {
         return this.email;
     }
 
-    public ArrayList<String> getSuiveurs(){
-        return this.listeSuiveursUser;
-    }
-
     public ArrayList<Robot> getListeRobots(){
         return this.listeRobotsUser;
     }
+    /**
+     * Methode pour afficher sa liste de robots
+     */
     public void afficherListeRobots(){
         System.out.println("Liste des robots : ");
         for(Robot rob : listeRobotsUser){
@@ -126,14 +141,27 @@ public class User {
         }
     }
 
-
+    /**
+     * Methode pour enregistrer un de ses robots a Robotix
+     * @param numeroSerie numero de serie unique du robot
+     * @param nom son nom
+     * @param jsonIndex l'index de l'utilisateur auquel appartient le robot
+     * @throws IOException
+     * @throws ParseException
+     */
     public void enregistrerRobot(int numeroSerie, String nom, int jsonIndex) throws IOException, ParseException {
 
         Robot nouveauRobot = new Robot(nom, numeroSerie, jsonIndex);
         listeRobotsUser.add(nouveauRobot);
 
     }
-
+    /**
+     * Methode pour supprimer un de ses robots, le supprime aussi de la DB
+     * @param nom le nom du robot
+     * @param index l'index de l'utilisateur auquel le robot appartien
+     * @throws IOException
+     * @throws ParseException
+     */
     public void supprimerRobot(String nom, int index) throws IOException , ParseException{
 
         listeRobotsUser.removeIf(rob -> Objects.equals(rob.getNom(), nom));
@@ -156,7 +184,16 @@ public class User {
         }
 
     }
-
+    /**
+     * Methode pour modifier son profil en tant qu'utilisateur
+     * @param user nom du user
+     * @param pw mot de passe
+     * @param email email de l'utilisateur
+     * @param notifs si l'utilisateur veut recevoir des notifs par email
+     * @param index index de l'utilisateur
+     * @throws IOException
+     * @throws ParseException
+     */
     public void modifierProfil(String user, String pw, String email, boolean notifs, int index) throws IOException , ParseException{
 
         this.username = user;
@@ -180,21 +217,25 @@ public class User {
 
 
     }
-
+    /**
+     * Methode pour afficher les activites de l'utilisateur
+     */
     public void afficherActivites(){
         System.out.println("Liste d'activites : ");
-        for(String act : listeActivitesUser){
-            System.out.println(act);
+        for(Activite act : listeActivitesUser){
+            System.out.println(act.getNom());
         }
     }
+    /**
+     * Methode pour s'incrire a une activite
+     * @param activite l'activite en question
+     * @param index l'index de l'utilisateur
+     * @throws IOException
+     * @throws ParseException
+     */
     public void ajouterActivite(Activite activite, int index) throws IOException , ParseException{
 
-
-
-        listeActivitesUser.add(activite.getNom());
-
         this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
-
 
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) listeUser.get(index);
@@ -209,23 +250,27 @@ public class User {
 
         listeActiviteJson.add(nouvelleActiviteJson);
 
-
-
         try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
-        System.out.println(baseDonneeObjet);
 
     }
-
+    /**
+     * Methode pour se deinscrire d'une activite
+     * @param activite l'activite
+     * @param index index de l'utilisateur
+     * @throws IOException
+     * @throws ParseException
+     */
     public void supprimerActivite(Activite activite, int index)throws IOException , ParseException{
 
-        listeActivitesUser.remove(activite.getNom());
+        listeActivitesUser.remove(activite);
 
         this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONArray userList = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) userList.get(index);
         JSONArray userActivite = (JSONArray) userActuel.get("activites");
+
         for(int i = 0 ; i < userActivite.size() ; i++){
             JSONObject activiteActuelle = (JSONObject) userActivite.get(i);
             if(Objects.equals(activite.getNom(), activiteActuelle.get("nom"))){
@@ -241,6 +286,10 @@ public class User {
         }
 
     }
+    /**
+     * Methode pour afficher les etats (les metriques) des robots
+     * @param vue le choix d'une vue generale ou complete
+     */
     public void afficherEtats(int vue){
         if(listeRobotsUser.isEmpty()){
             System.out.println("Vous ne possedez pas de robots!");
@@ -261,19 +310,30 @@ public class User {
 
 
     }
-
+    /**
+     * Methode pour afficher ses notifications
+     */
     public void afficherNotifications(){
         System.out.println("Voici vos notifications : ");
         for(String notif : notifications){
             System.out.println(notif);
         }
     }
-
+    /**
+     * Methode pour acheter une composante chez un fournisseur
+     * @param listeFournisseur la liste des fournisseurs
+     * @param indexFournisseur l'index du fournisseur avec la composante a acheter
+     * @param quantite la quantite disponbile
+     * @param indexComposante l'index de la composante dans la DB
+     * @throws IOException
+     * @throws ParseException
+     */
     public void acheterComposante(ArrayList<Fournisseur> listeFournisseur, int indexFournisseur, int quantite, int indexComposante) throws IOException, ParseException{
 
         Fournisseur fournisseurActuel = listeFournisseur.get(indexFournisseur);
         int nouvelleQuantite = fournisseurActuel.getListeComposante().get(indexComposante).getQuantite() - quantite;
         fournisseurActuel.getListeComposante().get(indexComposante).setQuantite(nouvelleQuantite);
+        fournisseurActuel.getNotifications().add("Vous avez vendu une composante!");
 
         this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
 
@@ -285,15 +345,38 @@ public class User {
         composanteActuelle.put("quantite" , nouvelleQuantite);
 
 
+
         try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
 
-
-
     }
 
-    public ArrayList<String> getActivites() {
+    public ArrayList<Activite> getActivites() {
         return listeActivitesUser;
+    }
+
+    public void ajouterRobotListe(Robot robot){
+
+        this.listeRobotsUser.add(robot);
+    }
+
+    public void ajouterActiviteListe(Activite activite){
+
+        this.listeActivitesUser.add(activite);
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setNotificationsEmail(boolean notificationsEmail) {
+        this.notificationsEmail = notificationsEmail;
+    }
+    public void ajouterNotificationListe(String notif){
+        this.notifications.add(notif);
     }
 }

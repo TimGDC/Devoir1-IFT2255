@@ -1,15 +1,40 @@
-# README
-
-"java -jar Proto.jar" dans la ligne de commande pour executer l'application
+# Robotix
 
 ## Description
 
 Ce projet Robotix est conçu pour répondre à la demande de gestion de robots utilisés dans divers secteurs. Avec de plus en plus de robots, une bonne gestion de ceux-cis est clé.
-On vise à developper une application permettant notamment la construction/enregistrement de robots, l'achat de composantes robotiques, le contrôle des mouvements, la création d'actions et la gestion des tâches. 
-Le logiciel favorise l'echange et la communication avec l'implementation d'un systeme de suiveurs, ainsi que la possibilité de participer en groupe a des activités avec ses robots.
+On vise à developper une application permettant notamment la gestion/enregistrement de robots, l'achat de composantes robotiques, et pour les fournisseur la gestion de ses composantes. 
+Le logiciel favorise l'echange et la communication avec la possibilité d'entrer en contact avec un fournisseur, ainsi que la possibilité de participer a des activités avec ses robots.
 Finalement, avec de nombreux outils pour évaluer/monitorer les états et performances des robots, Robotix permet aux utilisateurs de mieux gérer leurs robots.
 
 ## Fonctionnalités
+// Fonctionnalités communes aux utilisateurs et fournisseurs
+  - Creer un compte
+  - Se connecter
+  - modifier son profil
+
+// Fonctionnalités pour utilisateurs
+  - Gérer ses robots
+    - Afficher ses robots
+    - Enregistrer un robot
+    - Supprimer un robot
+  - Gérer ses activités
+    - Afficher ses activités
+    - Supprimer (se déinscrire) une activité
+    - Ajouter (s'inscrire) à une activité
+  - Voir l'état de ses robots
+    - vue générale
+    - vue complète 
+  - Voir ses notifications
+  - Acheter une composante
+  - Trouver une composante
+  - Trouver un fournisseur
+
+// Fonctionnalités pour fournisseurs
+  - Afficher ses composantes
+  - Supprimer une composante de son inventaire
+  - Modifier une composante
+  - Enregistrer une composante
 
 // Requêtes publiques
   - Récupérer la liste des utilisateurs
@@ -21,36 +46,7 @@ Finalement, avec de nombreux outils pour évaluer/monitorer les états et perfor
   - Récupérer la liste des activités
   - Récupérer la liste des intérêts
   - Récupérer la liste des fournisseurs
-  - Rechercher un fournisseur (par nom, adresse ou types de composantes)
   - Voir le profil d'un fournisseur
-  - Rechercher une composante (par nom de la composante, type ou nom du fournisseur)
-    - voir si composante disponible
-    - voir son prix et description
-    - voir le fournisseur associé
-
-// Fonctionnalités pour utilisateurs
-  - Modifier son profil
-  - Gérer sa flotte (robots et composantes)
-  - Gérer ses suiveurs
-  - Gérer ses activités
-  - Gérer ses intérêts
-  - Suivre un utilisateur
-  - S'inscrire à une activité
-  - Se souscrire à un intérêt
-  - Voir l'état de ses robots
-    - voir leur batterie
-    - voir leur consommation CPU & mémoire
-    - voir leur position
-  - Voir les métriques
-    - voir la consommation globale de sa flotte
-  - Voir ses notifications
-
-// Fonctionnalités pour fournisseurs
-  - Modifier son profil
-  - Gérer ses composantes
-    - voir son inventaire
-    - retirer une composante
-  - Enregistrer une composante
 
 
 ## Organisation des fichiers
@@ -69,13 +65,20 @@ Le projet est origanisé selon la structure suivante
 │   └── Fichiers vpp des diagrammes d'activités
 ├── Conception/
 │   ├── DiagrammClasses/
-|       ├── Image du diagramme de classes
-|       └── Fichier vpp du diagramme de classes
+|       ├── Image du diagramme de classes (révisé)
+|       └── Fichier vpp du diagramme de classes (révisé)
 │   └── DiagrammeSéquence/
-|       ├── Images des diagrammes de sequence
-|       └── Fichiers vpp du diagramme de classes
+|       ├── Images des diagrammes de sequence (révisé)
+|       └── Fichiers vpp du diagramme de classes (révisé)
 ├── Implémentation/
 │   ├── Code source de l'application/ -- code source
-├── Rapport du devoir 2
+├── Rapport du devoir 3
 └── README.md
 ```
+## Description des données de départ
+10 utilisateurs, 5 fournisseurs, 2 robots, 5 composantes, 5 activites
+## Instructions pour installer le projet
+Download as zip, utiliser maven
+## Instructions pour exécuter l'application
+-java -jar robotix.jar
+

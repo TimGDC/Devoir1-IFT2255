@@ -3,12 +3,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
-
+/**
+ * Represente un robot d'un utilisateur. Un robot est compose de composantes, et a certaines metriques
+ */
 public class Robot {
     private String nom;
     private int numeroSerie;
@@ -19,7 +20,14 @@ public class Robot {
     private int[] position = {0,0,0};
     private Object obj;
     private JSONObject baseDonneeObjet;
-
+    /**
+     * Constructeur d'un robot specifique
+     * @param nom nom du robot
+     * @param numeroSerie numero de serie unique
+     * @param index index dans la DB de l'utilisateur avec le robot
+     * @throws IOException
+     * @throws ParseException
+     */
     public Robot(String nom, int numeroSerie, int index) throws IOException, ParseException {
 
         this.nom = nom;
@@ -52,10 +60,17 @@ public class Robot {
         try (FileWriter file = new FileWriter("src/main/java/BaseDonnee.json")) {
             file.write(baseDonneeObjet.toJSONString());
         }
-        System.out.println(baseDonneeObjet);
 
     }
+    /**
+     * Constructeur de base
+     */
+    public Robot(){}
 
+    /**
+     * Methode pour initialiser un robot avec des metriques aleatoires.
+     * Pour faciliter les tests.
+     */
     private void initializationRobot() {
 
         Random random = new Random();
@@ -63,6 +78,7 @@ public class Robot {
         this.consommationCPU = random.nextInt(100) + 1;
         this.consommationMemoire = random.nextInt(100) + 1;
         this.batterie = random.nextInt(10) + 1;
+        this.vitesse = this.batterie = random.nextInt(20) + 1;
         position[0] = random.nextInt(1000) + 1;
         position[1] = random.nextInt(1000) + 1;
         position[2] = random.nextInt(1000) + 1;
