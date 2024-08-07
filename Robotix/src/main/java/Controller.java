@@ -49,11 +49,11 @@ public class Controller {
 
     protected void login(boolean b) throws IOException, ParseException{
         List<String> loginInfos = view.displayLoginPage(b);
-        String utilisateur = loginInfos.get(0); String password = loginInfos.get(1);
+        String email = loginInfos.get(0); String password = loginInfos.get(1);
         Boolean trouver = false;
         for(User user : listeUsers){
 
-            if (Objects.equals(user.getUsername(), utilisateur) && Objects.equals(user.getPassword(), password)) {
+            if (Objects.equals(user.getEmail(), email) && Objects.equals(user.getPassword(), password)) {
                 int index = listeUsers.indexOf(user);
 
                 // UserMenu
@@ -67,7 +67,7 @@ public class Controller {
         }
         if(!trouver) {
             for (Fournisseur fourn : listeFournisseurs) {
-                if (Objects.equals(fourn.getUsername(), utilisateur) && Objects.equals(fourn.getPassword(), password)) {
+                if (Objects.equals(fourn.getEmail(), email) && Objects.equals(fourn.getPassword(), password)) {
                     int index = listeFournisseurs.indexOf(fourn);
 
                     //SupplierMenu
@@ -93,27 +93,71 @@ public class Controller {
         switch (choix) {
             case 1:
                 //AJOUTER CONDITION UTILISATEUR ET EMAIL UNIQUES
+                Boolean userExists = false;
                 List<String> userDetails = view.getUserSignupDetails();
-                User nouvelUtilisateur = new User(userDetails.get(0), userDetails.get(1), userDetails.get(2), Boolean.parseBoolean(userDetails.get(3)));
-                listeUsers.add(nouvelUtilisateur);
-                view.displayMessage("Creation de compte reussi!");
-                login(true);
-                break;
+                for(User user : listeUsers){
+                    if(Objects.equals(user.getEmail(), userDetails.get(2))){
+                        userExists = true;
+                    }
+                }
+                for(Fournisseur fourn : listeFournisseurs){
+                    if(Objects.equals(fourn.getEmail(), userDetails.get(2))){
+                        userExists = true;
+                    }
+                }
+                if(!userExists){
+
+                    User nouvelUtilisateur = new User(userDetails.get(0), userDetails.get(1), userDetails.get(2), Boolean.parseBoolean(userDetails.get(3)));
+                    listeUsers.add(nouvelUtilisateur);
+                    view.displayMessage("Creation de compte reussi!");
+                    login(true);
+                    break;
+
+                }else{
+
+                    view.displayMessage("Adresse email deja utilisee!");
+                    start();
+                    break;
+                }
+
 
             case 2:
                 List<String> supplierDetails = view.getSupplierSignupDetails();
-                Fournisseur nouveauFournisseur = new Fournisseur(
-                        supplierDetails.get(0),
-                        supplierDetails.get(1),
-                        supplierDetails.get(2),
-                        supplierDetails.get(3),
-                        supplierDetails.get(4),
-                        Boolean.parseBoolean(supplierDetails.get(5)),
-                        Integer.parseInt(supplierDetails.get(6)));
-                listeFournisseurs.add(nouveauFournisseur);
-                view.displayMessage("Creation de compte reussi!");
-                login(false);
-                break;
+                Boolean fournExist = false;
+                for(User user : listeUsers){
+                    if(Objects.equals(user.getEmail(), supplierDetails.get(2))){
+                        fournExist = true;
+                    }
+                }
+
+                for(Fournisseur fourn : listeFournisseurs){
+                    if(Objects.equals(fourn.getEmail(), supplierDetails.get(2))){
+                        fournExist = true;
+                    }
+                }
+                if(!fournExist){
+                    Fournisseur nouveauFournisseur = new Fournisseur(
+                            supplierDetails.get(0),
+                            supplierDetails.get(1),
+                            supplierDetails.get(2),
+                            supplierDetails.get(3),
+                            supplierDetails.get(4),
+                            Boolean.parseBoolean(supplierDetails.get(5)),
+                            Integer.parseInt(supplierDetails.get(6)));
+                    listeFournisseurs.add(nouveauFournisseur);
+                    view.displayMessage("Creation de compte reussi!");
+                    login(false);
+                    break;
+
+                }
+                else{
+
+                    view.displayMessage("Adresse email deja utilisee!");
+                    start();
+                    break;
+
+                }
+
 
             default:
                 view.displayMessage("Veuillez entrer 1 ou 2.");

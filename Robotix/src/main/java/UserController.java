@@ -117,7 +117,6 @@ public class UserController extends Controller{
                             }
 
                         }
-                        System.out.println(baseDonneeObjet);
                         endingMenuUser(index);
 
                         break;
@@ -227,10 +226,10 @@ public class UserController extends Controller{
 
             case 7:
                 // Trouver composante
-                System.out.println("Veuillez entrer le nom, le type, ou le fournisseur de la composante.");
+                userView.displayMessage("Veuillez entrer le nom, le type, ou le fournisseur de la composante.");
                 ArrayList<Composante> composantes = chercherComposante(userView.getString());
                 if (composantes.isEmpty()) {
-                    System.out.println("La composante recherchee n'existe pas");
+                    userView.displayMessage("La composante recherchee n'existe pas");
                     endingMenuUser(index);}
                 else{
                     System.out.println("Resultats recherche");

@@ -23,7 +23,7 @@ public class View {
         if (b){
             clearInputBuffer();
         }
-        System.out.print("Entrez votre nom d'utilisateur : ");
+        System.out.print("Entrez votre adresse email : ");
         String utilisateur = scanner.nextLine();
         System.out.print("Entrez votre mot de passe : ");
         String password = scanner.nextLine();

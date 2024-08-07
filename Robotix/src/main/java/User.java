@@ -21,7 +21,7 @@ public class User {
     private boolean notificationsEmail;
     private ArrayList<Robot> listeRobotsUser = new ArrayList<>();
     private ArrayList<Activite> listeActivitesUser = new ArrayList<>();;
-    private String[] notifications = {"", ""};
+    private ArrayList<String> notifications = new ArrayList<>();
     private Object obj;
     private JSONObject baseDonneeObjet;
 
@@ -71,11 +71,11 @@ public class User {
         String[] listeNotifications = {notif1, notif2, notif3, notif4};
 
         Random random = new Random();
-        notifications[0] = listeNotifications[random.nextInt(4)];
-        notifications[1] = listeNotifications[random.nextInt(4)];
+        notifications.add(listeNotifications[random.nextInt(4)]);
+        notifications.add(listeNotifications[random.nextInt(4)]);
         JSONArray notifJson = new JSONArray();
-        notifJson.add(notifications[0]);
-        notifJson.add(notifications[1]);
+        notifJson.add(notifications.get(0));
+        notifJson.add(notifications.get(1));
 
         JSONArray userList = (JSONArray) baseDonneeObjet.get("Users");
         int jsonI = 0;
@@ -186,12 +186,7 @@ public class User {
     }
     public void ajouterActivite(Activite activite, int index) throws IOException , ParseException{
 
-
-
-        listeActivitesUser.add(activite);
-
         this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
-
 
         JSONArray listeUser = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) listeUser.get(index);
@@ -206,23 +201,21 @@ public class User {
 
         listeActiviteJson.add(nouvelleActiviteJson);
 
-
-
         try (FileWriter file = new FileWriter(FILE_PATH)) {
             file.write(baseDonneeObjet.toJSONString());
         }
-        //System.out.println(baseDonneeObjet);
 
     }
 
     public void supprimerActivite(Activite activite, int index)throws IOException , ParseException{
 
-        listeActivitesUser.remove(activite.getNom());
+        listeActivitesUser.remove(activite);
 
         this.baseDonneeObjet = JSONSingleton.getInstance().parseJSONFile(FILE_PATH);
         JSONArray userList = (JSONArray) baseDonneeObjet.get("Users");
         JSONObject userActuel = (JSONObject) userList.get(index);
         JSONArray userActivite = (JSONArray) userActuel.get("activites");
+
         for(int i = 0 ; i < userActivite.size() ; i++){
             JSONObject activiteActuelle = (JSONObject) userActivite.get(i);
             if(Objects.equals(activite.getNom(), activiteActuelle.get("nom"))){
@@ -313,5 +306,8 @@ public class User {
 
     public void setNotificationsEmail(boolean notificationsEmail) {
         this.notificationsEmail = notificationsEmail;
+    }
+    public void ajouterNotificationListe(String notif){
+        this.notifications.add(notif);
     }
 }

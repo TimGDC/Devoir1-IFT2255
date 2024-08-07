@@ -20,6 +20,7 @@ public class Main {
 
         JSONArray activitesJSON = (JSONArray) baseDonneeObjet.get("Activites");
 
+        //Remplir liste activite
         for(int i = 0 ; i<activitesJSON.size() ; i++){
 
             JSONObject nouvelleActivite = (JSONObject) activitesJSON.get(i);
@@ -46,6 +47,7 @@ public class Main {
 
         JSONArray usersJSON = (JSONArray) baseDonneeObjet.get("Users");
 
+        //Remplir liste utilisateurs
         for(int j = 0 ; j<usersJSON.size() ; j++){
 
             JSONObject nouveauUser = (JSONObject) usersJSON.get(j);
@@ -132,6 +134,13 @@ public class Main {
                 user.ajouterActiviteListe(act);
 
             }
+            JSONArray notifications = (JSONArray) nouveauUser.get("notifications");
+            for(int j3 = 0; j3 < notifications.size() ; j3++){
+
+                String notif = (String) notifications.get(j3);
+                user.ajouterNotificationListe(notif);
+
+            }
 
             listeUsers.add(user);
 
@@ -139,6 +148,7 @@ public class Main {
 
         JSONArray fournisseursJSON = (JSONArray) baseDonneeObjet.get("Fournisseurs");
 
+        //Remplir liste fournisseur
         for(int k = 0 ; k<fournisseursJSON.size() ; k++){
 
             JSONObject nouveauFournisseur = (JSONObject) fournisseursJSON.get(k);
@@ -185,7 +195,7 @@ public class Main {
                 String descriptionC = (String) nouvelleComp.get("description");
                 composante.setDescription(descriptionC);
 
-                Double prixCLong = (Double) nouvelleComp.get("prix");
+                Long prixCLong = (Long) nouvelleComp.get("prix");
                 int prixC = prixCLong.intValue();
                 composante.setPrix(prixC);
 
@@ -205,8 +215,6 @@ public class Main {
         for(Fournisseur fourn : listeFournisseurs){
             listeComposantes.addAll(fourn.getListeComposante());
         }
-
-
 
         View view = new View();
         Controller controller = new Controller(view, listeUsers, listeFournisseurs, listeComposantes, listeActivites, baseDonneeObjet);
