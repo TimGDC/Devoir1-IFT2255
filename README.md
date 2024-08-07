@@ -76,6 +76,9 @@ Le projet est origanisé selon la structure suivante
 └── README.md
 ```
 ## Description des données de départ
+10 utilisateurs, 5 fournisseurs, 2 robots, 5 composantes, 5 activites
 ## Instructions pour installer le projet
+Download as zip, utiliser maven
 ## Instructions pour exécuter l'application
+-java -jar robotix.jar
 
