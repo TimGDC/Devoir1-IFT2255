@@ -1,3 +1,7 @@
+/**
+ * Represente une activite qu'un utilisateur peut participer a avec ses robots.
+ * Une activite a un nom, une duree, une description, un interet, et un statut (en cours, terminee, ...)
+ */
 public class Activite {
 
     private String nom;
@@ -6,6 +10,14 @@ public class Activite {
     private String interet;
     private String status;
 
+    /**
+     * Constructeur d'une activite
+     * @param nom le nom de l'activite
+     * @param duree la duree de cette activite
+     * @param description sa description
+     * @param interet son interet
+     * @param status le status de l'activte (en cours, terminee, non-debutee)
+     */
     public Activite(String nom, int duree, String description, String interet, String status){
         this.nom = nom;
         this.duree = duree;
@@ -13,7 +25,9 @@ public class Activite {
         this.interet = interet;
         this.status = status;
     }
-
+    /**
+     * Construceur de base, sans parametres
+     */
     public Activite(){
 
     }

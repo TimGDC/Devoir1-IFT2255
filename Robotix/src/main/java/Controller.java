@@ -7,7 +7,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-
+/**
+ * Gere les inputs des user, met a jour les modeles (User et Fournisseur) et les views, et est responable de la logique derriere
+ * l'application.
+ */
 public class Controller {
 
     protected View view;
@@ -21,6 +24,15 @@ public class Controller {
     protected Object obj;
     protected JSONObject baseDonneeObjet;
 
+    /**
+     * Constructeur du controlleur
+     * @param view la vue associee
+     * @param listeUsers liste d'utilisateurs dans la base de donnees
+     * @param listeFournisseurs liste de fournisseurs dans le DB
+     * @param listeComposantes liste de composantes dans la DB
+     * @param listeActivites liste d'activites dans la DB
+     * @param baseDonneeObjet objet representant la base de donnee
+     */
     public Controller(View view, ArrayList<User> listeUsers, ArrayList<Fournisseur> listeFournisseurs, ArrayList<Composante> listeComposantes, Activite[] listeActivites, JSONObject baseDonneeObjet)  {
         this.view = view;
         this.listeUsers = listeUsers;
@@ -30,8 +42,15 @@ public class Controller {
         this.baseDonneeObjet = baseDonneeObjet;
 
     }
+    /**
+     * Constructeur de base
+     */
     public Controller(){}
-
+    /**
+     * Debute l'application, en commencant par la page de "Inscrire" ou "Se Connecter"
+     * @throws IOException erreur pour Input / Output
+     * @throws ParseException erreur relie a JSON
+     */
     public void start() throws IOException, ParseException {
         int choice = view.displayStart();
         switch (choice) {
@@ -46,7 +65,14 @@ public class Controller {
                 start();
         }
     }
-
+    /**
+     * Methode pour se connecter au logiciel avec son compte.
+     * Inscription se fait avec un email (unique) et un mot de passe.
+     * Affiche le menu Utilisateur ou Fournisseur
+     * @param b boolean utilise comme flag pour ne pas afficher 2 fois le meme message
+     * @throws IOException erreur Input / Output
+     * @throws ParseException erreur JSON
+     */
     protected void login(boolean b) throws IOException, ParseException{
         List<String> loginInfos = view.displayLoginPage(b);
         String email = loginInfos.get(0); String password = loginInfos.get(1);
@@ -87,7 +113,12 @@ public class Controller {
 
         }
     }
-
+    /**
+     * Methode pour s'inscrire en tant que nouvel utilisateur ou fournisseur
+     * Si on utilise un email deja dans la DB, on ne peut pas creer un nouveau compte
+     * @throws IOException erreur Input / Output
+     * @throws ParseException erreur JSON
+     */
     protected void signup() throws IOException, ParseException {
         int choix = view.displaySignupPage();
         switch (choix) {
@@ -167,13 +198,20 @@ public class Controller {
 
 
 
-
+    /**
+     * Afficher la liste des utilisateurs dans la base de donnees
+     */
     protected void afficherListeUtilisateur(){
         System.out.println("Liste d'utilisateurs : ");
         for(User user : listeUsers){
             System.out.println(user.getUsername());
         }
     }
+    /**
+     * Methode pour rechercher un user
+     * @param nom le nom d'utilisateur recherche
+     * @return un boolean si l'utilisateur existe ou non
+     */
     protected boolean rechercherUtilisateur(String nom){
         boolean bool = false;
         for(User user : listeUsers) {
@@ -184,6 +222,10 @@ public class Controller {
         }
         return bool;
     }
+    /**
+     * Methode pour afficher le profil d'un utlisateur, avec toutes ces informations (publiques)
+     * @param nom le nom du user a afficher le profil
+     */
     protected void afficherProfilUtilisateur(String nom){
         for(User user : listeUsers){
             if(Objects.equals(user.getUsername(), nom)){
@@ -196,7 +238,9 @@ public class Controller {
         }
 
     }
-
+    /**
+     * Methode pour afficher la liste d'activites disponibles
+     */
     protected void afficherListeActivites(){
         System.out.println("Liste de toutes les activites");
         for(Activite act : listeActivites){
@@ -204,14 +248,19 @@ public class Controller {
         }
     }
 
-
+    /**
+     * Methode pour afficher la liste des fournisseurs dans le DB
+     */
     protected void afficherListeFournisseurs(){
         System.out.println("Liste de tous les fournisseurs");
         for(Fournisseur fourn : listeFournisseurs){
             System.out.println(fourn.getUsername());
         }
     }
-
+    /**
+     * Methode pour afficher le profile d'un fournisseur
+     * @param nom le nom du fournisseur recherche
+     */
     protected void afficherProfileFournisseur(String nom){
 
         for(Fournisseur fourn : listeFournisseurs){

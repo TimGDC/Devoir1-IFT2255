@@ -7,7 +7,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
-
+/**
+ * Represente un robot d'un utilisateur. Un robot est compose de composantes, et a certaines metriques
+ */
 public class Robot {
     private String nom;
     private int numeroSerie;
@@ -18,7 +20,14 @@ public class Robot {
     private int[] position = {0,0,0};
     private Object obj;
     private JSONObject baseDonneeObjet;
-
+    /**
+     * Constructeur d'un robot specifique
+     * @param nom nom du robot
+     * @param numeroSerie numero de serie unique
+     * @param index index dans la DB de l'utilisateur avec le robot
+     * @throws IOException
+     * @throws ParseException
+     */
     public Robot(String nom, int numeroSerie, int index) throws IOException, ParseException {
 
         this.nom = nom;
@@ -53,10 +62,15 @@ public class Robot {
         }
 
     }
-
+    /**
+     * Constructeur de base
+     */
     public Robot(){}
 
-
+    /**
+     * Methode pour initialiser un robot avec des metriques aleatoires.
+     * Pour faciliter les tests.
+     */
     private void initializationRobot() {
 
         Random random = new Random();

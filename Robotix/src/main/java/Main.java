@@ -7,8 +7,16 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * Debute l'application Robotix avec une initialisation de donnees preliminaire, puis le lancement de l'application
+ */
 public class Main {
+    /**
+     * Methode main appele par le compilateur
+     * @param args arguments precises en ligne de commande (aucun)
+     * @throws IOException Erreur Input / Output
+     * @throws ParseException Erreur JSON
+     */
     public static void main(String[] args) throws IOException, ParseException {
 
         Object obj = new JSONParser().parse(new FileReader("src/main/java/BaseDonnee.json"));

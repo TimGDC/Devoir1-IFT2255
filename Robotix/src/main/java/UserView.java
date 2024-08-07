@@ -4,9 +4,14 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.Objects;
-
+/**
+ * Represente tout l'affichage en rapport avec l'utilisateur
+ */
 public class UserView extends View{
-
+    /**
+     * Methode pour afficher le menu initial de l'utilisateur
+     * @return le choix de l'utilisateur pour aller a la prochaine page
+     */
     public int displayUserMenu(){
 
         System.out.println("Veuillez choisir une option");
@@ -15,7 +20,10 @@ public class UserView extends View{
         System.out.println("3 - Quitter l'application");
         return getInt();
     }
-
+    /**
+     * Methode pour afficher le menu des fonctionnalites de l'utilisateur
+     * @return le choix de l'utilisateur pour aller a la prochaine page
+     */
     public int displayUserOptions(){
         System.out.println("Veuillez choisir une option");
         System.out.println("1 - Modifier son profil");
@@ -29,7 +37,10 @@ public class UserView extends View{
         return getInt();
 
     }
-
+    /**
+     * Methode pour afficher le menu pour gerer les robots de l'utilisateur
+     * @return le choix de l'utilisateur pour aller a la prochaine page
+     */
     public int displayRobotOptions(){
         System.out.println("Veuillez choisir une option : ");
         System.out.println("1 - Afficher ses robots");
@@ -38,7 +49,10 @@ public class UserView extends View{
         return getInt();
 
     }
-
+    /**
+     * Methode pour afficher le menu d'activite de l'utilisateur
+     * @return le choix de l'utilisateur pour aller a la prochaine page
+     */
     public int displayActivityOptions(){
 
         System.out.println("Veuillez choisir une option : ");
@@ -48,7 +62,10 @@ public class UserView extends View{
         return getInt();
 
     }
-
+    /**
+     * Methode pour afficher soit la vue generale, soit la vue complete des etats des robots
+     * @return le choix de l'utilisateur pour aller a la prochaine page
+     */
     public int displayRobotStatus(){
         System.out.println("Veuillez choisir une option : ");
         System.out.println("1 - Afficher vue generale");
@@ -56,7 +73,10 @@ public class UserView extends View{
         return getInt();
 
     }
-
+    /**
+     * Methode pour afficher les choix lors de la recherche d'une composante ou d'un fournisseur
+     * @return le choix de l'utilisateur pour aller a la prochaine page
+     */
     public int displaySearchingOptions(){
         System.out.println("1 - Afficher la fiche presentant toutes les informations");
         System.out.println("2 - Revenir au menu precedent");

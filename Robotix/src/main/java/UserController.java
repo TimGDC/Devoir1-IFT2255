@@ -4,11 +4,22 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.*;
-
+/**
+ * Controlleur pour tout ce qui est rapport avec l'utilisateur
+ */
 public class UserController extends Controller{
 
 
     UserView userView;
+    /**
+     * Constructeur pour instancier le controlleur
+     * @param userView la vue associee
+     * @param listeUsers liste d'utilisateurs
+     * @param listeFournisseurs liste de fournisseurs
+     * @param listeComposantes liste de composantes
+     * @param listeActivites liste d'activites
+     * @param baseDonneeObjet l'Object representant la DB
+     */
     public UserController(UserView userView, ArrayList<User> listeUsers, ArrayList<Fournisseur> listeFournisseurs, ArrayList<Composante> listeComposantes, Activite[] listeActivites, JSONObject baseDonneeObjet){
         this.userView = userView;
         this.listeUsers = listeUsers;
@@ -18,7 +29,12 @@ public class UserController extends Controller{
         this.baseDonneeObjet = baseDonneeObjet;
 
     }
-
+    /**
+     * Methode pour gerer le menu de l'utilisateur, avec fonctions utilisateur et requetes publiques
+     * @param index index de l'utilisateur dans la DB
+     * @throws IOException
+     * @throws ParseException
+     */
     public void userMenu(int index) throws IOException, ParseException {
 
         JSONArray listeUtilisateursJson = (JSONArray) baseDonneeObjet.get("Users");
@@ -45,6 +61,12 @@ public class UserController extends Controller{
 
 
     }
+    /**
+     * Methode pour gerer les focntionnalites de l'utilisateur
+     * @param index index de l'utilisateur
+     * @throws IOException
+     * @throws ParseException
+     */
     private void fonctionsUtilisateur(int index) throws IOException, ParseException {
 
 
@@ -295,7 +317,11 @@ public class UserController extends Controller{
                 userView.displayMessage("Veuillez entrer un nombre entre 1 et 8.");
         }
     }
-
+    /**
+     * Methode pour rechercher une composante, via nom, type ou fournisseur
+     * @param recherche la recherche en string
+     * @return une liste de composantes qui match la recherche
+     */
     protected ArrayList<Composante> chercherComposante(String recherche) {
         ArrayList<Composante> composantes = new ArrayList<>();
         for(Composante comp : listeComposantes){
@@ -305,7 +331,11 @@ public class UserController extends Controller{
         }
         return composantes;
     }
-
+    /**
+     * MEthode pour rechercher un fournisseur, via nom, type, ou adresse
+     * @param recherche la recherche en string
+     * @return une liste de fournisseur qui match la recherche
+     */
     protected ArrayList<Fournisseur> chercherFournisseur(String recherche) {
         ArrayList<Fournisseur> fourns = new ArrayList<>();
         for(Fournisseur fourn : listeFournisseurs) {
@@ -317,7 +347,12 @@ public class UserController extends Controller{
 
     }
 
-
+    /**
+     * Methode pour gerer les requestes publiques disponible a l'utilisateur
+     * @param index index de l'utilisateur
+     * @throws IOException
+     * @throws ParseException
+     */
     protected void requetesPubliques(int index) throws IOException, ParseException {
 
         int choix = userView.showPublicRequestMenu();
@@ -362,7 +397,12 @@ public class UserController extends Controller{
 
 
     }
-
+    /**
+     * Methode pour gerer le menu de fin, ou l'on peut quitter l'appli ou revenir a un menu precedent
+     * @param index l'index de l'utilisateur dans la DB
+     * @throws IOException
+     * @throws ParseException
+     */
     protected void endingMenuUser(int index) throws IOException, ParseException {
 
         int choix = userView.showEndingScreen();

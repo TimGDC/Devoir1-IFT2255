@@ -5,11 +5,22 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
-
+/**
+ * Represente la partie du controlleur reponsable pour tout ce qui est rapport avec le fournisseur
+ */
 public class FournisseurController extends Controller{
 
    FournisseurView fournisseurView;
    int indexComposante;
+    /**
+     * Constructeur
+     * @param fournisseurView la vue associe
+     * @param listeUsers liste d'utilisateurs
+     * @param listeFournisseurs liste de fournisseurs
+     * @param listeComposantes liste de composantes
+     * @param listeActivites listes d'activites
+     * @param baseDonneeObjet Object pour gerer la DB
+     */
    public FournisseurController(FournisseurView fournisseurView, ArrayList<User> listeUsers, ArrayList<Fournisseur> listeFournisseurs, ArrayList<Composante> listeComposantes, Activite[] listeActivites, JSONObject baseDonneeObjet){
 
        this.fournisseurView = fournisseurView;
@@ -19,7 +30,12 @@ public class FournisseurController extends Controller{
        this.listeActivites = listeActivites;
        this.baseDonneeObjet = baseDonneeObjet;
    }
-
+    /**
+     * Methode pour gerer le menu du fournisseur, une fois connecter au logiciel
+     * @param index l'index du fournisseur en question dans la DB
+     * @throws IOException
+     * @throws ParseException
+     */
    public void fournisseurMenu(int index) throws IOException, ParseException{
 
        //JSONArray listeFournisseurJson = (JSONArray) baseDonneeObjet.get("Fournisseurs");
@@ -46,7 +62,12 @@ public class FournisseurController extends Controller{
        }
 
    }
-
+    /**
+     * Methode qui gere les fonctions disponibles au fournisseur
+     * @param index l'index du fournisseur dans la DB
+     * @throws IOException
+     * @throws ParseException
+     */
    private  void fonctionsFournisseur(int index) throws IOException, ParseException {
 
         int choix = fournisseurView.displayFournisseurOptions();
@@ -135,7 +156,12 @@ public class FournisseurController extends Controller{
 
 
    }
-
+    /**
+     * Methode qui gere les requetes publiques disponibles au fournisseur
+     * @param index l'index du fournisseur dans la DB
+     * @throws IOException
+     * @throws ParseException
+     */
     protected void requetesPubliques(int index) throws IOException, ParseException {
 
         int choix = fournisseurView.showPublicRequestMenu();
@@ -179,6 +205,13 @@ public class FournisseurController extends Controller{
 
 
     }
+
+    /**
+     * Methode pour le menu de fin, si on veut quitter l'application ou revenir a un menu precedent
+     * @param index l'index du fournisseur
+     * @throws IOException
+     * @throws ParseException
+     */
     protected void endingMenuFournisseur(int index) throws IOException, ParseException {
 
         int choix = fournisseurView.showEndingScreen();

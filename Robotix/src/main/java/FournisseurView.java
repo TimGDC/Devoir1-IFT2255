@@ -1,5 +1,12 @@
+/**
+ * Responsable pour l'affichage de tout ce qui est rapport avec le fournisseur.
+ * Contient principalement des methodes qui retourne le choix du fournisseur et qui affiche les choix possibles
+ */
 public class FournisseurView extends View{
-
+    /**
+     * Affiche le menu du fournisseur
+     * @return le choix du fournisseur parmi les options
+     */
     public int displayFournisseurMenu(){
 
         System.out.println("Veuillez choisir une option");
@@ -9,6 +16,10 @@ public class FournisseurView extends View{
         return getInt();
 
     }
+    /**
+     * Affiche le menu des fonctionnalites pour fournisseur
+     * @return le choix du fournisseur
+     */
     public int displayFournisseurOptions(){
 
         System.out.println("Veuillez choisir une option : ");
